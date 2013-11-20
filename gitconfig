@@ -1,0 +1,16 @@
+[core]
+    autocrlf = false
+    excludesfile = ~/.gitignore
+[alias]
+    st = status
+    co = checkout
+    ci = commit
+    br = branch
+[color]
+    ui = auto
+[push]
+    default = nothing
+[merge]
+    ff = false
+[include]
+    path = ~/.gitconfig.local
