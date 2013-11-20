@@ -1,13 +1,14 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
-DOT_DIR=~/.dotfiles
-DOT_FILES=$(ls -a $DOT_DIR|grep '^\.'|grep -vE '^(.git|.|..)$')
-
-for file in $DOT_FILES
-do
-    if [ "$1" == "-f" ]
-	then
-        rm ~/$file
+for name in *; do
+  target="$HOME/.$name"
+  if [ -e "$target" ] && [ ! -L "$target" ]; then
+      echo "WARNING: $target exists but is not a symlink."
+  else
+    if [ "$name" != 'setup.sh' ] && [ "$name" != 'README.md' ]; then
+      echo "Creating $target"
+      rm "$target"
+      ln -s "$PWD/$name" "$target"
     fi
-    ln -s $DOT_DIR/$file ~/$file
+  fi
 done
