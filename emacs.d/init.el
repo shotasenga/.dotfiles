@@ -3,7 +3,7 @@
 (require 'cl)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; load-path
+;; @ load-path
 (defun add-to-load-path (&rest paths)
   (let (path)
     (dolist (path paths paths)
@@ -16,8 +16,9 @@
 ;; if add directory more than one -> (add-to-load-path "elisp" "xxx" "xxx")
 (add-to-load-path "elisp")
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; package.el
+;; @ package
 (when (require 'package nil t)
   ;; add repositry MELPA
   (add-to-list 'package-archives
@@ -30,8 +31,9 @@
                '("marmalade" . "http://marmalade-repo.org/packages/"))
   (package-initialize))
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; defaullt packages forked from http://www.aaronbedra.com/emacs.d/
+;; @ defaullt packages forked from http://www.aaronbedra.com/emacs.d/
 (defvar abedra/packages '(auto-complete
                           autopair
                           coffee-mode
@@ -44,7 +46,8 @@
                           yaml-mode
                           helm
                           php-mode
-                          web-mode)
+                          web-mode
+                          redo+)
   "Default packages")
 
 (defun abedra/packages-installed-p ()
@@ -59,19 +62,22 @@
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Startup screen
+;; @ Startup screen
 (setq inhibit-splash-screen t
       initial-scratch-message nil)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; text marking
+;; @ text marking
 (delete-selection-mode t)
 (transient-mark-mode t)
 (setq x-select-enable-clipboard t)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; misc
+;; @ misc
 (setq make-backup-files nil)
 (defalias 'yes-or-no-p 'y-or-n-p)
 ;; save cursor position
@@ -79,8 +85,9 @@
 ;; echo area
 (setq echo-keystrokes 0.1)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Encoding
+;; @ Encoding
 (set-language-environment "Japanese")
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -89,16 +96,18 @@
 (set-keyboard-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Global key set
+;; @ Global key set
 (global-set-key (kbd "RET") 'newline-and-indent)
 (global-set-key (kbd "C-u") 'undo)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "M-h") 'backward-kill-word)
 ;;(global-set-key (kbd "C-j") 'goto-line)  ; (where-is 'goto-line)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; theme & visual
+;; @ theme & visual
 (load-theme 'wombat t)
 (setq column-number-mode t)
 ;; higlight current line
@@ -110,16 +119,42 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
-;; default window
+;; window-size
+;; - for MacBook Air 13inch display
+(when window-system
+  (set-frame-position (selected-frame) 0 0)
+  (set-frame-size (selected-frame) 202 56))
+;; frame-title
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b"))))
-
+;; default buffer
 (setq-default indicate-empty-lines t)
 (when (not indicate-empty-lines)
   (toggle-indicate-empty-lines))
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; indentation
+;; @ screen swap
+(defun swap-screen-with-cursor()
+  "Swap two screen,with cursor in same buffer."
+  (interactive)
+  (let ((thiswin (selected-window))
+        (thisbuf (window-buffer)))
+    (other-window 1)
+    (set-window-buffer thiswin (window-buffer))
+    (set-window-buffer (selected-window) thisbuf)))
+(global-set-key [f2] 'swap-screen-with-cursor)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ undo/redo
+(when (require 'redo+ nil t)
+  (setq undo-no-redo t)
+  (global-set-key (kbd "C-?") 'redo)
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ indentation
 ;; indent size and type
 (setq tab-width 4)
 (setq-default indent-tabs-mode nil)
@@ -145,8 +180,9 @@
 (global-set-key (kbd "C-x M-t") 'cleanup-region)
 (global-set-key (kbd "C-M-l") 'cleanup-buffer)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; whitespace
+;; @ whitespace
 ;; for whitespace-mode
 (require 'whitespace)
 ;; see whitespace.el for more details
@@ -168,20 +204,40 @@
 (set-face-bold-p 'whitespace-space t)
 (global-whitespace-mode 1)
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; screen swap
-(defun swap-screen-with-cursor()
-  "Swap two screen,with cursor in same buffer."
-  (interactive)
-  (let ((thiswin (selected-window))
-        (thisbuf (window-buffer)))
-    (other-window 1)
-    (set-window-buffer thiswin (window-buffer))
-    (set-window-buffer (selected-window) thisbuf)))
-(global-set-key [f2] 'swap-screen-with-cursor)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Ruby
+;; @ isearch region
+(defadvice isearch-mode
+  (around isearch-mode-default-string
+          (forward &optional regexp op-fun recursive-edit word-p) activate)
+  (if (and transient-mark-mode mark-active (not (eq (mark) (point))))
+      (progn
+        (isearch-update-ring (buffer-substring-no-properties (mark) (point)))
+        (deactivate-mark)
+        ad-do-it
+        (if (not forward)
+            (isearch-repeat-backward)
+          (goto-char (mark))
+          (isearch-repeat-forward)))
+    ad-do-it))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ Rect
+;; key-bindings -> http://dev.ariel-networks.com/articles/emacs/part5/
+(cua-mode t)
+(setq cua-enable-cua-keys nil)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ auto complition
+(when (require 'auto-complete-config nil t)
+  (setq ac-use-menu-map t)
+  (setq popup-use-optimized-column-computation nil)
+  (ac-config-default)
+  )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ Ruby
 (add-hook 'ruby-mode-hook
           (lambda ()
             (autopair-mode)))
@@ -193,21 +249,24 @@
 (add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
 (add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; YAML
+;; @ YAML
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Coffee
+;; @ Coffee
 (defun coffee-custom ()
   "coffee-mode-hook"
   (make-local-variable 'tab-width)
   (set 'tab-width 4))
 (add-hook 'coffee-mode-hook 'coffee-custom)
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Markdown
+;; @ Markdown
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
 (add-hook 'markdown-mode-hook (lambda () (visual-line-mode t)))
@@ -216,7 +275,7 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; web-mode
+;; @ web-mode
 (when (require 'web-mode)
   ;; extensions
   (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
@@ -241,19 +300,22 @@
   (setq web-mode-block-padding 0)
   )
 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; PHP
+;; @ PHP
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Deft
+;; @ Deft
 (setq deft-directory "~/Dropbox/deft")
 (setq deft-use-filename-as-title t)
-(setq deft-extension "org")
-(setq deft-text-mode 'org-mode)
+(setq deft-extension "md")
+(setq deft-text-mode 'markdown-mode)
+(global-set-key (kbd "<f8>") 'deft)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; helm
+;; @ helm
 (when (require 'helm-config nil t)
   (global-set-key (kbd "C-x b") 'helm-mini)
   (global-set-key (kbd "C-x C-b") 'switch-to-buffer)
@@ -261,7 +323,7 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Emacs server
+;; @ Emacs server
 (when (require 'server)
   (unless (server-running-p)
     (server-start))
@@ -270,4 +332,4 @@
   (add-hook 'server-done-hook 'ns-do-hide-emacs)
   (global-set-key (kbd "C-x C-c") 'server-edit)
   (defalias 'exit 'save-bufferes-kill-emacs)
-)
+  )
