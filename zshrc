@@ -11,7 +11,9 @@ alias marked="open -a marked"
 alias subl='open -a "sublime text 2"'
 alias intellij='open -a "IntelliJ IDEA 12"'
 alias sourcetree='open -a sourcetree'
-alias e='emacs'
+alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
+alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+alias e='emacsclient'
 alias pow='"/Users/senta/Library/Application Support/Pow/Current/bin/pow"'
 
 # oh-my-zsh settings
@@ -21,7 +23,7 @@ plugins=(git ruby osx bundler brew vagrant bower gem z)
 source $ZSH/oh-my-zsh.sh
 
 # Editor
-export EDITOR=emacs
+export EDITOR='emacsclient'
 export SVN_EDITOR=$EDITOR
 
 # node path
