@@ -47,7 +47,8 @@
                           helm
                           php-mode
                           web-mode
-                          redo+)
+                          redo+
+                          ace-jump-mode)
   "Default packages")
 
 (defun abedra/packages-installed-p ()
@@ -252,6 +253,11 @@
   (setq popup-use-optimized-column-computation nil)
   (ac-config-default)
   )
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ ace-jump-mode
+(define-key global-map (kbd "C-;") 'ace-jump-mode)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Ruby
