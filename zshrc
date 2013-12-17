@@ -14,7 +14,6 @@ alias sourcetree='open -a sourcetree'
 alias emacs='/Applications/Emacs.app/Contents/MacOS/Emacs'
 alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
 alias e='emacsclient'
-alias pow='"/Users/senta/Library/Application Support/Pow/Current/bin/pow"'
 
 # oh-my-zsh settings
 # export UPDATE_ZSH_DAYS=13
