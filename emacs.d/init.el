@@ -356,3 +356,4 @@
   (global-set-key (kbd "C-x C-c") 'server-edit)
   (defalias 'exit 'save-bufferes-kill-emacs)
   )
+(put 'upcase-region 'disabled nil)
