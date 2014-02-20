@@ -219,7 +219,7 @@
 (setq whitespace-style '(face tabs tab-mark spaces space-mark))
 (setq whitespace-display-mappings
 ;;      '((space-mark ?\u3000 [?\u25a1]) ; zenkaku-whitespace to white-square-mark
-      '((space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT ·, 46 FULL STOP .
+      '((space-mark 32 [46] [46]) ; 32 SPACE, 183 MIDDLE DOT ·, 46 FULL STOP .
         (newline-mark [10 13] [182]) ; 10 LINE FEED
         ;; WARNING: the mapping below has a problem.
         ;; When a TAB occupies exactly one column, it will display the
