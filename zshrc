@@ -41,7 +41,19 @@ PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH
 
 
+## ✪✪✪✪✪ 以下、整理する ✪✪✪✪✪✪
 
-
-## tmuxinator
+## tmuxinator complition
 source ~/.rbenv/versions/2.0.0-p195/lib/ruby/gems/2.0.0/gems/tmuxinator-0.6.6/completion/tmuxinator.zsh
+
+# tmux自動起動 (default session) ....__ http://d.hatena.ne.jp/flada_auxv/20121110/1352527081
+if [ -z "$TMUX" -a -z "$STY" ]; then
+    if type tmux >/dev/null 2>&1; then
+        if tmux has-session && tmux list-sessions | /usr/bin/grep 'default'; then
+            #tmux attach && echo "tmux attached session "
+            echo "mux default session is running."
+        else
+            tmuxinator start default && echo "tmuxinator started defailt session"
+        fi
+    fi
+fi
