@@ -117,14 +117,25 @@
 (set-face-foreground 'highlight nil)
 (set-face-underline 'highlight nil)
 ;; window
-(scroll-bar-mode -1)
-(tool-bar-mode -1)
-(menu-bar-mode -1)
+;; (if (display-graphic-p)
+;;         (progn
+;; 	  (scroll-bar-mode -1)
+;; 	  (tool-bar-mode -1)
+;; 	  (menu-bar-mode -1)
+;; 	  ))
 ;; window-size
-;; - for MacBook Air 13inch display
+
+;; when runing with window system
 (when window-system
+  ;; hide each bars
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+
+  ;; full screen (for MacBook Air 13inch display)
   (set-frame-position (selected-frame) 0 0)
-  (set-frame-size (selected-frame) 202 56))
+  (set-frame-size (selected-frame) 202 56)
+  )
 ;; frame-title
 (when window-system
   (setq frame-title-format '(buffer-file-name "%f" ("%b"))))
@@ -149,20 +160,21 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ font
-;; http://d.hatena.ne.jp/minus9d/20131103/1383475472
-;; default
-(set-face-attribute 'default nil
+(when window-system
+  ;; http://d.hatena.ne.jp/minus9d/20131103/1383475472
+  ;; default
+  (set-face-attribute 'default nil
                     :family "Menlo" ;; font
                     :height 120)    ;; font size
 
-;; japanese
-(set-fontset-font
+  ;; japanese
+  (set-fontset-font
  nil 'japanese-jisx0208
  ;; (font-spec :family "Hiragino Mincho Pro")) ;; font
  (font-spec :family "Hiragino Kaku Gothic ProN")) ;; font
-(setq face-font-rescale-alist
-      '((".*Hiragino_Mincho_pro.*" . 1.2)))
-
+  (setq face-font-rescale-alist
+	'((".*Hiragino_Mincho_pro.*" . 1.2)))
+  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ undo/redo
