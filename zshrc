@@ -41,6 +41,10 @@ fi
 PATH=/usr/local/bin:/usr/local/sbin:$PATH
 export PATH
 
+## for Android SDK
+ANDROID_SDK_PATH=/Developer/SDKs/android-sdk-macosx
+export PATH=$PATH:$ANDROID_SDK_PATH/tools:$ANDROID_SDK_PATH/platform-tools
+
 
 ## ✪✪✪✪✪ 以下、整理する ✪✪✪✪✪✪
 
