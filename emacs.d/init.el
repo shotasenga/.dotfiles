@@ -270,7 +270,8 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ ace-jump-mode
-(define-key global-map (kbd "C-;") 'ace-jump-mode)
+(global-set-key (kbd "C-;") 'ace-jump-mode)
+;;(define-key global-map (kbd "C-;") 'ace-jump-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -366,7 +367,7 @@
     (server-start))
   ;;(defun iconify-emacs-when-server-is-done ()
   ;; (unless server-clients (iconify-frame)))
-  ;(add-hook 'server-done-hook 'ns-do-hide-emacs)
+  (add-hook 'server-done-hook 'ns-do-hide-emacs)
   (global-set-key (kbd "C-x C-c") 'server-edit)
   (defalias 'exit 'save-bufferes-kill-emacs)
   )
