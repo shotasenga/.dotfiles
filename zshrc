@@ -11,6 +11,7 @@ alias marked="open -a marked"
 alias subl='open -a "sublime text 2"'
 alias sourcetree='open -a sourcetree'
 alias e='emacsclient'
+alias bower='noglob bower'
 
 # oh-my-zsh settings
 # export UPDATE_ZSH_DAYS=13
@@ -23,7 +24,7 @@ export EDITOR='emacsclient'
 export SVN_EDITOR=$EDITOR
 
 # node path
-export NODE_PATH="/usr/local/lib/node"
+export NODE_PATH="/usr/local/lib/node_modules"
 export PATH="/usr/local/share/npm/bin:$PATH"
 
 ## rbenv setting
