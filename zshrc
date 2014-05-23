@@ -12,6 +12,7 @@ alias subl='open -a "sublime text 2"'
 alias sourcetree='open -a sourcetree'
 alias e='emacsclient'
 alias bower='noglob bower'
+alias preview='qlmanage -p '
 
 # oh-my-zsh settings
 # export UPDATE_ZSH_DAYS=13
@@ -62,3 +63,6 @@ if [ -z "$TMUX" -a -z "$STY" ]; then
         fi
     fi
 fi
+
+## wan to run sl
+unalias sl
