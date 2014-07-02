@@ -13,6 +13,7 @@ alias sourcetree='open -a sourcetree'
 alias e='emacsclient'
 alias bower='noglob bower'
 alias preview='qlmanage -p '
+alias cliptmux="tmux showb|pbcopy"
 
 # oh-my-zsh settings
 # export UPDATE_ZSH_DAYS=13
