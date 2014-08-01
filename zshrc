@@ -1,6 +1,9 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 
+# LANG
+export LANG=en_US.UTF-8
+
 # theme
 ZSH_THEME="cloud"
 
