@@ -20,7 +20,7 @@ alias cliptmux="tmux showb|pbcopy"
 
 # oh-my-zsh settings
 # export UPDATE_ZSH_DAYS=13
-plugins=(git ruby osx bundler brew vagrant bower gem z)
+plugins=(git ruby osx bundler brew vagrant bower gem z git-flow)
 
 source $ZSH/oh-my-zsh.sh
 
