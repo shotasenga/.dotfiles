@@ -51,6 +51,9 @@ ANDROID_SDK_PATH=/Developer/SDKs/android-sdk-macosx
 export PATH=$PATH:$ANDROID_SDK_PATH/tools:$ANDROID_SDK_PATH/platform-tools
 export ANDROID_HOME=$ANDROID_SDK_PATH
 
+## Heroku
+export PATH="/usr/local/heroku/bin:$PATH"
+
 
 ## ✪✪✪✪✪ 以下、整理する ✪✪✪✪✪✪
 
@@ -68,3 +71,4 @@ if [ -z "$TMUX" -a -z "$STY" ]; then
         fi
     fi
 fi
+
