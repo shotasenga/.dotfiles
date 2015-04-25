@@ -60,6 +60,7 @@
                       web-mode
                       yaml-mode
                       yasnippet
+                      nyan-mode
                       )
   "Default packages")
 
@@ -147,9 +148,12 @@
 (when (not indicate-empty-lines)
   (toggle-indicate-empty-lines))
 
+;; Nyan-mode
+(nyan-mode 1)
+(nyan-start-animation)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ screen swap
+;; @ Screen swap
 (defun swap-screen-with-cursor()
   "Swap two screen,with cursor in same buffer."
   (interactive)
