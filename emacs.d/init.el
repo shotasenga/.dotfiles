@@ -34,32 +34,44 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ defaullt packages forked from http://www.aaronbedra.com/emacs.d/
-(defvar abedra/packages '(auto-complete
-                          autopair
-                          coffee-mode
-                          deft
-                          go-mode
-                          haml-mode
-                          magit
-                          markdown-mode
-                          org
-                          yaml-mode
-                          helm
-                          php-mode
-                          web-mode
-                          redo+
-                          ace-jump-mode)
+(defvar my:packages '(ace-jump-mode
+                      async
+                      auto-complete
+                      auto-complete-c-headers
+                      autopair
+                      blank-mode
+                      coffee-mode
+                      deft
+                      flymake-cursor
+                      flymake-easy
+                      flymake-google-cpplint
+                      git-commit-mode
+                      git-rebase-mode
+                      go-mode
+                      haml-mode
+                      helm
+                      iedit
+                      magit
+                      markdown-mode
+                      migemo
+                      php-mode
+                      popup
+                      redo+
+                      web-mode
+                      yaml-mode
+                      yasnippet
+                      )
   "Default packages")
 
-(defun abedra/packages-installed-p ()
-  (loop for pkg in abedra/packages
+(defun my:packages-installed-p ()
+  (loop for pkg in my:packages
         when (not (package-installed-p pkg)) do (return nil)
         finally (return t)))
 
-(unless (abedra/packages-installed-p)
+(unless (my:packages-installed-p)
   (message "%s" "Refreshing package database...")
   (package-refresh-contents)
-  (dolist (pkg abedra/packages)
+  (dolist (pkg my:packages)
     (when (not (package-installed-p pkg))
       (package-install pkg))))
 
@@ -100,11 +112,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Global key set
+; auto indent
 (global-set-key (kbd "RET") 'newline-and-indent)
-(global-set-key (kbd "C-u") 'undo)
-(global-set-key (kbd "C-h") 'delete-backward-char)
-(global-set-key (kbd "M-h") 'backward-kill-word)
-;;(global-set-key (kbd "C-j") 'goto-line)  ; (where-is 'goto-line)
+; C-h as delete
+(keyboard-translate ?\C-h ?\C-?)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -116,14 +127,6 @@
 (set-face-background 'hl-line "#3a3a3a")
 (set-face-foreground 'highlight nil)
 (set-face-underline 'highlight nil)
-;; window
-;; (if (display-graphic-p)
-;;         (progn
-;; 	  (scroll-bar-mode -1)
-;; 	  (tool-bar-mode -1)
-;; 	  (menu-bar-mode -1)
-;; 	  ))
-;; window-size
 
 ;; when runing with window system
 (when window-system
@@ -188,6 +191,8 @@
 ;; indent size and type
 (setq tab-width 4)
 (setq-default indent-tabs-mode nil)
+(setq sgml-basic-offset 4)
+(setq js-indent-level 2)
 
 ;; indent cleanup
 (defun untabify-buffer ()
@@ -268,10 +273,22 @@
   (ac-config-default)
   )
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ yasnippet
+(require 'yasnippet)
+(yas-global-mode 1)
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ ace-jump-mode
-(global-set-key (kbd "C-;") 'ace-jump-mode)
-;;(define-key global-map (kbd "C-;") 'ace-jump-mode)
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-;") 'ace-jump-mode)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ i-edit
+(define-key global-map (kbd "C-c ;") 'iedit-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -324,6 +341,7 @@
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
   ;; engine
   (setq web-mode-engines-alist
         '(("php"    . "\\.phtml\\'")
@@ -338,6 +356,14 @@
   (setq web-mode-style-padding 2)
   (setq web-mode-block-padding 0)
   )
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ html-mode
+(add-hook 'html-mode-hook
+  (lambda ()
+    ;; Default indentation is usually 2 spaces, changing to 4.
+    (set (make-local-variable 'sgml-basic-offset) 4)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -362,14 +388,36 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ C/C++
+; auto complete headers
+(defun my:ac-c-header-init ()
+  (require 'auto-complete-c-headers)
+  (add-to-list 'ac-sources 'ac-source-c-headers)
+  (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/include"))
+
+(add-hook 'c++-mode-hook 'my:ac-c-header-init)
+(add-hook 'c-mode-hook 'my:ac-c-header-init)
+
+; google style guide
+(defun my:flymake-google-init ()
+  (require 'flymake-google-cpplint)
+  (custom-set-variables
+   '(flymake-google-cpplint-command "/usr/local/bin/cpplint"))
+  (flymake-google-cpplint-load)
+)
+(add-hook 'c++-mode-hook 'my:flymake-google-init)
+(add-hook 'c-mode-hook 'my:flymake-google-init)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Emacs server
 (when (require 'server)
-  (unless (server-running-p)
-    (server-start))
-  ;;(defun iconify-emacs-when-server-is-done ()
-  ;; (unless server-clients (iconify-frame)))
-  (add-hook 'server-done-hook 'ns-do-hide-emacs)
-  (global-set-key (kbd "C-x C-c") 'server-edit)
-  (defalias 'exit 'save-bufferes-kill-emacs)
-  )
+ (unless (server-running-p)
+   (server-start))
+ ;;(defun iconify-emacs-when-server-is-done ()
+ ;; (unless server-clients (iconify-frame)))
+ (add-hook 'server-done-hook 'ns-do-hide-emacs)
+ (global-set-key (kbd "C-x C-c") 'server-edit)
+ (defalias 'exit 'save-bufferes-kill-emacs)
+ )
 (put 'upcase-region 'disabled nil)
