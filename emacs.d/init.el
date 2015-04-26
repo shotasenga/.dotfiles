@@ -131,6 +131,7 @@
 ;; @ theme & visual
 (load-theme 'wombat t)
 (setq column-number-mode t)
+
 ;; higlight current line
 (global-hl-line-mode 1)
 (set-face-background 'hl-line "#3a3a3a")
@@ -139,22 +140,25 @@
 
 ;; when runing with window system
 (when window-system
-  ;; hide each bars
+  ;; hide window bar
   (scroll-bar-mode -1)
   (tool-bar-mode -1)
   (menu-bar-mode -1)
 
   ;; full screen (for MacBook Air 13inch display)
   (set-frame-position (selected-frame) 0 0)
-  (set-frame-size (selected-frame) 202 56)
+  (set-frame-size (selected-frame) 202 60)
+
+  ;; frame title
+  (setq frame-title-format '(buffer-file-name "%f" ("%b")))
+
+  ;; default buffer
+  (setq-default indicate-empty-lines t)
+  (toggle-indicate-empty-lines)
+
+  ;; transparent window
+  (set-frame-parameter nil 'alpha 85)
   )
-;; frame-title
-(when window-system
-  (setq frame-title-format '(buffer-file-name "%f" ("%b"))))
-;; default buffer
-(setq-default indicate-empty-lines t)
-(when (not indicate-empty-lines)
-  (toggle-indicate-empty-lines))
 
 ;; Nyan-mode
 (nyan-mode 1)
