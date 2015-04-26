@@ -494,7 +494,7 @@
    (server-start))
  ;;(defun iconify-emacs-when-server-is-done ()
  ;; (unless server-clients (iconify-frame)))
- (add-hook 'server-done-hook 'ns-do-hide-emacs)
+ ;;(add-hook 'server-done-hook 'ns-do-hide-emacs)
  (global-set-key (kbd "C-x C-c") 'server-edit)
  (defalias 'exit 'save-bufferes-kill-emacs)
  )
