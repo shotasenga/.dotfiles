@@ -1,6 +1,7 @@
 [core]
     autocrlf = false
     excludesfile = ~/.gitignore
+    editor = vi
 [alias]
     st = status
     co = checkout
@@ -17,3 +18,5 @@
     ff = false
 [include]
     path = ~/.gitconfig.local
+[init]
+    templatedir = ~/.gittemplate

@@ -4,3 +4,8 @@
 \#*
 .idea
 *.iml
+*.sublime-project
+*.sublime-workspace
+GPATH
+GRTAGS
+GTAGS
