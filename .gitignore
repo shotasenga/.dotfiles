@@ -2,3 +2,9 @@ emacs.d/auto-save-list
 emacs.d/elpa
 emacs.d/ac-comphist.dat
 emacs.d/url
+emacs.d/.org-id-locations
+emacs.d/eshell/
+emacs.d/image-dired/
+emacs.d/semanticdb/
+emacs.d/tramp
+

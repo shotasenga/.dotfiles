@@ -64,6 +64,8 @@
                       yaml-mode
                       yasnippet
                       nyan-mode
+                      ggtags
+                      helm-gtags
                       )
   "Default packages")
 
@@ -125,6 +127,14 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 ; C-h as delete
 (keyboard-translate ?\C-h ?\C-?)
+;; move windows <SHIFT>-<ARROW>
+(windmove-default-keybindings)
+(setq windmoove-wrap-around t)
+;; resize window M-<ARROW>
+(global-set-key (kbd "M-<up>") 'enlarge-window)
+(global-set-key (kbd "M-<down>") 'shrink-window)
+(global-set-key (kbd "M-<left>") 'enlarge-window-horizontally)
+(global-set-key (kbd "M-<right>") 'shrink-window-horizontally)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -157,7 +167,7 @@
   (toggle-indicate-empty-lines)
 
   ;; transparent window
-  (set-frame-parameter nil 'alpha 85)
+  (set-frame-parameter nil 'alpha 92)
   )
 
 ;; Nyan-mode
@@ -297,14 +307,25 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ i-edit
+(define-key global-map (kbd "C-c ;") 'iedit-mode)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ ace-jump-mode
 (require 'ace-jump-mode)
 (define-key global-map (kbd "C-;") 'ace-jump-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ i-edit
-(define-key global-map (kbd "C-c ;") 'iedit-mode)
+;; @ eshell
+(setenv "PATH"
+  (concat
+   "/usr/local/bin:" ":"
+   "/usr/local/sbin" ":"
+   (getenv "PATH") ; inherited from OS
+  )
+)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -384,6 +405,46 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ PHP
+;@todo 
+(add-hook 'php-mode-user-hook 'semantic-default-java-setup) 
+(add-hook 'php-mode-user-hook 
+          (lambda () 
+            (setq imenu-create-index-function 
+                  'semantic-create-imenu-index) 
+            )) 
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ org-mode
+(setq org-log-done t)
+
+;; RST export for orgtbl
+(defun orgtbl-to-rst-line (line)
+  (apply 'format (cons *org-rst-lfmt* line)))
+(defun orgtbl-to-rst (table params)
+  "Convert the Orgtbl mode TABLE to ReStructuredText."
+  (let* ((hline (concat
+                 "+-"
+                 (mapconcat (lambda (width) (apply 'string (make-list width ?-)))
+                            org-table-last-column-widths "-+-")
+                 "-+"))
+         (*org-rst-lfmt* (concat
+                          "| "
+                          (mapconcat (lambda (width) (format "%%-%ss" width))
+                                     org-table-last-column-widths " | ")
+                          " |"))
+         (params2
+          (list
+           :tstart hline
+           :hline hline
+           :lfmt 'orgtbl-to-rst-line
+           )))
+    (orgtbl-to-generic table (org-combine-plists params2 params))))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ ReST restructuredtext
+(add-hook 'rst-mode-hook 'turn-on-orgtbl)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -499,3 +560,48 @@
  (defalias 'exit 'save-bufferes-kill-emacs)
  )
 (put 'upcase-region 'disabled nil)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ gtag and helm
+(require 'ggtags)
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+             (ggtags-mode 1))))
+
+(define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
+(define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
+(define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
+(define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
+(define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
+(define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
+
+(define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
+
+(setq
+ helm-gtags-ignore-case t
+ helm-gtags-auto-update t
+ helm-gtags-use-input-at-cursor t
+ helm-gtags-pulse-at-cursor t
+ helm-gtags-prefix-key "\C-cg"
+ helm-gtags-suggested-key-mapping t
+ )
+
+(require 'helm-gtags)
+;; Enable helm-gtags-mode
+(add-hook 'dired-mode-hook 'helm-gtags-mode)
+(add-hook 'eshell-mode-hook 'helm-gtags-mode)
+(add-hook 'c-mode-hook 'helm-gtags-mode)
+(add-hook 'c++-mode-hook 'helm-gtags-mode)
+(add-hook 'asm-mode-hook 'helm-gtags-mode)
+
+(define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
+(define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
+(define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+(define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
+(define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+(define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+
+
+(setq-local imenu-create-index-function #'ggtags-build-imenu-index)
