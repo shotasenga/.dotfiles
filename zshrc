@@ -11,12 +11,13 @@ ZSH_THEME="cloud"
 alias diff="colordiff"
 alias cotedit="open -a coteditor"
 alias marked="open -a marked"
-alias subl='open -a "sublime text 2"'
 alias sourcetree='open -a sourcetree'
 alias e='emacsclient'
 alias bower='noglob bower'
 alias preview='qlmanage -p '
 alias cliptmux="tmux showb|pbcopy"
+alias npm-exec='PATH=$(npm bin):$PATH'
+alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
 
 # oh-my-zsh settings
 # export UPDATE_ZSH_DAYS=13
@@ -54,11 +55,19 @@ export ANDROID_HOME=$ANDROID_SDK_PATH
 ## Heroku
 export PATH="/usr/local/heroku/bin:$PATH"
 
+## nvm
+source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR=~/.nvm
+
+## cabel (Haskel)
+export PATH="$HOME/Library/Haskell/bin:$PATH"
+
 
 ## ✪✪✪✪✪ 以下、整理する ✪✪✪✪✪✪
 
+
 ## tmuxinator complition
-source ~/.rbenv/versions/2.0.0-p195/lib/ruby/gems/2.0.0/gems/tmuxinator-0.6.6/completion/tmuxinator.zsh
+source $(rbenv prefix)/lib/ruby/gems/2.2.0/gems/tmuxinator-0.6.11/completion/tmuxinator.zsh
 
 # tmux自動起動 (default session) ....__ http://d.hatena.ne.jp/flada_auxv/20121110/1352527081
 if [ -z "$TMUX" -a -z "$STY" ]; then
