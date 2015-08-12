@@ -60,6 +60,8 @@ export NODE_PATH=$(npm -g root)
 ## cabel (Haskel)
 export PATH="$HOME/Library/Haskell/bin:$PATH"
 
+## composer
+export PATH="$HOME/.composer/vendor/bin:$PATH"
 
 ## ✪✪✪✪✪ 以下、整理する ✪✪✪✪✪✪
 
