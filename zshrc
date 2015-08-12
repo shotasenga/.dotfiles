@@ -29,10 +29,6 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='emacsclient'
 export SVN_EDITOR=$EDITOR
 
-# node path
-export NODE_PATH="/usr/local/lib/node_modules"
-export PATH="/usr/local/share/npm/bin:$PATH"
-
 ## rbenv setting
 eval "$(rbenv init -)"
 /usr/local/Cellar/rbenv/0.4.0/completions/rbenv.bash 
@@ -55,9 +51,11 @@ export ANDROID_HOME=$ANDROID_SDK_PATH
 ## Heroku
 export PATH="/usr/local/heroku/bin:$PATH"
 
-## nvm
+## nvm/node.js
 source $(brew --prefix nvm)/nvm.sh
 export NVM_DIR=~/.nvm
+export NODE_PATH=$(npm -g root)
+
 
 ## cabel (Haskel)
 export PATH="$HOME/Library/Haskell/bin:$PATH"
