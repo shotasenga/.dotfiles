@@ -363,8 +363,7 @@
 (add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
 (add-hook 'markdown-mode-hook (lambda () (visual-line-mode t)))
-;; (setq markdown-command "pandoc --smart -f markdown -t html")
-;; (setq markdown-css-path (expand-file-name "markdown.css" abedra/vendor-dir))
+(setq markdown-open-command "/usr/bin/marked")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -417,6 +416,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ org-mode
 (setq org-log-done t)
+(setq org-list-allow-alphabetical t)
 
 ;; RST export for orgtbl
 (defun orgtbl-to-rst-line (line)
@@ -449,11 +449,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Deft
-(setq deft-directory "~/Dropbox/deft")
+;; http://jblevins.org/projects/deft/
+(setq deft-directory "~/Dropbox/Notes")
 (setq deft-use-filename-as-title t)
-(setq deft-extension "md")
+;; TODO include "taskpaper" ?
+(setq deft-extensions '("md" "markdown" "txt" "text" "org"))
 (setq deft-text-mode 'markdown-mode)
 (global-set-key (kbd "<f8>") 'deft)
+(setq deft-recursive t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
