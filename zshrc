@@ -18,6 +18,7 @@ alias preview='qlmanage -p '
 alias cliptmux="tmux showb|pbcopy"
 alias npm-exec='PATH=$(npm bin):$PATH'
 alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+alias fuck=thefuck
 
 # oh-my-zsh settings
 # export UPDATE_ZSH_DAYS=13
