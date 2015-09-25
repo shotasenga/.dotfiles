@@ -4,17 +4,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ load-path
-(defun add-to-load-path (&rest paths)
-  (let (path)
-    (dolist (path paths paths)
-      (let ((default-directory (expand-file-name (concat user-emacs-directory path))))
-        (add-to-list 'load-path default-directory)
-        (if (fboundp 'normal-top-level-add-subdirs-to-load-path)
-            (normal-top-level-add-subdirs-to-load-path))))))
+(add-to-list 'load-path "~/.emacs.d/elisp")
 
-;; add load-path
-;; if add directory more than one -> (add-to-load-path "elisp" "xxx" "xxx")
-(add-to-load-path "elisp")
+;; theme-path
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
 
 ;; exec-path
 (add-to-list 'exec-path "/usr/local/bin")
@@ -63,7 +56,7 @@
                       web-mode
                       yaml-mode
                       yasnippet
-                      nyan-mode
+                      powerline
                       ggtags
                       helm-gtags
                       )
@@ -123,9 +116,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Global key set
-; auto indent
+                                        ; auto indent
 (global-set-key (kbd "RET") 'newline-and-indent)
-; C-h as delete
+                                        ; C-h as delete
 (keyboard-translate ?\C-h ?\C-?)
 ;; move windows <SHIFT>-<ARROW>
 (windmove-default-keybindings)
@@ -139,14 +132,18 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ theme & visual
-(load-theme 'wombat t)
+(load-theme 'mechanical-turq t)
 (setq column-number-mode t)
 
+;; show line numbers
+(global-linum-mode t)
+(setq linum-format "%5d ")
+
 ;; higlight current line
-(global-hl-line-mode 1)
-(set-face-background 'hl-line "#3a3a3a")
-(set-face-foreground 'highlight nil)
-(set-face-underline 'highlight nil)
+(global-hl-line-mode nil)
+;(set-face-background 'hl-line "#3a3a3a")
+;(set-face-foreground 'highlight nil)
+;(set-face-underline 'highlight nil)
 
 ;; when runing with window system
 (when window-system
@@ -157,7 +154,7 @@
 
   ;; full screen (for MacBook Air 13inch display)
   (set-frame-position (selected-frame) 0 0)
-  (set-frame-size (selected-frame) 202 60)
+  ;; (set-frame-size (selected-frame) 202 60)
 
   ;; frame title
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
@@ -167,12 +164,13 @@
   (toggle-indicate-empty-lines)
 
   ;; transparent window
-  (set-frame-parameter nil 'alpha 92)
+  (set-frame-parameter nil 'alpha 94)
   )
 
-;; Nyan-mode
-(nyan-mode 1)
-(nyan-start-animation)
+;; powerline
+(setq ns-use-srgb-colorspace nil)
+(powerline-default-theme)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Screen swap
@@ -193,16 +191,16 @@
   ;; http://d.hatena.ne.jp/minus9d/20131103/1383475472
   ;; default
   (set-face-attribute 'default nil
-                    :family "Menlo" ;; font
-                    :height 120)    ;; font size
+                      :family "Hack" ;; font
+                      :height 125)    ;; font size
 
   ;; japanese
   (set-fontset-font
- nil 'japanese-jisx0208
- ;; (font-spec :family "Hiragino Mincho Pro")) ;; font
- (font-spec :family "Hiragino Kaku Gothic ProN")) ;; font
+   nil 'japanese-jisx0208
+   ;; (font-spec :family "Hiragino Mincho Pro")) ;; font
+   (font-spec :family "Hiragino Kaku Gothic ProN")) ;; font
   (setq face-font-rescale-alist
-	'((".*Hiragino_Mincho_pro.*" . 1.2)))
+        '((".*Hiragino_Mincho_pro.*" . 1.2)))
   )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -249,7 +247,7 @@
 ;; see whitespace.el for more details
 (setq whitespace-style '(face tabs tab-mark spaces space-mark))
 (setq whitespace-display-mappings
-;;      '((space-mark ?\u3000 [?\u25a1]) ; zenkaku-whitespace to white-square-mark
+      ;;      '((space-mark ?\u3000 [?\u25a1]) ; zenkaku-whitespace to white-square-mark
       '((space-mark 32 [46] [46]) ; 32 SPACE, 183 MIDDLE DOT ·, 46 FULL STOP .
         (newline-mark [10 13] [182]) ; 10 LINE FEED
         ;; WARNING: the mapping below has a problem.
@@ -258,7 +256,7 @@
         ;; the next TAB column.
         ;; If this is a problem for you, please, comment the line below.
         (tab-mark ?\t [?\xBB ?\t] [?\\ ?\t])))
-;(setq whitespace-space-regexp "\\(\u3000+\\)")
+;;(setq whitespace-space-regexp "\\(\u3000+\\)")
 ;; 	aaa <- this line tabbed
 (set-face-foreground 'whitespace-tab "#505050")
 (set-face-background 'whitespace-tab 'nil)
@@ -271,8 +269,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ isearch region
 (defadvice isearch-mode
-  (around isearch-mode-default-string
-          (forward &optional regexp op-fun recursive-edit word-p) activate)
+    (around isearch-mode-default-string
+            (forward &optional regexp op-fun recursive-edit word-p) activate)
   (if (and transient-mark-mode mark-active (not (eq (mark) (point))))
       (progn
         (isearch-update-ring (buffer-substring-no-properties (mark) (point)))
@@ -320,12 +318,12 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ eshell
 (setenv "PATH"
-  (concat
-   "/usr/local/bin:" ":"
-   "/usr/local/sbin" ":"
-   (getenv "PATH") ; inherited from OS
-  )
-)
+        (concat
+         "/usr/local/bin:" ":"
+         "/usr/local/sbin" ":"
+         (getenv "PATH") ; inherited from OS
+         )
+        )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -397,14 +395,14 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ html-mode
 (add-hook 'html-mode-hook
-  (lambda ()
-    ;; Default indentation is usually 2 spaces, changing to 4.
-    (set (make-local-variable 'sgml-basic-offset) 4)))
+          (lambda ()
+            ;; Default indentation is usually 2 spaces, changing to 4.
+            (set (make-local-variable 'sgml-basic-offset) 4)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ PHP
-;@todo 
+                                        ;@todo 
 (add-hook 'php-mode-user-hook 'semantic-default-java-setup) 
 (add-hook 'php-mode-user-hook 
           (lambda () 
@@ -524,7 +522,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ C/C++
-; auto complete headers
+;; auto complete headers
 (defun my:ac-c-header-init ()
   (require 'auto-complete-c-headers)
   (add-to-list 'ac-sources 'ac-source-c-headers)
@@ -533,35 +531,35 @@
 (add-hook 'c++-mode-hook 'my:ac-c-header-init)
 (add-hook 'c-mode-hook 'my:ac-c-header-init)
 
-; google style guide
+;; google style guide
 (defun my:flymake-google-init ()
   (require 'flymake-google-cpplint)
   (custom-set-variables
    '(flymake-google-cpplint-command "/usr/local/bin/cpplint"))
   (flymake-google-cpplint-load)
-)
+  )
 (add-hook 'c++-mode-hook 'my:flymake-google-init)
 (add-hook 'c-mode-hook 'my:flymake-google-init)
 
-; semantic
+;; semantic
 (semantic-mode 1)
 (global-semantic-idle-scheduler-mode 1)
 (defun my:add-semantic-to-autocomplete() 
   (add-to-list 'ac-sources 'ac-source-semantic)
-)
+  )
 (add-hook 'c-mode-common-hook 'my:add-semantic-to-autocomplete)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Emacs server
 (when (require 'server)
- (unless (server-running-p)
-   (server-start))
- ;;(defun iconify-emacs-when-server-is-done ()
- ;; (unless server-clients (iconify-frame)))
- ;;(add-hook 'server-done-hook 'ns-do-hide-emacs)
- (global-set-key (kbd "C-x C-c") 'server-edit)
- (defalias 'exit 'save-bufferes-kill-emacs)
- )
+  (unless (server-running-p)
+    (server-start))
+  ;;(defun iconify-emacs-when-server-is-done ()
+  ;; (unless server-clients (iconify-frame)))
+  ;;(add-hook 'server-done-hook 'ns-do-hide-emacs)
+  (global-set-key (kbd "C-x C-c") 'server-edit)
+  (defalias 'exit 'save-bufferes-kill-emacs)
+  )
 (put 'upcase-region 'disabled nil)
 
 
@@ -571,7 +569,7 @@
 (add-hook 'c-mode-common-hook
           (lambda ()
             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-             (ggtags-mode 1))))
+              (ggtags-mode 1))))
 
 (define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
 (define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
@@ -608,3 +606,84 @@
 
 
 (setq-local imenu-create-index-function #'ggtags-build-imenu-index)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("f38b00afa9c773ee3d0d597241abf13439467a9ea1628a6d71d51a1810f7ffc3" "a939897b56010ef16d737b3a145ab3f935e0da6122ded3bf9cad28f88b09fd68" "02414c4cfbbe9805b89a5ec66d3d3deb4ae1e4795ed2092eab240ca0cb79ea96" "303488aa27ce49f658a7ba4035e93380421e394ec2799ae8fd952d08808c7235" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "26614652a4b3515b4bbbb9828d71e206cc249b67c9142c06239ed3418eff95e2" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+ '(fringe-mode 6 nil (fringe))
+ '(linum-format " %5d ")
+ '(powerline-color1 "#00779a")
+ '(powerline-color2 "#00475a")
+ '(sml/mode-width
+   (if
+       (eq powerline-default-separator
+           (quote arrow))
+       (quote right)
+     (quote full)))
+ '(sml/pos-id-separator
+   (quote
+    (""
+     (:propertize " " face powerline-active1)
+     (:eval
+      (propertize " "
+                  (quote display)
+                  (funcall
+                   (intern
+                    (format "powerline-%s-%s" powerline-default-separator
+                            (car powerline-default-separator-dir)))
+                   (quote powerline-active1)
+                   (quote powerline-active2))))
+     (:propertize " " face powerline-active2))))
+ '(sml/pos-minor-modes-separator
+   (quote
+    (""
+     (:propertize " " face powerline-active1)
+     (:eval
+      (propertize " "
+                  (quote display)
+                  (funcall
+                   (intern
+                    (format "powerline-%s-%s" powerline-default-separator
+                            (cdr powerline-default-separator-dir)))
+                   (quote powerline-active1)
+                   nil)))
+     (:propertize " " face sml/global))))
+ '(sml/pre-id-separator
+   (quote
+    (""
+     (:propertize " " face sml/global)
+     (:eval
+      (propertize " "
+                  (quote display)
+                  (funcall
+                   (intern
+                    (format "powerline-%s-%s" powerline-default-separator
+                            (car powerline-default-separator-dir)))
+                   nil
+                   (quote powerline-active1))))
+     (:propertize " " face powerline-active1))))
+ '(sml/pre-minor-modes-separator
+   (quote
+    (""
+     (:propertize " " face powerline-active2)
+     (:eval
+      (propertize " "
+                  (quote display)
+                  (funcall
+                   (intern
+                    (format "powerline-%s-%s" powerline-default-separator
+                            (cdr powerline-default-separator-dir)))
+                   (quote powerline-active2)
+                   (quote powerline-active1))))
+     (:propertize " " face powerline-active1))))
+ '(sml/pre-modes-separator (propertize " " (quote face) (quote sml/modes))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
