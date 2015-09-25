@@ -4,11 +4,11 @@ My dot files.
 
 ## Usage
 
-cloning this repository to ~/.dotfiles (or whatever you want)
+cloning this repository to ~/.dotfiles
 
 ```
 $ cd $HOME
-$ git clone https://github.com/senta/.dotfiles.git
+$ git clone --recursive https://github.com/senta/.dotfiles.git ${HOME}/.dotfiles
 ```
 
 then create symlinks
