@@ -8,6 +8,7 @@
 
 ;; theme-path
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
 
 ;; exec-path
 (add-to-list 'exec-path "/usr/local/bin")
@@ -132,12 +133,14 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ theme & visual
-(load-theme 'mechanical-turq t)
-(setq column-number-mode t)
+(set-frame-parameter nil 'background-mode 'dark)
+(load-theme 'solarized t)
+
 
 ;; show line numbers
 (global-linum-mode t)
 (setq linum-format "%5d ")
+(setq column-number-mode t)
 
 ;; higlight current line
 (global-hl-line-mode nil)
@@ -154,7 +157,7 @@
 
   ;; full screen (for MacBook Air 13inch display)
   (set-frame-position (selected-frame) 0 0)
-  ;; (set-frame-size (selected-frame) 202 60)
+  (set-frame-size (selected-frame) 202 47)
 
   ;; frame title
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
@@ -164,7 +167,7 @@
   (toggle-indicate-empty-lines)
 
   ;; transparent window
-  (set-frame-parameter nil 'alpha 94)
+  ;;(set-frame-parameter nil 'alpha 94)
   )
 
 ;; powerline

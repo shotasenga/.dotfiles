@@ -1,3 +1,6 @@
 [submodule "zprezto"]
 	path = zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "emacs.d/themes/emacs-color-theme-solarized"]
+	path = emacs.d/themes/emacs-color-theme-solarized
+	url = https://github.com/sellout/emacs-color-theme-solarized.git
