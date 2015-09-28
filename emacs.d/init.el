@@ -42,8 +42,6 @@
                       flymake-cursor
                       flymake-easy
                       flymake-google-cpplint
-                      git-commit-mode
-                      git-rebase-mode
                       go-mode
                       haml-mode
                       helm
@@ -130,6 +128,8 @@
 (global-set-key (kbd "M-<down>") 'shrink-window)
 (global-set-key (kbd "M-<left>") 'enlarge-window-horizontally)
 (global-set-key (kbd "M-<right>") 'shrink-window-horizontally)
+;; magit
+(global-set-key (kbd "C-x g") 'magit-status)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -325,6 +325,12 @@
 ;;(let ((envs '("PATH" "ANDROID_HOME" "GOROOT" "GOPATH")))
 (let ((envs '("PATH" "ANDROID_HOME")))
   (exec-path-from-shell-copy-envs envs))
+
+;; Start eshell or switch to it if it's active.
+(global-set-key (kbd "C-x m") 'eshell)
+;; Start a new eshell even if one is active.
+(global-set-key (kbd "C-x M") (lambda () (interactive) (eshell t)))
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Ruby
@@ -616,6 +622,7 @@
  '(custom-safe-themes
    (quote
     ("f38b00afa9c773ee3d0d597241abf13439467a9ea1628a6d71d51a1810f7ffc3" "a939897b56010ef16d737b3a145ab3f935e0da6122ded3bf9cad28f88b09fd68" "02414c4cfbbe9805b89a5ec66d3d3deb4ae1e4795ed2092eab240ca0cb79ea96" "303488aa27ce49f658a7ba4035e93380421e394ec2799ae8fd952d08808c7235" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "26614652a4b3515b4bbbb9828d71e206cc249b67c9142c06239ed3418eff95e2" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+ '(flymake-google-cpplint-command "/usr/local/bin/cpplint")
  '(fringe-mode 6 nil (fringe))
  '(linum-format " %5d ")
  '(powerline-color1 "#00779a")
