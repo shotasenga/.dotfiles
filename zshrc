@@ -19,10 +19,6 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 ## rbenv
 eval "$(rbenv init -)"
 
-## phpenv
-export PATH=$HOME/.phpenv/bin:$PATH
-eval "$(phpenv init -)"
-
 ## nodebrew
 export PATH=$HOME/.nodebrew/current/bin:$PATH
 

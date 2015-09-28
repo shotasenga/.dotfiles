@@ -60,6 +60,7 @@
                       powerline
                       ggtags
                       helm-gtags
+                      exec-path-from-shell
                       )
   "Default packages")
 
@@ -157,7 +158,7 @@
 
   ;; full screen (for MacBook Air 13inch display)
   (set-frame-position (selected-frame) 0 0)
-  (set-frame-size (selected-frame) 202 47)
+  (set-frame-size (selected-frame) 178 47)
 
   ;; frame title
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
@@ -320,14 +321,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ eshell
-(setenv "PATH"
-        (concat
-         "/usr/local/bin:" ":"
-         "/usr/local/sbin" ":"
-         (getenv "PATH") ; inherited from OS
-         )
-        )
-
+;; via http://syohex.hatenablog.com/entry/20130718/1374154709
+;;(let ((envs '("PATH" "ANDROID_HOME" "GOROOT" "GOPATH")))
+(let ((envs '("PATH" "ANDROID_HOME")))
+  (exec-path-from-shell-copy-envs envs))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Ruby
