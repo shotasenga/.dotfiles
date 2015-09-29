@@ -59,6 +59,9 @@
                       ggtags
                       helm-gtags
                       exec-path-from-shell
+                      restclient
+                      multiple-cursors
+                      expand-region
                       )
   "Default packages")
 
@@ -461,6 +464,21 @@
 (setq deft-text-mode 'markdown-mode)
 (global-set-key (kbd "<f8>") 'deft)
 (setq deft-recursive t)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ expand-region
+;; bind keys
+(global-set-key (kbd "C-2") 'er/expand-region)
+(global-set-key (kbd "C-@") 'er/contract-region)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ multiple-cursors
+;; bind keys
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
