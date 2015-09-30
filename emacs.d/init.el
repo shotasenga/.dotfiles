@@ -119,10 +119,12 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Global key set
-                                        ; auto indent
+;; auto indent
 (global-set-key (kbd "RET") 'newline-and-indent)
-                                        ; C-h as delete
+;; C-h as delete
 (keyboard-translate ?\C-h ?\C-?)
+;; other-window
+(global-set-key (kbd "C-<tab>") 'other-window)
 ;; move windows <SHIFT>-<ARROW>
 (windmove-default-keybindings)
 (setq windmoove-wrap-around t)
