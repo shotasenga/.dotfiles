@@ -1,4 +1,6 @@
 ;; -*- mode: Emacs-Lisp ; Coding: utf-8 -*-
+;; TODOs
+;; - setup yasnipet (ref https://github.com/magnars/.emacs.d )
 ;; ----------------------------------------------------------------------
 (require 'cl)
 
@@ -296,6 +298,20 @@
 ;; key-bindings -> http://dev.ariel-networks.com/articles/emacs/part5/
 (cua-mode t)
 (setq cua-enable-cua-keys nil)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ copy current file name to clipboard
+;; from http://stackoverflow.com/questions/2416655/file-path-to-clipboard-in-emacs
+(defun copy-file-name-to-clipboard ()
+  "Copy the current buffer file name to the clipboard."
+  (interactive)
+  (let ((filename (if (equal major-mode 'dired-mode)
+                      default-directory
+                    (buffer-file-name))))
+    (when filename
+      (kill-new filename)
+      (message "Copied buffer file name '%s' to the clipboard." filename))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
