@@ -163,9 +163,9 @@
   (tool-bar-mode -1)
   (menu-bar-mode -1)
 
-  ;; full screen (for MacBook Air 13inch display)
-  (set-frame-position (selected-frame) 0 0)
-  (set-frame-size (selected-frame) 178 47)
+  ;; full screen
+  ;; http://emacs.stackexchange.com/a/3008
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
   ;; frame title
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
@@ -175,7 +175,7 @@
   (toggle-indicate-empty-lines)
 
   ;; transparent window
-  ;;(set-frame-parameter nil 'alpha 94)
+  (set-frame-parameter nil 'alpha 94)
   )
 
 ;; powerline
