@@ -92,7 +92,9 @@ zstyle ':prezto:module:editor' dot-expansion 'yes'
 # Setting it to 'random' loads a random theme.
 # Auto set to 'off' on dumb terminals.
 # 
-zstyle ':prezto:module:prompt' theme 'agnoster'
+#zstyle ':prezto:module:prompt' theme 'cloud' ✪
+#zstyle ':prezto:module:prompt' theme 'cloud' 🐣
+zstyle ':prezto:module:prompt' theme 'cloud' 🙊
 
 #
 # Ruby
