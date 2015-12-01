@@ -106,7 +106,8 @@
 (setq-default save-place t)
 ;; echo area
 (setq echo-keystrokes 0.1)
-
+;; dired-dwim-target
+(setq dired-dwim-target t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Encoding
