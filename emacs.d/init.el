@@ -108,6 +108,8 @@
 (setq echo-keystrokes 0.1)
 ;; dired-dwim-target
 (setq dired-dwim-target t)
+;; git-gutter
+(global-git-gutter-mode +1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Encoding
@@ -406,6 +408,7 @@
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))
   ;; engine
   (setq web-mode-engines-alist
         '(("php"    . "\\.phtml\\'")
