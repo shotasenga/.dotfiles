@@ -6,7 +6,7 @@ for name in *; do
     if [ -e "$target" ] && [ ! -L "$target" ]; then
         echo "WARNING: $target already exists however not a symlink"
     else
-        if [ "$name" != 'setup.sh' ] && [ "$name" != 'README.md' ]; then
+        if [ "$name" != 'setup.sh' ] && [ "$name" != 'README.md' ] && [ "$name" != 'bootstrap.sh' ]; then
             if [ -e "$target" ]; then
                 rm "$target"
             fi
