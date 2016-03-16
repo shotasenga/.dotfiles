@@ -33,38 +33,99 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ defaullt packages forked from http://www.aaronbedra.com/emacs.d/
+;; NOTE show current activated packages
+;;     `C-h v` (describe-variable) package-activated-list
 (defvar my:packages '(ace-jump-mode
-                      async
-                      auto-complete
                       auto-complete-c-headers
+                      auto-complete
+                      popup
                       autopair
                       blank-mode
                       coffee-mode
                       deft
+                      exec-path-from-shell
+                      expand-region
                       flymake-cursor
-                      flymake-easy
                       flymake-google-cpplint
+                      flymake-easy
+                      ggtags
+                      git-gutter
                       go-mode
-                      haml-mode
+                      helm-descbinds
                       helm
+                      helm-core
+                      async
+                      async
+                      helm-emmet
+                      emmet-mode
+                      helm
+                      helm-core
+                      async
+                      async
+                      helm-gtags
+                      helm
+                      helm-core
+                      async
+                      async
+                      helm-projectile
+                      dash
+                      projectile
+                      pkg-info
+                      epl
+                      dash
+                      helm
+                      helm-core
+                      async
+                      async
                       iedit
+                      jade-mode
+                      json-mode
+                      json-snatcher
+                      json-reformat
+                      json-reformat
+                      json-snatcher
                       magit
+                      magit-popup
+                      dash
+                      async
+                      git-commit
+                      with-editor
+                      dash
+                      async
+                      dash
+                      with-editor
+                      dash
+                      async
+                      dash
+                      async
+                      magit-popup
+                      dash
+                      async
                       markdown-mode
                       migemo
+                      multiple-cursors
+                      org
                       php-mode
                       popup
-                      redo+
-                      web-mode
-                      yaml-mode
-                      yasnippet
                       powerline
-                      ggtags
-                      helm-gtags
-                      exec-path-from-shell
+                      projectile
+                      pkg-info
+                      epl
+                      dash
+                      redo+
                       restclient
-                      multiple-cursors
-                      expand-region
-                      )
+                      rich-minority
+                      sass-mode
+                      haml-mode
+                      stylus-mode
+                      sws-mode
+                      sws-mode
+                      web-mode
+                      with-editor
+                      dash
+                      async
+                      yaml-mode
+                      yasnippet)
   "Default packages")
 
 (defun my:packages-installed-p ()
