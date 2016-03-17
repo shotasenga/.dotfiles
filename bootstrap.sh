@@ -98,6 +98,9 @@ apps=(
     google-chrome
     mysqlworkbench
     qlmarkdown
+    qlstephen
+    quicklook-json
+    quicklook-csv
     qlprettypatch
     karabiner
     seil
