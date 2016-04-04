@@ -63,8 +63,6 @@
                       async
                       async
                       helm-gtags
-                      helm
-                      helm-core
                       async
                       async
                       helm-projectile
@@ -73,8 +71,6 @@
                       pkg-info
                       epl
                       dash
-                      helm
-                      helm-core
                       async
                       async
                       iedit
@@ -102,7 +98,6 @@
                       dash
                       async
                       markdown-mode
-                      migemo
                       multiple-cursors
                       org
                       php-mode

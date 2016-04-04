@@ -37,7 +37,6 @@ binaries=(
     aspell
     awscli
     cloog
-    cmigemo
     colordiff
     emacs
     fasd
