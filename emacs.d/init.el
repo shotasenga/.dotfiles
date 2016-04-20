@@ -119,6 +119,7 @@
                       with-editor
                       dash
                       async
+                      highlight-indentation
                       yaml-mode
                       yasnippet)
   "Default packages")
@@ -311,6 +312,21 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ hilight indentation
+(require 'highlight-indentation)
+(set-face-background 'highlight-indentation-face "#10505D")
+(set-face-background 'highlight-indentation-current-column-face "#3f727d")
+(add-hook 'python-mode-hook 'highlight-indentation-mode)
+(add-hook 'js2-mode-hook 'highlight-indentation-mode)
+(add-hook 'ruby-mode-hook 'highlight-indentation-mode)
+(add-hook 'sass-mode-hook 'highlight-indentation-mode)
+(add-hook 'jade-mode-hook 'highlight-indentation-mode)
+(add-hook 'stylus-mode-hook 'highlight-indentation-mode)
+(add-hook 'coffee-mode-hook 'highlight-indentation-mode)
+(add-hook 'emacs-lisp-mode-hook 'highlight-indentation-mode)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ whitespace
 ;; for whitespace-mode
 (require 'whitespace)
@@ -449,6 +465,7 @@
 (add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
 (add-hook 'markdown-mode-hook (lambda () (visual-line-mode t)))
 (setq markdown-open-command "/usr/bin/marked")
+(setq markdown-command "/usr/local/bin/pandoc")
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
