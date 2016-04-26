@@ -40,7 +40,8 @@ export ANDROID_HOME=$ANDROID_SDK_PATH
 # Aliases
 alias sourcetree='open -a sourcetree'
 alias cliptmux="tmux showb|pbcopy"
-alias nb=nodebrew
+alias npm-exec='PATH=$(npm bin):$PATH'
+alias del=rmtrash
 
 # Functions (TODO: move functions to somewhere else)
 ## make a project direcoty

@@ -76,6 +76,11 @@ binaries=(
     watch
     zsh
     heroku
+    rmtrash
+    watch
+    pandoc
+    tree
+    imagemagick
 )
 
 echo "installing binaries..."
