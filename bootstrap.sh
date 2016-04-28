@@ -81,6 +81,7 @@ binaries=(
     pandoc
     tree
     imagemagick
+    potrace
 )
 
 echo "installing binaries..."
