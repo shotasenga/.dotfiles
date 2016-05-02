@@ -1,6 +1,6 @@
 ;; -*- mode: Emacs-Lisp ; Coding: utf-8 -*-
 ;; TODOs
-;; - setup yasnipet (ref https://github.com/magnars/.emacs.d )
+;; - setup yasnipet (shell-command "open https://github.com/magnars/.emacs.d" )
 ;; ----------------------------------------------------------------------
 (require 'cl)
 
