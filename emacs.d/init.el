@@ -518,6 +518,10 @@
 (add-hook 'js-mode-hook 'js2-minor-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ jade-mode
+(add-to-list 'auto-mode-alist '("\\.pug$" . jade-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ html-mode
 (add-hook 'html-mode-hook
           (lambda ()
