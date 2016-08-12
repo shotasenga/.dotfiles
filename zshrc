@@ -42,6 +42,8 @@ alias sourcetree='open -a sourcetree'
 alias cliptmux="tmux showb|pbcopy"
 alias npm-exec='PATH=$(npm bin):$PATH'
 alias del=rmtrash
+alias python2=/usr/bin/python2.7
+alias python=python3
 
 # Functions (TODO: move functions to somewhere else)
 ## make a project direcoty
