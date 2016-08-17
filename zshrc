@@ -44,6 +44,7 @@ alias npm-exec='PATH=$(npm bin):$PATH'
 alias del=rmtrash
 alias python2=/usr/bin/python2.7
 alias python=python3
+alias https='http --default-scheme=https'
 
 # Functions (TODO: move functions to somewhere else)
 ## make a project direcoty

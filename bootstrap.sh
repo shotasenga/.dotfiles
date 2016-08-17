@@ -47,13 +47,16 @@ binaries=(
     git-flow
     global
     go
+    heroku
     homebrew/dupes/zlib
     homebrew/php/composer
     homebrew/php/php-build
     homebrew/php/php55
     homebrew/php/php55-intl
     homebrew/php/php55-mcrypt
+    httpie
     hugo
+    imagemagick
     jq
     libgcrypt
     libmpc
@@ -62,26 +65,24 @@ binaries=(
     nodebrew
     ossp-uuid
     packer
+    pandoc
     peco
     pngquant
+    potrace
     pstree
     python3
     rbenv
     re2c
     reattach-to-user-namespace
     rename
+    rmtrash
     sdl
     subversion
     tree
+    tree
+    watch
     watch
     zsh
-    heroku
-    rmtrash
-    watch
-    pandoc
-    tree
-    imagemagick
-    potrace
 )
 
 echo "installing binaries..."
