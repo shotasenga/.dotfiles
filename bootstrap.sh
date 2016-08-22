@@ -113,6 +113,7 @@ apps=(
     sequel-pro
     virtualbox
     vagrant
+    HyperSwitch
 )
 
 # Install apps to /Applications
@@ -148,7 +149,6 @@ mas install 451640037 # Classic Color Meter
 mas install 499148234 # DragonDrop
 mas install 497799835 # Xcode
 mas install 435003921 # Fantastical
-mas install 412485838 # Witch
 mas install 448925439 # Marked
 mas install 432764806 # The Hit List
 mas install 816730952 # Ruler+
