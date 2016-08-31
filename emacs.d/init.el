@@ -421,8 +421,8 @@
 ;; @ eshell
 ;; via http://syohex.hatenablog.com/entry/20130718/1374154709
 ;;(let ((envs '("PATH" "ANDROID_HOME" "GOROOT" "GOPATH")))
-(let ((envs '("PATH" "ANDROID_HOME")))
-  (exec-path-from-shell-copy-envs envs))
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
 
 ;; Start eshell or switch to it if it's active.
 (global-set-key (kbd "C-x m") 'eshell)
