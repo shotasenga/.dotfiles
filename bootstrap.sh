@@ -113,7 +113,7 @@ apps=(
     sequel-pro
     virtualbox
     vagrant
-    HyperSwitch
+    hyperswitch
 )
 
 # Install apps to /Applications
