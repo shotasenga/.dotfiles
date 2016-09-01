@@ -49,6 +49,7 @@ binaries=(
     go
     heroku
     homebrew/dupes/zlib
+    highlight
     homebrew/php/composer
     homebrew/php/php-build
     homebrew/php/php55
@@ -80,7 +81,6 @@ binaries=(
     subversion
     tree
     tree
-    watch
     watch
     zsh
 )
