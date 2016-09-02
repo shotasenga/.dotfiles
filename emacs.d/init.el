@@ -670,7 +670,7 @@
 ;; enable projectile + helm!
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
-(helm-projectile-on)
+;(helm-projectile-on)
 (setq projectile-switch-project-action 'helm-projectile)
 
 
