@@ -20,3 +20,9 @@
     path = ~/.gitconfig.local
 [init]
     templatedir = ~/.gittemplate
+[diff "sjis"]
+    textconv = iconv -f sjis
+[diff "css"]
+    textconv = cssbeautify-cli -f
+[diff "js"]
+    textconv = js-beautify -f
