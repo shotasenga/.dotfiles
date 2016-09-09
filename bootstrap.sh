@@ -78,6 +78,7 @@ binaries=(
     rename
     rmtrash
     sdl
+    sbcl
     subversion
     tree
     tree

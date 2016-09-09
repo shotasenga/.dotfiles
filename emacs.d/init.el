@@ -121,6 +121,7 @@
                       dash
                       async
                       highlight-indentation
+                      slime
                       yaml-mode
                       yasnippet)
   "Default packages")
@@ -841,3 +842,11 @@
 
 ;; user site local
 (load (expand-file-name "local.el" user-emacs-directory) 'no-error)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ Lisp environment ..?
+(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
+(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
+(setq inferior-lisp-program "sbcl")
+;(slime-setup '(slime-repl slime-fancy slime-banner))
