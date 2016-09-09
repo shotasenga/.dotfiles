@@ -509,6 +509,7 @@
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
 (add-to-list 'auto-mode-alist '("\\.babelrc$" . js2-mode))
 (setq js2-basic-offset 2)
+(setq js2-strict-missing-semi-warning nil)
 (add-hook 'js-mode-hook 'js2-minor-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
