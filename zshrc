@@ -12,6 +12,9 @@ export VISUAL=$EDITOR
 
 
 # Export Paths
+## local script
+export PATH=$HOME/.bin:$PATH
+export PATH=$HOME/.bin/local:$PATH
 
 ## Homebrew
 export PATH=/usr/local/bin:/usr/local/sbin:$PATH

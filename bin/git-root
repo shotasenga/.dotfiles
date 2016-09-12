@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Git subcommand to show the root directory
+#
+# `cd $(git root)`
+
+git rev-parse --show-toplevel
