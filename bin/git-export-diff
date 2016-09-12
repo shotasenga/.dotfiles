@@ -8,7 +8,7 @@
 
 BASE=$1
 TARGET=$2
-WORK_DIR=/tmp/archive/$(date +%Y%m%d-%H%I%S)
+WORK_DIR=$(mktemp -d)
 
 if [ -z "$TARGET" ]; then
     TARGET=$BASE;
@@ -18,7 +18,6 @@ fi
 ROOT_DIR=$(git rev-parse --show-toplevel)
 
 cd $ROOT_DIR
-mkdir -p $WORK_DIR
 git archive --prefix=root/ $BASE $(git diff --diff-filter=AMCR --name-only $TARGET $BASE) -o ${WORK_DIR}/archive.zip
 unzip ${WORK_DIR}/archive.zip -d ${WORK_DIR}
 open $WORK_DIR/root
