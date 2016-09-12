@@ -1,0 +1,14 @@
+#!/bin/bash
+
+#
+# local-diff ../htdocs/ public/
+#
+
+DIR1=$1
+DIR2=$2
+DEST=$(mktemp -d)
+
+rsync -rvcm --compare-dest="../${DIR1}" $DIR2 difference/
+find difference -type d -empty -delete
+mv difference $DEST
+open $DEST/difference
