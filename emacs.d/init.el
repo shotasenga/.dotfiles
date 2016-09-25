@@ -476,6 +476,7 @@
   (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.tag\\'" . web-mode))
 
   ;; engine
   (setq web-mode-engines-alist
@@ -850,3 +851,4 @@
 (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
 (setq inferior-lisp-program "sbcl")
 ;(slime-setup '(slime-repl slime-fancy slime-banner))
+(put 'narrow-to-region 'disabled nil)
