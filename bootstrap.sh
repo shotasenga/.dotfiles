@@ -102,20 +102,21 @@ apps=(
     emacs
     firefox
     flash
-    imageoptim
     google-chrome
+    hyperswitch
+    imagealpha
+    imageoptim
+    karabiner
     mysqlworkbench
     qlmarkdown
-    qlstephen
-    quicklook-json
-    quicklook-csv
     qlprettypatch
-    karabiner
+    qlstephen
+    quicklook-csv
+    quicklook-json
     seil
     sequel-pro
-    virtualbox
     vagrant
-    hyperswitch
+    virtualbox
 )
 
 # Install apps to /Applications
