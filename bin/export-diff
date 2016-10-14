@@ -11,4 +11,5 @@ DEST=$(mktemp -d)
 rsync -rvcm --compare-dest="../${DIR1}" $DIR2 difference/
 find difference -type d -empty -delete
 mv difference $DEST
+echo exported on $DEST/difference
 open $DEST/difference
