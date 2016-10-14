@@ -102,6 +102,7 @@ apps=(
     emacs
     firefox
     flash
+    imageoptim
     google-chrome
     mysqlworkbench
     qlmarkdown
