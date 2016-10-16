@@ -10,8 +10,8 @@
 # Check for Homebrew,
 # Install if we don't have it
 if test ! $(which brew); then
-  echo "Installing homebrew..."
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    echo "Installing homebrew..."
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # Update homebrew recipes
@@ -160,3 +160,22 @@ mas install 449589707 # Dash
 
 
 echo "DONE! ALL APPLICATIONS INSTALLED |:3"
+
+
+##########################################
+## setup Node.js by nodebrew
+##########################################
+# nodebrew=$(brew --prefix)/bin/nodebrew
+nodebrew install-binary v0.12
+nodebrew install-binary v5
+nodebrew use v5
+
+# and then packages
+pkg=(
+    cssbeautify-cli
+    imageoptim-cli
+    iron-node
+    js-beautify
+    psd-cli
+)
+npm install -g ${apps[@]}
