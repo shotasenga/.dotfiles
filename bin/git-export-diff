@@ -5,9 +5,13 @@
 # `git export-diff <base> <target>`
 # ...or
 # `git export-diff <target>` base=HEAD
+# ...or
+# `git export-diff <base> <target> <file-path>`
 
 BASE=$1
 TARGET=$2
+FILES=$3
+ROOT_DIR=$(git rev-parse --show-toplevel)
 WORK_DIR=$(mktemp -d)
 
 if [ -z "$TARGET" ]; then
@@ -15,11 +19,8 @@ if [ -z "$TARGET" ]; then
     BASE="HEAD";
 fi
 
-ROOT_DIR=$(git rev-parse --show-toplevel)
-
 cd $ROOT_DIR
-IFS=$'\n'
-git archive --prefix=root/ $BASE $(git diff --diff-filter=AMCR --name-only $TARGET $BASE) -o ${WORK_DIR}/archive.zip
-unset IFS
+
+git diff --diff-filter=AMCR --name-only $TARGET $BASE $FILES | awk '{ printf("\"%s\"\n", $0) }' | xargs git archive --prefix=root/ $BASE -o ${WORK_DIR}/archive.zip --
 unzip ${WORK_DIR}/archive.zip -d ${WORK_DIR}
 open $WORK_DIR/root
