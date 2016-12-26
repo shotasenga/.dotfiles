@@ -4,6 +4,26 @@
 #
 # `git clean-remote <remote="origin">`
 
+##########################################
+# Functions
+##########################################
+confirm () {
+    # call with a prompt string or use a default
+    read -r -p "${1:-[y/N]} " response
+    case $response in
+        [yY][eE][sS]|[yY]) 
+            true
+            ;;
+        *)
+            false
+            ;;
+    esac
+}
+
+
+##########################################
+# Main logic
+##########################################
 REMOTE=$1
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 
@@ -18,15 +38,16 @@ if [ "$CURRENT_BRANCH" != "master" ]; then
 fi
 
 ## delete merged branches on remote
-for br in $(git branch -r --merged |grep "${REMOTE}/" |grep -v master |grep -v develop|cut -d '/' -f 2-); do
-    # TODO: confirm before delete
-    git push $REMOTE --delete $br
-done
+merged=$(git branch -r --merged |grep "${REMOTE}/" |grep -v master |grep -v develop|cut -d '/' -f 2-)
+echo Are you sure you want delete branches below on "'${REMOTE}'?"
+echo $merged|tr " " "\n"
+confirm && git push $REMOTE --delete ${merged[@]}
 
 ## delete merged branches on local
-for br in $(git branch --merged |grep "${REMOTE}/" |grep -v master |grep -v develop); do
-    git branch -d $br
-done
+merged=$(git branch --merged |grep -v master |grep -v develop)
+echo Are you sure you want delete branches below on "'local'?"
+echo $merged|tr " " "\n"
+confirm && git branch -d ${merged[@]}
 
 ## checkout previous branch
 if [ "$CURRENT_BRANCH" != "master" ]; then
