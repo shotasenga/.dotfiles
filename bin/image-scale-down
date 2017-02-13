@@ -1,0 +1,11 @@
+#!/bin/bash
+
+for file in $(ls *@3x*); do
+    echo "> " $file "..."
+    convert -resize 66.666666666% $file $(echo $file|sed -e 's|@3x|@2x|')
+done
+
+for file in $(ls *@2x*); do
+    echo "> " $file "..."
+    convert -resize 50% $file $(echo $file|sed -e 's|@2x||')
+done
