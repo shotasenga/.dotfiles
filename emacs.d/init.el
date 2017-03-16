@@ -852,3 +852,4 @@
 (setq inferior-lisp-program "sbcl")
 ;(slime-setup '(slime-repl slime-fancy slime-banner))
 (put 'narrow-to-region 'disabled nil)
+(put 'set-goal-column 'disabled nil)
