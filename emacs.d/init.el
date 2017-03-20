@@ -768,6 +768,9 @@
  '(flymake-google-cpplint-command "/usr/local/bin/cpplint")
  '(fringe-mode 6 nil (fringe))
  '(linum-format " %5d ")
+ '(package-selected-packages
+   (quote
+    (lua-mode yasnippet yaml-mode web-mode stylus-mode slime sass-mode rich-minority restclient redo+ powerline php-mode org multiple-cursors migemo markdown-mode magit json-mode js2-mode jade-mode iedit highlight-indentation helm-projectile helm-gtags helm-emmet helm-descbinds go-mode git-gutter ggtags flymake-google-cpplint flymake-cursor expand-region exec-path-from-shell deft coffee-mode blank-mode autopair auto-complete-c-headers ace-jump-mode)))
  '(powerline-color1 "#00779a")
  '(powerline-color2 "#00475a")
  '(sml/mode-width

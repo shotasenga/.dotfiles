@@ -106,14 +106,13 @@ apps=(
     hyperswitch
     imagealpha
     imageoptim
-    karabiner
+    karabiner-elements
     mysqlworkbench
     qlmarkdown
     qlprettypatch
     qlstephen
     quicklook-csv
     quicklook-json
-    seil
     sequel-pro
     vagrant
     virtualbox
