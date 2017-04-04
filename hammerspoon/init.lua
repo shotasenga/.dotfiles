@@ -29,15 +29,24 @@
 -- hattip https://gist.github.com/ttscoff/cce98a711b5476166792d5e6f1ac5907
 hyper = hs.hotkey.modal.new('', 'F18')
 function hyper:entered()
-   hs.timer.doAfter(.3, function() hyper:exit() end)
+   hs.timer.doAfter(.6, function() hyper:exit() end)
 end
+
+-- hyper + space (Spotlight)
 hyper:bind({}, 'space', function ()
   hs.eventtap.keyStroke({"cmd","alt","shift","ctrl"}, 'space')
   hyper:exit()
 end)
--- hs.hotkey.bind({"cmd"}, "space", function ()
---       hs.application.get("Spotlight"):activate()
--- end)
+
+-- hyper + -/+ (The Hit List)
+hyper:bind({}, '-', function ()
+  hs.eventtap.keyStroke({"cmd","alt","shift","ctrl"}, '-')
+  hyper:exit()
+end)
+hyper:bind({}, '=', function ()
+  hs.eventtap.keyStroke({"cmd","alt","shift","ctrl"}, '=')
+  hyper:exit()
+end)
 
 
 
