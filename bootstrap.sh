@@ -103,11 +103,14 @@ apps=(
     firefox
     flash
     google-chrome
+    linear
     hyperswitch
+    bettertouchtool
     imagealpha
     imageoptim
     karabiner-elements
     mysqlworkbench
+    processing
     qlmarkdown
     qlprettypatch
     qlstephen
