@@ -31,56 +31,36 @@ brew tap sanemat/font
 ## Install binaries
 ##########################################
 binaries=(
-    ack
-    ant
+    # homebrew/php/php71-intl
+    # homebrew/php/php71-mcrypt
     argon/mas/mas
     aspell
     awscli
-    cloog
     colordiff
-    emacs
     fasd
     ffmpeg
-    fontforge
-    ghq
     git
-    git-flow
     global
     go
     heroku
-    homebrew/dupes/zlib
-    highlight
     homebrew/php/composer
-    homebrew/php/php-build
-    homebrew/php/php55
-    homebrew/php/php55-intl
-    homebrew/php/php55-mcrypt
+    homebrew/php/php71
     httpie
     hugo
     imagemagick
     jq
-    libgcrypt
-    libmpc
-    multimarkdown
-    neon
     nodebrew
-    ossp-uuid
-    packer
     pandoc
     peco
     pngquant
-    potrace
     pstree
     python3
     rbenv
-    re2c
     reattach-to-user-namespace
     rename
+    ripgrep
     rmtrash
-    sdl
-    sbcl
     subversion
-    tree
     tree
     watch
     zsh
@@ -96,19 +76,19 @@ brew install ${binaries[@]}
 apps=(
     alfred
     appcleaner
+    bettertouchtool
     charles
     coteditor
+    dash
     dropbox
     emacs
     firefox
     flash
     google-chrome
-    linear
     hyperswitch
-    bettertouchtool
     imagealpha
     imageoptim
-    karabiner-elements
+    linear
     mysqlworkbench
     processing
     qlmarkdown
@@ -149,16 +129,11 @@ echo "installing Apps from App Store..."
 mas install 529456740 # CheatSheet
 mas install 419330170 # Moom
 mas install 433335799 # CodeRunner
-mas install 425955336 # Skitch
 mas install 451640037 # Classic Color Meter
-mas install 499148234 # DragonDrop
 mas install 497799835 # Xcode
-mas install 435003921 # Fantastical
 mas install 448925439 # Marked
 mas install 432764806 # The Hit List
-mas install 816730952 # Ruler+
 mas install 422304217 # Day One
-mas install 449589707 # Dash
 
 
 echo "DONE! ALL APPLICATIONS INSTALLED |:3"
@@ -169,15 +144,16 @@ echo "DONE! ALL APPLICATIONS INSTALLED |:3"
 ##########################################
 # nodebrew=$(brew --prefix)/bin/nodebrew
 nodebrew install-binary v0.12
-nodebrew install-binary v5
-nodebrew use v5
+nodebrew install-binary v6
+nodebrew use v6
 
-# and then packages
-pkg=(
-    cssbeautify-cli
-    imageoptim-cli
-    iron-node
-    js-beautify
-    psd-cli
-)
-npm install -g ${apps[@]}
+# and then install npm packages
+npm install -g yarn
+
+# pkg=(
+#     yarn
+#     cssbeautify-cli
+#     js-beautify
+#     psd-cli
+# )
+# yarn global add ${apps[@]}

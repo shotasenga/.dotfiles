@@ -41,6 +41,9 @@ ANDROID_SDK_PATH=/Developer/SDKs/android-sdk-macosx
 export PATH=$PATH:$ANDROID_SDK_PATH/tools:$ANDROID_SDK_PATH/platform-tools
 export ANDROID_HOME=$ANDROID_SDK_PATH
 
+## Emacs bin
+export PATH="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient:$PATH"
+
 
 # Aliases
 alias sourcetree='open -a sourcetree'
