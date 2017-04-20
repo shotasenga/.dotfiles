@@ -22,7 +22,6 @@ brew tap homebrew/php
 brew tap homebrew/versions
 brew tap caskroom/cask
 brew tap caskroom/fonts
-brew tap peco/peco
 brew tap sanemat/font
 
 # Update homebrew recipes
@@ -44,8 +43,8 @@ binaries=(
     global
     go
     heroku
-    homebrew/php/composer
     homebrew/php/php71
+    homebrew/php/composer
     httpie
     hugo
     imagemagick
