@@ -107,9 +107,6 @@ apps=(
 echo "installing apps..."
 brew cask install --appdir="/Applications" ${apps[@]}
 
-# add paths to Alfred
-brew cask alfred link
-
 
 # ------------------------------
 # Install Fonts
