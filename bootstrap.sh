@@ -97,6 +97,7 @@ apps=(
     quicklook-csv
     quicklook-json
     sequel-pro
+    sketch
     vagrant
     virtualbox
 )
