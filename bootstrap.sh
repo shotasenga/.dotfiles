@@ -1,11 +1,12 @@
 #!/bin/bash
 
-##########################################
-# install all I need apps for Mac dev-env
+# ------------------------------------------------------------
+# Install binaries and apps for Mac dev-env
 # refers:
 #   - https://github.com/lapwinglabs/blog/blob/master/hacker-guide-to-setting-up-your-mac.md
 #   - http://veadardiary.blog29.fc2.com/blog-entry-6066.html
-##########################################
+# ------------------------------------------------------------
+
 
 # Check for Homebrew,
 # Install if we don't have it
@@ -13,9 +14,6 @@ if test ! $(which brew); then
     echo "Installing homebrew..."
     ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
-
-# Update homebrew recipes
-brew update
 
 # Tap Formula
 brew tap homebrew/binary
@@ -27,9 +25,12 @@ brew tap caskroom/fonts
 brew tap peco/peco
 brew tap sanemat/font
 
-##########################################
-## Install binaries
-##########################################
+# Update homebrew recipes
+brew update
+
+# ------------------------------
+# Install binaries
+# ------------------------------
 binaries=(
     # homebrew/php/php71-intl
     # homebrew/php/php71-mcrypt
@@ -70,9 +71,9 @@ echo "installing binaries..."
 brew install ${binaries[@]}
 
 
-##########################################
-## Install Apps
-##########################################
+# ------------------------------
+# Install Apps
+# ------------------------------
 apps=(
     alfred
     appcleaner
@@ -110,9 +111,9 @@ brew cask install --appdir="/Applications" ${apps[@]}
 brew cask alfred link
 
 
-##########################################
-## Install Fonts
-##########################################
+# ------------------------------
+# Install Fonts
+# ------------------------------
 fonts=(
     font-hack
 )
@@ -121,10 +122,10 @@ echo "installing fonts..."
 brew cask install ${fonts[@]}
 
 
-##########################################
-## Install Apps from Mac App Store
-##########################################
-# Note: to list all installed apps, just `mas list`
+# ------------------------------
+# Install Apps from Mac App Store
+# ------------------------------
+# Note: You can get all installed apps by `mas list`
 echo "installing Apps from App Store..."
 mas install 529456740 # CheatSheet
 mas install 419330170 # Moom
@@ -139,9 +140,9 @@ mas install 422304217 # Day One
 echo "DONE! ALL APPLICATIONS INSTALLED |:3"
 
 
-##########################################
-## setup Node.js by nodebrew
-##########################################
+# ------------------------------
+# setup Node.js by nodebrew
+# ------------------------------
 # nodebrew=$(brew --prefix)/bin/nodebrew
 nodebrew install-binary v0.12
 nodebrew install-binary v6
@@ -157,3 +158,24 @@ npm install -g yarn
 #     psd-cli
 # )
 # yarn global add ${apps[@]}
+
+
+
+
+# ------------------------------------------------------------
+# Make symlinks
+# ------------------------------------------------------------
+for name in *; do
+    target="$HOME/.$name"
+    if [ -e "$target" ] && [ ! -L "$target" ]; then
+        echo "WARNING: $target already exists however not a symlink"
+    else
+        if [ "$name" != 'setup.sh' ] && [ "$name" != 'README.md' ] && [ "$name" != 'bootstrap.sh' ]; then
+            if [ -e "$target" ]; then
+                rm "$target"
+            fi
+            echo ln -s "$PWD/$name" "$target"
+            ln -s "$PWD/$name" "$target"
+        fi
+    fi
+done
