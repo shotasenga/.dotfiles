@@ -29,7 +29,7 @@ set -x PATH $HOME/.nodebrew/current/bin $PATH
 eval (rbenv init -)
 
 # Emacs
-set -x PATH /Applications/Emacs.app/Contents/MacOS/bin/emacsclient $PATH
+set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
 
 ## Aliases
 alias mkdir "mkdir -p"
