@@ -64,6 +64,7 @@ binaries=(
     tree
     watch
     zsh
+    fish
 )
 
 echo "installing binaries..."
