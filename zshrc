@@ -25,13 +25,7 @@ export PATH=/usr/local/bin:/usr/local/sbin:$PATH
 eval "$(rbenv init -)"
 
 ## nodebrew
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-
-## Heroku
-export PATH="/usr/local/heroku/bin:$PATH"
-
-## cabel (Haskel)
-export PATH="$HOME/Library/Haskell/bin:$PATH"
+export PATH="$HOME/.nodebrew/current/bin:$PATH"
 
 ## composer
 export PATH="$HOME/.composer/vendor/bin:$PATH"
