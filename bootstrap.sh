@@ -23,6 +23,7 @@ brew tap homebrew/versions
 brew tap caskroom/cask
 brew tap caskroom/fonts
 brew tap sanemat/font
+brew tap fisherman/tap
 
 # Update homebrew recipes
 brew update
@@ -39,6 +40,7 @@ binaries=(
     colordiff
     fasd
     ffmpeg
+    fisherman
     git
     global
     go
@@ -64,6 +66,7 @@ binaries=(
     tree
     watch
     zsh
+    fish
 )
 
 echo "installing binaries..."

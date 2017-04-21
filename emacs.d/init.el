@@ -119,6 +119,7 @@
                       web-mode
                       with-editor
                       dash
+                      fish-mode
                       async
                       highlight-indentation
                       slime
