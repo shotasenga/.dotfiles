@@ -26,10 +26,12 @@ set -x PATH $HOME/.nodebrew/current/bin $PATH
 # set -x PATH $PATH $ANDROID_HOME/tools $ANDROID_HOME/platform-tools
 
 ## rbenv
-eval (rbenv init -)
+status --is-interactive; and source (rbenv init -|psub)
+
 
 # Emacs
 set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
+
 
 ## Aliases
 alias mkdir "mkdir -p"
