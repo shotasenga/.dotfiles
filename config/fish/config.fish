@@ -19,11 +19,11 @@ set -x PATH /usr/local/bin /usr/local/sbin $PATH
 set -x PATH $HOME/.nodebrew/current/bin $PATH
 
 # - composer
-set -x PATH $HOME/.composer/vendor/bin $PATH
+# set -x PATH $HOME/.composer/vendor/bin $PATH
 
 # - Android SDK
-set -x ANDROID_HOME /Developer/SDKs/android-sdk-macosx
-set -x PATH $PATH $ANDROID_HOME/tools $ANDROID_HOME/platform-tools
+# set -x ANDROID_HOME /Developer/SDKs/android-sdk-macosx
+# set -x PATH $PATH $ANDROID_HOME/tools $ANDROID_HOME/platform-tools
 
 ## rbenv
 eval (rbenv init -)
