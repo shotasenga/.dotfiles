@@ -58,15 +58,3 @@ alias python2=/usr/bin/python2.7
 alias pip2=/usr/local/bin/pip
 alias python=/usr/local/bin/python3
 alias pip=/usr/local/bin/pip3
-
-# Functions (TODO: move functions to somewhere else)
-## make a project direcoty
-mkp () {
-    if (( $# == 0 )); then
-        echo "useage: mkp \$PROJECT_NAME"
-        return
-    fi
-    PROJECT_NAME=$1
-    echo "make project on ~/Dev/$PROJECT_NAME/"
-    mkdir -p ~/Dev/$PROJECT_NAME/{apps,scripts,docs} && touch $(dirname $_)/note.org && e -n ~/Dev/$PROJECT_NAME/note.org
-}

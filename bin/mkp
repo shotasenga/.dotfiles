@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# ------------------------------
+# Make project directory
+# ~/Dev/{$PROJECT_NAME}
+#   |-- apps/
+#   |-- docs/
+#   |-- note.org/
+#   `-- scripts/
+# ------------------------------
+
+PROJECT_ROOT="${HOME}/Dev"
+
+if (( $# == 0 )); then
+    echo "useage: mkp \$PROJECT_NAME"
+    exit 1
+fi
+
+PROJECT_NAME=$1
+PROJECT_NAME_LC=$(echo $PROJECT_NAME | tr '[:upper:]' '[:lower:]')
+
+echo "make project on ~/Dev/$PROJECT_NAME/"
+mkdir -p $PROJECT_ROOT/$PROJECT_NAME_LC/{apps,scripts,docs} \
+ && echo "* ${PROJECT_NAME}" > $(dirname $_)/note.org \
+ && $EDITOR -n ~/Dev/$PROJECT_NAME/note.org
