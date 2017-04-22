@@ -215,9 +215,9 @@
 
 ;; higlight current line
 (global-hl-line-mode nil)
-;(set-face-background 'hl-line "#3a3a3a")
-;(set-face-foreground 'highlight nil)
-;(set-face-underline 'highlight nil)
+;;(set-face-background 'hl-line "#3a3a3a")
+;;(set-face-foreground 'highlight nil)
+;;(set-face-underline 'highlight nil)
 
 ;; when runing with window system
 (when window-system
@@ -274,8 +274,10 @@
    ;; (font-spec :family "Hiragino Mincho Pro")) ;; font
    (font-spec :family "Hiragino Kaku Gothic ProN")) ;; font
   (setq face-font-rescale-alist
-        '((".*Hiragino_Mincho_pro.*" . 1.2)))
-  )
+        '((".*Hiragino_Mincho_pro.*" . 1.2))))
+
+
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ undo/redo
@@ -347,7 +349,7 @@
         ;; If this is a problem for you, please, comment the line below.
         (tab-mark ?\t [?\xBB ?\t] [?\\ ?\t])))
 ;;(setq whitespace-space-regexp "\\(\u3000+\\)")
-;; 	aaa <- this line tabbed
+;;      aaa <- this line tabbed
 (set-face-foreground 'whitespace-tab "#505050")
 (set-face-background 'whitespace-tab 'nil)
 (set-face-underline  'whitespace-tab t)
@@ -530,12 +532,12 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ PHP
-(add-hook 'php-mode-user-hook 'semantic-default-java-setup) 
-(add-hook 'php-mode-user-hook 
-          (lambda () 
-            (setq imenu-create-index-function 
-                  'semantic-create-imenu-index) 
-            )) 
+(add-hook 'php-mode-user-hook 'semantic-default-java-setup)
+(add-hook 'php-mode-user-hook
+          (lambda ()
+            (setq imenu-create-index-function
+                  'semantic-create-imenu-index)
+            ))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -630,7 +632,7 @@
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
 ;; list actions using C-z
 (define-key helm-map (kbd "C-z")  'helm-select-action)
-;; 
+;;
 (setq helm-ff-file-name-history-use-recentf t)
 ;; killing history
 (global-set-key (kbd "M-y") 'helm-show-kill-ring)
@@ -666,7 +668,7 @@
 ;; enable projectile + helm!
 (projectile-global-mode)
 (setq projectile-completion-system 'helm)
-;(helm-projectile-on)
+;;(helm-projectile-on)
 (setq projectile-switch-project-action 'helm-projectile)
 
 
@@ -694,7 +696,7 @@
 ;; semantic
 (semantic-mode 1)
 (global-semantic-idle-scheduler-mode 1)
-(defun my:add-semantic-to-autocomplete() 
+(defun my:add-semantic-to-autocomplete()
   (add-to-list 'ac-sources 'ac-source-semantic)
   )
 (add-hook 'c-mode-common-hook 'my:add-semantic-to-autocomplete)
@@ -772,7 +774,7 @@
  '(linum-format " %5d ")
  '(package-selected-packages
    (quote
-    (markdown-toc lua-mode yasnippet yaml-mode web-mode stylus-mode slime sass-mode rich-minority restclient redo+ powerline php-mode org multiple-cursors migemo markdown-mode magit json-mode js2-mode jade-mode iedit highlight-indentation helm-projectile helm-gtags helm-emmet helm-descbinds go-mode git-gutter ggtags flymake-google-cpplint flymake-cursor expand-region exec-path-from-shell deft coffee-mode blank-mode autopair auto-complete-c-headers ace-jump-mode)))
+    (emojify markdown-toc lua-mode yasnippet yaml-mode web-mode stylus-mode slime sass-mode rich-minority restclient redo+ powerline php-mode org multiple-cursors migemo markdown-mode magit json-mode js2-mode jade-mode iedit highlight-indentation helm-projectile helm-gtags helm-emmet helm-descbinds go-mode git-gutter ggtags flymake-google-cpplint flymake-cursor expand-region exec-path-from-shell deft coffee-mode blank-mode autopair auto-complete-c-headers ace-jump-mode)))
  '(powerline-color1 "#00779a")
  '(powerline-color2 "#00475a")
  '(sml/mode-width
@@ -855,6 +857,6 @@
 (add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
 (add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
 (setq inferior-lisp-program "sbcl")
-;(slime-setup '(slime-repl slime-fancy slime-banner))
+;;(slime-setup '(slime-repl slime-fancy slime-banner))
 (put 'narrow-to-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)

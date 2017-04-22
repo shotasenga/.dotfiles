@@ -116,6 +116,7 @@ brew cask install --appdir="/Applications" ${apps[@]}
 # ------------------------------
 fonts=(
     font-hack
+    font-symbola
 )
 
 echo "installing fonts..."
