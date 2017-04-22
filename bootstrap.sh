@@ -65,6 +65,7 @@ binaries=(
     subversion
     tree
     watch
+    xargs
     zsh
     fish
 )
