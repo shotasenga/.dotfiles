@@ -34,6 +34,8 @@ set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
 
 
 ## Aliases
+alias e $EDITOR
+alias j z
 alias mkdir "mkdir -p"
 alias sourcetree='open -a sourcetree'
 alias cliptmux="tmux showb|pbcopy"
