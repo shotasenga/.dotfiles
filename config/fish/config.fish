@@ -48,3 +48,10 @@ alias python2=/usr/bin/python2.7
 alias pip2=/usr/local/bin/pip
 alias python=/usr/local/bin/python3
 alias pip=/usr/local/bin/pip3
+
+
+## Sync history between the settions
+function sync_history --on-event fish_preexec
+    history --save
+    history --merge
+end
