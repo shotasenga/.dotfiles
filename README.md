@@ -11,8 +11,7 @@ Install applications, binaries and then put DOTFILEs.
 ```
 $cd
 $git clone --recursive https://github.com/senta/.dotfiles.git .dotfiles
-$sh bootstrap.sh (optional)
-$sh setup.sh
+$sh bootstrap.sh
 ```
 
 ### Configure Git user

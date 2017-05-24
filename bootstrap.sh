@@ -162,7 +162,11 @@ npm install -g yarn
 # yarn global add ${apps[@]}
 
 
-
+# ------------------------------
+# setup PHP
+# ------------------------------
+composer config -g repos.packagist composer https://packagist.jp
+composer global require hirak/prestissimo
 
 # ------------------------------------------------------------
 # Make symlinks
