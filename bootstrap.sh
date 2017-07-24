@@ -80,9 +80,9 @@ brew install ${binaries[@]}
 apps=(
     alfred
     appcleaner
+    anki
     bettertouchtool
     charles
-    coteditor
     dash
     dropbox
     emacs
@@ -137,6 +137,7 @@ mas install 497799835 # Xcode
 mas install 448925439 # Marked
 mas install 432764806 # The Hit List
 mas install 422304217 # Day One
+mas install 1024640650 # CotEditor
 
 
 echo "DONE! ALL APPLICATIONS INSTALLED |:3"
