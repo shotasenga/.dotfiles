@@ -83,6 +83,7 @@ apps=(
     anki
     bettertouchtool
     charles
+    cyberduck
     dash
     dropbox
     emacs
