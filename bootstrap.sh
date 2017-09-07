@@ -68,6 +68,7 @@ binaries=(
     xargs
     zsh
     fish
+    unar
 )
 
 echo "installing binaries..."
