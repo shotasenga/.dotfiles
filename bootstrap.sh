@@ -38,6 +38,7 @@ binaries=(
     aspell
     awscli
     colordiff
+    ctags
     fasd
     ffmpeg
     fisherman

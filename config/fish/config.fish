@@ -32,6 +32,9 @@ status --is-interactive; and source (rbenv init -|psub)
 # Emacs
 set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
 
+# VS Code
+set -x PATH /Applications/Visual Studio Code.app/Contents/Resources/app/bin $PATH
+
 
 ## Aliases
 alias e $EDITOR
