@@ -33,7 +33,7 @@ status --is-interactive; and source (rbenv init -|psub)
 set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
 
 # VS Code
-set -x PATH /Applications/Visual Studio Code.app/Contents/Resources/app/bin $PATH
+set -x PATH "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $PATH
 
 
 ## Aliases
