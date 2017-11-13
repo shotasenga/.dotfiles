@@ -8,10 +8,6 @@
 ;; @ load-path
 (add-to-list 'load-path "~/.emacs.d/elisp")
 
-;; theme-path
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
-
 ;; exec-path
 (add-to-list 'exec-path "/usr/local/bin")
 
@@ -35,96 +31,65 @@
 ;; @ defaullt packages forked from http://www.aaronbedra.com/emacs.d/
 ;; NOTE show current activated packages
 ;;     `C-h v` (describe-variable) package-activated-list
-(defvar my:packages '(ace-jump-mode
-                      auto-complete-c-headers
+(defvar my:packages '(
+                      ace-jump-mode
+                      async
                       auto-complete
-                      popup
+                      auto-complete-c-headers
                       autopair
                       blank-mode
                       coffee-mode
+                      dash
                       deft
+                      dracula-theme
+                      emmet-mode
+                      epl
                       exec-path-from-shell
                       expand-region
+                      fish-mode
                       flymake-cursor
-                      flymake-google-cpplint
                       flymake-easy
+                      flymake-google-cpplint
                       ggtags
+                      git-commit
                       git-gutter
                       go-mode
+                      haml-mode
+                      helm
+                      helm-core
                       helm-descbinds
-                      helm
-                      helm-core
-                      async
-                      async
                       helm-emmet
-                      emmet-mode
-                      helm
-                      helm-core
-                      async
-                      async
                       helm-gtags
-                      async
-                      async
                       helm-projectile
-                      dash
-                      projectile
-                      pkg-info
-                      epl
-                      dash
-                      async
-                      async
+                      highlight-indentation
                       iedit
-                      js2-mode
                       jade-mode
+                      js2-mode
                       json-mode
-                      json-snatcher
-                      json-reformat
                       json-reformat
                       json-snatcher
                       magit
                       magit-popup
-                      dash
-                      async
-                      git-commit
-                      with-editor
-                      dash
-                      async
-                      dash
-                      with-editor
-                      dash
-                      async
-                      dash
-                      async
-                      magit-popup
-                      dash
-                      async
                       markdown-mode
                       multiple-cursors
                       org
                       php-mode
+                      pkg-info
                       popup
                       powerline
                       projectile
-                      pkg-info
-                      epl
-                      dash
                       redo+
                       restclient
                       rich-minority
                       sass-mode
-                      haml-mode
+                      slime
                       stylus-mode
-                      sws-mode
                       sws-mode
                       web-mode
                       with-editor
-                      dash
-                      fish-mode
-                      async
-                      highlight-indentation
-                      slime
                       yaml-mode
-                      yasnippet)
+                      yasnippet
+                      )
   "Default packages")
 
 (defun my:packages-installed-p ()
@@ -204,8 +169,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ theme & visual
-(set-frame-parameter nil 'background-mode 'dark)
-(load-theme 'solarized t)
+(load-theme 'dracula t)
 
 
 ;; show line numbers
