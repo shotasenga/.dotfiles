@@ -81,8 +81,8 @@ brew install ${binaries[@]}
 # ------------------------------
 apps=(
     alfred
-    appcleaner
     anki
+    appcleaner
     bettertouchtool
     charles
     cyberduck
@@ -92,6 +92,7 @@ apps=(
     firefox
     flash
     google-chrome
+    hammerspoon
     hyperswitch
     imagealpha
     imageoptim
