@@ -202,7 +202,7 @@
   (toggle-indicate-empty-lines)
 
   ;; transparent window
-  (set-frame-parameter nil 'alpha 94)
+  (set-frame-parameter nil 'alpha 88)
   )
 
 ;; powerline
