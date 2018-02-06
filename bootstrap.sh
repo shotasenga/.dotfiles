@@ -64,6 +64,7 @@ binaries=(
     ripgrep
     rmtrash
     subversion
+    tig
     tree
     watch
     xargs
