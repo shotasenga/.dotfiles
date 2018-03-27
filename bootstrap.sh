@@ -41,13 +41,14 @@ binaries=(
     ctags
     fasd
     ffmpeg
+    fish
     fisherman
     git
     global
     go
     heroku
-    homebrew/php/php71
     homebrew/php/composer
+    homebrew/php/php71
     httpie
     hugo
     imagemagick
@@ -57,6 +58,7 @@ binaries=(
     peco
     pngquant
     pstree
+    pup
     python3
     rbenv
     reattach-to-user-namespace
@@ -66,11 +68,10 @@ binaries=(
     subversion
     tig
     tree
+    unar
     watch
     xargs
     zsh
-    fish
-    unar
 )
 
 echo "installing binaries..."
