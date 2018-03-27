@@ -13,3 +13,4 @@ GTAGS
 Thumbs.db
 .powder
 .vscode
+__pycache__
