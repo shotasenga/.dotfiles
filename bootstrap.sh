@@ -68,7 +68,7 @@ binaries=(
     subversion
     tig
     tree
-    unar
+    unrar
     watch
     xargs
     zsh
