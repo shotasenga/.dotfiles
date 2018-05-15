@@ -71,6 +71,7 @@ binaries=(
     unrar
     watch
     xargs
+    youtube-dl
     zsh
 )
 

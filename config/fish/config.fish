@@ -47,6 +47,7 @@ alias del=rmtrash
 alias https='http --default-scheme=https'
 alias less='less -R'
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias youtube-dl="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'"
 
 # Python3 as default python
 alias python2=/usr/bin/python2.7
