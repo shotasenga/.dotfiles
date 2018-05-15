@@ -109,6 +109,7 @@ apps=(
     quicklook-json
     sequel-pro
     sketch
+    slack
     vagrant
     virtualbox
 )
