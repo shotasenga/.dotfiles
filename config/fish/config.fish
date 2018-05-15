@@ -1,9 +1,10 @@
 # ------------------------------
 # fish configuration
 # ------------------------------
+set -x LANG C
 
 ## Editor
-set -x EDITOR emacsclient
+set -x EDITOR vim
 set -x VISUAL $EDITOR
 
 
