@@ -4,7 +4,7 @@
 set -x LANG C
 
 ## Editor
-set -x EDITOR vim
+set -x EDITOR emacsclient
 set -x VISUAL $EDITOR
 
 
@@ -38,6 +38,8 @@ set -x PATH "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $P
 
 
 ## Aliases
+alias vim="reattach-to-user-namespace vim"
+alias vi="vim"
 alias e $EDITOR
 alias j z
 alias mkdir "mkdir -p"
