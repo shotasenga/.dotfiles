@@ -5,7 +5,7 @@
 # ~/Dev/{$PROJECT_NAME}
 #   |-- apps/
 #   |-- docs/
-#   |-- note.org/
+#   |-- note.md/
 #   `-- scripts/
 # ------------------------------
 
@@ -21,5 +21,5 @@ PROJECT_NAME_LC=$(echo $PROJECT_NAME | tr '[:upper:]' '[:lower:]')
 
 echo "make project on ~/Dev/$PROJECT_NAME/"
 mkdir -p $PROJECT_ROOT/$PROJECT_NAME_LC/{apps,scripts,docs} \
- && echo "* ${PROJECT_NAME}" > $(dirname $_)/note.org \
- && $EDITOR -n ~/Dev/$PROJECT_NAME/note.org
+ && echo "* ${PROJECT_NAME}" > $(dirname $_)/note.md \
+ && $EDITOR -n ~/Dev/$PROJECT_NAME/note.md
