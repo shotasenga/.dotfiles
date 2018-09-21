@@ -100,6 +100,7 @@ apps=(
     hyperswitch
     imagealpha
     imageoptim
+    karabiner-elements
     linear
     mysqlworkbench
     processing
