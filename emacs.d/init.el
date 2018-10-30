@@ -182,6 +182,7 @@
 (setq column-number-mode t)
 
 ;; higlight current line
+(global-linum-mode 0)
 (global-hl-line-mode nil)
 ;;(set-face-background 'hl-line "#3a3a3a")
 ;;(set-face-foreground 'highlight nil)
