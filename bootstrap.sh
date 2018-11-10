@@ -53,14 +53,17 @@ binaries=(
     hugo
     imagemagick
     jq
+    openssl
     nodebrew
     pandoc
     peco
     pngquant
     pstree
     pup
-    python3
+    pyenv
+    pyenv-virtualenv
     rbenv
+    readline
     reattach-to-user-namespace
     rename
     ripgrep
@@ -73,6 +76,9 @@ binaries=(
     xargs
     youtube-dl
     zsh
+    sqlite3
+    xz
+    zlib
 )
 
 echo "installing binaries..."

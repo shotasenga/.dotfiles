@@ -37,7 +37,17 @@ set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
 set -x PATH "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $PATH
 
 # Python
+# disallow pip out of virutalenv
 set -x PIP_REQUIRE_VIRTUALENV true
+# pyenv
+set -x PYENV_ROOT $HOME/.pyenv
+set -x PATH $PYENV_ROOT/bin $PATH
+status --is-interactive; and source (pyenv init -|psub)
+# status --is-interactive; and source (pyenv virtualenv-init -|psub)
+
+function pipg
+  set PIP_REQUIRE_VIRTUALENV ""; pip $argv
+end
 
 
 ## Aliases
@@ -58,12 +68,12 @@ alias vue="npx -p @vue/cli vue"
 alias create-react-app="npx create-react-app"
 alias diff="colordiff"
 
-# Python3 as default python
-alias python2=/usr/bin/python2.7
-alias pip2=/usr/local/bin/pip
-alias python=/usr/local/bin/python3
-alias pip=/usr/local/bin/pip3
-
+function reactup
+  npx create-react-app $argv --use-pnp
+  cd $argv
+  code .
+  yarn start
+end
 
 ## Sync history between the settions
 function sync_history --on-event fish_preexec
