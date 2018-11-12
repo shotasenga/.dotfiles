@@ -68,13 +68,6 @@ alias vue="npx -p @vue/cli vue"
 alias create-react-app="npx create-react-app"
 alias diff="colordiff"
 
-function reactup
-  npx create-react-app $argv --use-pnp
-  cd $argv
-  code .
-  yarn start
-end
-
 ## Sync history between the settions
 function sync_history --on-event fish_preexec
     history --save

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+DIR=$1
+
+npx create-react-app $1 --use-pnp && \
+cd "$1" && \
+code . && \
+yarn start
+
