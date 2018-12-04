@@ -157,6 +157,17 @@ mas install 1024640650 # CotEditor
 
 echo "DONE! ALL APPLICATIONS INSTALLED |:3"
 
+# TODO: install wait for the installation
+# xcode-select --install
+
+# ------------------------------
+# setup Python
+# ------------------------------
+pyenv install 3.7.0
+pyenv global 3.7.0
+pip install --upgrade pip
+pip install pipenv
+pip install virtualenv
 
 # ------------------------------
 # setup Node.js by nodebrew
