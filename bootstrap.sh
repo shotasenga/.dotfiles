@@ -38,39 +38,51 @@ binaries=(
     aspell
     awscli
     colordiff
+    ctags
     fasd
     ffmpeg
+    fish
     fisherman
     git
     global
     go
     heroku
-    homebrew/php/php71
     homebrew/php/composer
+    homebrew/php/php71
     httpie
     hugo
     imagemagick
     jq
+    openssl
     nodebrew
     pandoc
     peco
     pngquant
     pstree
-    python3
+    pup
+    pyenv
+    pyenv-virtualenv
     rbenv
+    readline
     reattach-to-user-namespace
     rename
     ripgrep
     rmtrash
     subversion
+    tig
     tree
+    unrar
     watch
+    youtube-dl
     zsh
-    fish
+    sqlite3
+    xz
+    zlib
 )
 
 echo "installing binaries..."
 brew install ${binaries[@]}
+brew install yarn --without-node
 
 
 # ------------------------------
@@ -78,19 +90,22 @@ brew install ${binaries[@]}
 # ------------------------------
 apps=(
     alfred
-    appcleaner
     anki
+    appcleaner
     bettertouchtool
     charles
+    cyberduck
     dash
     dropbox
     emacs
     firefox
     flash
     google-chrome
+    hammerspoon
     hyperswitch
     imagealpha
     imageoptim
+    karabiner-elements
     linear
     mysqlworkbench
     processing
@@ -101,6 +116,7 @@ apps=(
     quicklook-json
     sequel-pro
     sketch
+    slack
     vagrant
     virtualbox
 )
@@ -146,20 +162,20 @@ echo "DONE! ALL APPLICATIONS INSTALLED |:3"
 # setup Node.js by nodebrew
 # ------------------------------
 # nodebrew=$(brew --prefix)/bin/nodebrew
-nodebrew install-binary v0.12
-nodebrew install-binary v6
-nodebrew use v6
+# nodebrew install-binary v6
+nodebrew install-binary v8
+nodebrew use v8
 
 # and then install npm packages
-npm install -g yarn
+npm i -g svgo typescript gulp create-react-app^C
+pkg=(
+    svgo
+    typescript
+    gulp
+    create-react-app
+)
 
-# pkg=(
-#     yarn
-#     cssbeautify-cli
-#     js-beautify
-#     psd-cli
-# )
-# yarn global add ${apps[@]}
+npm install -g ${apps[@]}
 
 
 # ------------------------------

@@ -8,10 +8,6 @@
 ;; @ load-path
 (add-to-list 'load-path "~/.emacs.d/elisp")
 
-;; theme-path
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/emacs-color-theme-solarized")
-
 ;; exec-path
 (add-to-list 'exec-path "/usr/local/bin")
 
@@ -35,96 +31,67 @@
 ;; @ defaullt packages forked from http://www.aaronbedra.com/emacs.d/
 ;; NOTE show current activated packages
 ;;     `C-h v` (describe-variable) package-activated-list
-(defvar my:packages '(ace-jump-mode
-                      auto-complete-c-headers
+(defvar my:packages '(
+                      ace-jump-mode
+                      ag
+                      async
                       auto-complete
-                      popup
+                      auto-complete-c-headers
                       autopair
                       blank-mode
                       coffee-mode
+                      dash
                       deft
+                      dracula-theme
+                      emmet-mode
+                      epl
                       exec-path-from-shell
                       expand-region
+                      fish-mode
                       flymake-cursor
-                      flymake-google-cpplint
                       flymake-easy
+                      flymake-google-cpplint
                       ggtags
+                      git-commit
                       git-gutter
                       go-mode
+                      haml-mode
+                      helm
+                      helm-core
                       helm-descbinds
-                      helm
-                      helm-core
-                      async
-                      async
                       helm-emmet
-                      emmet-mode
-                      helm
-                      helm-core
-                      async
-                      async
                       helm-gtags
-                      async
-                      async
                       helm-projectile
-                      dash
-                      projectile
-                      pkg-info
-                      epl
-                      dash
-                      async
-                      async
+                      highlight-indentation
                       iedit
-                      js2-mode
                       jade-mode
+                      js2-mode
                       json-mode
-                      json-snatcher
-                      json-reformat
                       json-reformat
                       json-snatcher
                       magit
                       magit-popup
-                      dash
-                      async
-                      git-commit
-                      with-editor
-                      dash
-                      async
-                      dash
-                      with-editor
-                      dash
-                      async
-                      dash
-                      async
-                      magit-popup
-                      dash
-                      async
                       markdown-mode
                       multiple-cursors
                       org
                       php-mode
+                      pkg-info
                       popup
                       powerline
                       projectile
-                      pkg-info
-                      epl
-                      dash
+                      rainbow-mode
                       redo+
                       restclient
                       rich-minority
                       sass-mode
-                      haml-mode
+                      slime
                       stylus-mode
-                      sws-mode
                       sws-mode
                       web-mode
                       with-editor
-                      dash
-                      fish-mode
-                      async
-                      highlight-indentation
-                      slime
                       yaml-mode
-                      yasnippet)
+                      yasnippet
+                      )
   "Default packages")
 
 (defun my:packages-installed-p ()
@@ -180,6 +147,8 @@
 (prefer-coding-system 'utf-8-unix)
 (set-keyboard-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
+(define-coding-system-alias 'UTF-8 'utf-8)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -204,8 +173,7 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ theme & visual
-(set-frame-parameter nil 'background-mode 'dark)
-(load-theme 'solarized t)
+(load-theme 'dracula t)
 
 
 ;; show line numbers
@@ -214,6 +182,7 @@
 (setq column-number-mode t)
 
 ;; higlight current line
+(global-linum-mode 0)
 (global-hl-line-mode nil)
 ;;(set-face-background 'hl-line "#3a3a3a")
 ;;(set-face-foreground 'highlight nil)
@@ -238,7 +207,7 @@
   (toggle-indicate-empty-lines)
 
   ;; transparent window
-  (set-frame-parameter nil 'alpha 94)
+  (set-frame-parameter nil 'alpha 88)
   )
 
 ;; powerline
@@ -476,7 +445,6 @@
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.tag\\'" . web-mode))
@@ -503,6 +471,8 @@
 (add-hook 'css-mode-hook  'emmet-mode)
 (add-hook 'web-mode-hook  'emmet-mode)
 (add-hook 'html-mode-hook  'emmet-mode)
+(add-hook 'js2-jsx-mode-hook  'emmet-mode)
+(add-hook 'rjsx-mode-hook  'emmet-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -512,9 +482,10 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ js2-mode
-(add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . rjsx-mode))
 (add-to-list 'auto-mode-alist '("\\.babelrc$" . js2-mode))
 (setq js2-basic-offset 2)
+(setq sgml-basic-offset 2)
 (setq js2-strict-missing-semi-warning nil)
 (add-hook 'js-mode-hook 'js2-minor-mode)
 
@@ -539,6 +510,17 @@
                   'semantic-create-imenu-index)
             ))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; @ rainbow-mode
+(setq rainbow-html-colors t)
+(setq rainbow-x-colors t)
+(setq rainbow-latex-colors t)
+(setq rainbow-ansi-colors t)
+(add-hook 'css-mode-hook 'rainbow-mode)
+(add-hook 'scss-mode-hook 'rainbow-mode)
+(add-hook 'php-mode-hook 'rainbow-mode)
+(add-hook 'html-mode-hook 'rainbow-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ org-mode
@@ -671,6 +653,8 @@
 ;;(helm-projectile-on)
 (setq projectile-switch-project-action 'helm-projectile)
 
+;; ag
+;; (setq ag-executable "/usr/local/bin/rg")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ C/C++
@@ -768,13 +752,13 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("f38b00afa9c773ee3d0d597241abf13439467a9ea1628a6d71d51a1810f7ffc3" "a939897b56010ef16d737b3a145ab3f935e0da6122ded3bf9cad28f88b09fd68" "02414c4cfbbe9805b89a5ec66d3d3deb4ae1e4795ed2092eab240ca0cb79ea96" "303488aa27ce49f658a7ba4035e93380421e394ec2799ae8fd952d08808c7235" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "26614652a4b3515b4bbbb9828d71e206cc249b67c9142c06239ed3418eff95e2" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
+    ("ff7625ad8aa2615eae96d6b4469fcc7d3d20b2e1ebc63b761a349bebbb9d23cb" "f38b00afa9c773ee3d0d597241abf13439467a9ea1628a6d71d51a1810f7ffc3" "a939897b56010ef16d737b3a145ab3f935e0da6122ded3bf9cad28f88b09fd68" "02414c4cfbbe9805b89a5ec66d3d3deb4ae1e4795ed2092eab240ca0cb79ea96" "303488aa27ce49f658a7ba4035e93380421e394ec2799ae8fd952d08808c7235" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "26614652a4b3515b4bbbb9828d71e206cc249b67c9142c06239ed3418eff95e2" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" default)))
  '(flymake-google-cpplint-command "/usr/local/bin/cpplint")
  '(fringe-mode 6 nil (fringe))
  '(linum-format " %5d ")
  '(package-selected-packages
    (quote
-    (emojify markdown-toc lua-mode yasnippet yaml-mode web-mode stylus-mode slime sass-mode rich-minority restclient redo+ powerline php-mode org multiple-cursors migemo markdown-mode magit json-mode js2-mode jade-mode iedit highlight-indentation helm-projectile helm-gtags helm-emmet helm-descbinds go-mode git-gutter ggtags flymake-google-cpplint flymake-cursor expand-region exec-path-from-shell deft coffee-mode blank-mode autopair auto-complete-c-headers ace-jump-mode)))
+    (rainbow-mode rjsx-mode helm-ag ag emojify markdown-toc lua-mode yasnippet yaml-mode web-mode stylus-mode slime sass-mode rich-minority restclient redo+ powerline php-mode org multiple-cursors migemo markdown-mode magit json-mode js2-mode jade-mode iedit highlight-indentation helm-projectile helm-gtags helm-emmet helm-descbinds go-mode git-gutter ggtags flymake-google-cpplint flymake-cursor expand-region exec-path-from-shell deft coffee-mode blank-mode autopair auto-complete-c-headers ace-jump-mode)))
  '(powerline-color1 "#00779a")
  '(powerline-color2 "#00475a")
  '(sml/mode-width
@@ -860,3 +844,4 @@
 ;;(slime-setup '(slime-repl slime-fancy slime-banner))
 (put 'narrow-to-region 'disabled nil)
 (put 'set-goal-column 'disabled nil)
+(put 'downcase-region 'disabled nil)
