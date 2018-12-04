@@ -117,6 +117,7 @@ apps=(
     sequel-pro
     sketch
     slack
+    toggl
     vagrant
     virtualbox
 )
