@@ -36,6 +36,9 @@ set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
 # VS Code
 set -x PATH "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $PATH
 
+# Deno
+set -x PATH $HOME/.deno/bin $PATH
+
 # Python
 # disallow pip out of virutalenv
 set -x PIP_REQUIRE_VIRTUALENV true
