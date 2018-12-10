@@ -36,18 +36,14 @@ set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
 # VS Code
 set -x PATH "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $PATH
 
+# Deno
+set -x PATH $HOME/.deno/bin $PATH
+
 # Python
-# disallow pip out of virutalenv
-set -x PIP_REQUIRE_VIRTUALENV true
-# pyenv
 set -x PYENV_ROOT $HOME/.pyenv
 set -x PATH $PYENV_ROOT/bin $PATH
 status --is-interactive; and source (pyenv init -|psub)
 # status --is-interactive; and source (pyenv virtualenv-init -|psub)
-
-function pipg
-  set PIP_REQUIRE_VIRTUALENV ""; pip $argv
-end
 
 
 ## Aliases

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo -ne ✓ node "\t"
+node --version
+echo -ne ✓ python "\t"
+python --version
+echo -ne ✓ ruby "\t"
+ruby --version
