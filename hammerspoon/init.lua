@@ -15,7 +15,8 @@ local whiteListApps = {
    MindNode = true,
    ['Day One'] = true,
    Things = true,
-   Finder = true
+   Finder = true,
+   Cyberduck = true
 }
 
 local evilBindings = hs.fnutils.map(
