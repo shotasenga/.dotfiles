@@ -19,7 +19,7 @@ fi
 PROJECT_NAME=$1
 PROJECT_NAME_LC=$(echo $PROJECT_NAME | tr '[:upper:]' '[:lower:]')
 
-echo "make project on ~/Dev/$PROJECT_NAME/"
+echo "make project on ${PROJECT_ROOT}/${PROJECT_NAME}"
 mkdir -p $PROJECT_ROOT/$PROJECT_NAME_LC/{apps,scripts,docs} \
  && echo "* ${PROJECT_NAME}" > $(dirname $_)/note.md \
- && $EDITOR -n ~/Dev/$PROJECT_NAME/note.md
+ && $EDITOR -n $PROJECT_ROOT/$PROJECT_NAME/note.md
