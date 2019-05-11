@@ -2,14 +2,14 @@
 
 # ------------------------------
 # Make project directory
-# ~/Dev/{$PROJECT_NAME}
+# ~/code/{$PROJECT_NAME}
 #   |-- apps/
 #   |-- docs/
 #   |-- note.md/
 #   `-- scripts/
 # ------------------------------
 
-PROJECT_ROOT="${HOME}/Dev"
+PROJECT_ROOT="${HOME}/code"
 
 if (( $# == 0 )); then
     echo "useage: mkp \$PROJECT_NAME"
