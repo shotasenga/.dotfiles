@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ $# -lt 2 ]; then
+  echo Too less arguments
+  exit 1
+fi
+
+re='^[0-9]+$'
+if ! [[ $1 =~ $re ]] ; then
+  echo "error: Not a number" >&2; exit 1
+fi
+
+if ! [[ $2 =~ $re ]] ; then
+  echo "error: Not a number" >&2; exit 1
+fi
+
+wget https://via.placeholder.com/${1}x${2} -O ~/Downloads/${1}x${2}.png && open ~/Downloads
