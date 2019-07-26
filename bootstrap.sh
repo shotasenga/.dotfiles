@@ -98,8 +98,8 @@ apps=(
     dash
     dropbox
     emacs
+    electron-fiddle
     firefox
-    flash
     google-chrome
     hammerspoon
     hyperswitch
@@ -108,6 +108,7 @@ apps=(
     karabiner-elements
     linear
     mysqlworkbench
+    notable
     processing
     qlmarkdown
     qlprettypatch
@@ -120,6 +121,7 @@ apps=(
     toggl
     vagrant
     virtualbox
+    visual-studio-code
 )
 
 # Install apps to /Applications
@@ -134,6 +136,7 @@ brew cask install --appdir="/Applications" ${apps[@]}
 fonts=(
     font-hack
     font-symbola
+    font-fira-code
 )
 
 echo "installing fonts..."
