@@ -16,7 +16,8 @@ local whiteListApps = {
    ['Day One'] = true,
    Things = true,
    Finder = true,
-   Cyberduck = true
+   Cyberduck = true,
+   iThoughtsX = true
 }
 
 local evilBindings = hs.fnutils.map(
@@ -25,6 +26,8 @@ local evilBindings = hs.fnutils.map(
       { key = 'P', char = 'up',   mod = {} },
       { key = 'J', char = 'down', mod = {} },
       { key = 'K', char = 'up',   mod = {} },
+      { key = 'B', char = 'left',   mod = {} },
+      { key = 'F', char = 'right',   mod = {} },
       { key = 'J', char = 'down', mod = {'cmd'} },
       { key = 'K', char = 'up',   mod = {'cmd'} },
       { key = 'J', char = 'down', mod = {'shift'} },
