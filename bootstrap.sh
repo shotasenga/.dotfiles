@@ -56,6 +56,7 @@ binaries=(
     openssl
     nodebrew
     pandoc
+    pdfgrep
     peco
     pngquant
     pstree
