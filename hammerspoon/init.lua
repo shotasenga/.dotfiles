@@ -24,14 +24,12 @@ local evilBindings = hs.fnutils.map(
    {
       { key = 'N', char = 'down', mod = {} },
       { key = 'P', char = 'up',   mod = {} },
-      { key = 'J', char = 'down', mod = {} },
-      { key = 'K', char = 'up',   mod = {} },
       { key = 'B', char = 'left',   mod = {} },
       { key = 'F', char = 'right',   mod = {} },
-      { key = 'J', char = 'down', mod = {'cmd'} },
-      { key = 'K', char = 'up',   mod = {'cmd'} },
-      { key = 'J', char = 'down', mod = {'shift'} },
-      { key = 'K', char = 'up',   mod = {'shift'} },
+      { key = 'N', char = 'down', mod = {'cmd'} },
+      { key = 'P', char = 'up',   mod = {'cmd'} },
+      { key = 'N', char = 'down', mod = {'shift'} },
+      { key = 'P', char = 'up',   mod = {'shift'} },
    },
    function (keymap)
       local handle = function ()
