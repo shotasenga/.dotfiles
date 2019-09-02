@@ -17,7 +17,8 @@ local whiteListApps = {
    Things = true,
    Finder = true,
    Cyberduck = true,
-   iThoughtsX = true
+   iThoughtsX = true,
+   Dynalist = true
 }
 
 local evilBindings = hs.fnutils.map(
