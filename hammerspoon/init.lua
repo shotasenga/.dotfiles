@@ -18,7 +18,12 @@ local whiteListApps = {
    Finder = true,
    Cyberduck = true,
    iThoughtsX = true,
-   Dynalist = true
+   Dynalist = true,
+   ['Google Chrome'] = true
+}
+
+local appsForPartialKeymap = {
+   ['Google Chrome'] = true
 }
 
 local evilBindings = hs.fnutils.map(
@@ -42,7 +47,10 @@ local evilBindings = hs.fnutils.map(
          table.insert(mod, value)
       end
 
-      return hs.hotkey.new(mod, keymap.key, handle, nil, handle)
+      return {
+        keymap = keymap,
+        hotkey = hs.hotkey.new(mod, keymap.key, handle, nil, handle)
+      }
    end
 )
 
@@ -53,13 +61,24 @@ appWatcher = hs.application.watcher.new(
       end
 
       local method = 'disable'
-      print(name)
+
       if whiteListApps[name] then
          method = 'enable'
       end
 
+      local partial = false
+      if appsForPartialKeymap[name] then
+         partial = true
+      end
+
+
       for key, binding in pairs(evilBindings) do
-         binding[method](binding)
+         if (binding.keymap.key == 'B' or binding.keymap.key == 'F') and partial then
+           print(partial)
+           binding.hotkey.disable(binding.hotkey)
+         else
+           binding.hotkey[method](binding.hotkey)
+         end
       end
    end
 )
