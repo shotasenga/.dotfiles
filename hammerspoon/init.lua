@@ -19,6 +19,7 @@ local whiteListApps = {
    Cyberduck = true,
    iThoughtsX = true,
    Dynalist = true,
+   Slack = true,
    ['Google Chrome'] = true
 }
 
