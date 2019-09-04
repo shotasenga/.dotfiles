@@ -244,7 +244,7 @@
                         "key_code": "left_control"
                     },
                     "to": {
-                        "key_code": "caps_lock"
+                        "key_code": "left_control"
                     }
                 }
             ],
