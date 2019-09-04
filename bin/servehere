@@ -1,2 +1,2 @@
 #!/bin/bash
-npx browser-sync start --server -w --files "**/*.{html,js,jsx,ts,tsx,css,less,styl}" --no-notify --directory "$@"
+npx browser-sync start --server -w --files "**/*.{html,js,jsx,ts,tsx,css,less,styl}" --index index.html --no-notify --directory "$@"
