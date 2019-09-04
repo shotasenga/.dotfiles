@@ -1,0 +1,4 @@
+#!/bin/bash
+#TODO: the command should be callable without this cheap trick
+cd ~/code/senta/tgl
+pipenv run python tgl $@
