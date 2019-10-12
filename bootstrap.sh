@@ -46,7 +46,7 @@ binaries=(
     git
     global
     go
-    heroku
+    heroku/brew/heroku
     homebrew/php/composer
     homebrew/php/php71
     httpie
