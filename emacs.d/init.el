@@ -157,6 +157,7 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 ;; C-h as delete
 (keyboard-translate ?\C-h ?\C-?)
+(global-set-keyl [?\C-c ?h] 'help-command)
 ;; other-window
 (global-set-key (kbd "C-<tab>") 'other-window)
 ;; move windows <SHIFT>-<ARROW>
@@ -212,6 +213,7 @@
 
 ;; powerline
 (setq ns-use-srgb-colorspace nil)
+(require 'powerline)
 (powerline-default-theme)
 
 
@@ -298,6 +300,7 @@
 (add-hook 'stylus-mode-hook 'highlight-indentation-mode)
 (add-hook 'coffee-mode-hook 'highlight-indentation-mode)
 (add-hook 'emacs-lisp-mode-hook 'highlight-indentation-mode)
+(add-hook 'web-mode-hook 'highlight-indentation-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -652,6 +655,7 @@
 (setq projectile-completion-system 'helm)
 ;;(helm-projectile-on)
 (setq projectile-switch-project-action 'helm-projectile)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; ag
 ;; (setq ag-executable "/usr/local/bin/rg")
