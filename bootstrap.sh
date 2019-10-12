@@ -151,11 +151,7 @@ brew cask install ${fonts[@]}
 echo "installing Apps from App Store..."
 mas install 529456740 # CheatSheet
 mas install 419330170 # Moom
-mas install 433335799 # CodeRunner
-mas install 451640037 # Classic Color Meter
 mas install 497799835 # Xcode
-mas install 448925439 # Marked
-mas install 432764806 # The Hit List
 mas install 422304217 # Day One
 mas install 1024640650 # CotEditor
 
