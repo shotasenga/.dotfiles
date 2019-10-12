@@ -157,7 +157,7 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 ;; C-h as delete
 (keyboard-translate ?\C-h ?\C-?)
-(global-set-keyl [?\C-c ?h] 'help-command)
+(global-set-key [?\C-c ?h] 'help-command)
 ;; other-window
 (global-set-key (kbd "C-<tab>") 'other-window)
 ;; move windows <SHIFT>-<ARROW>
