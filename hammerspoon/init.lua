@@ -20,7 +20,6 @@ local whiteListApps = {
    iThoughtsX = true,
    Dynalist = true,
    Slack = true,
-   Todoist = true,
    ['Google Chrome'] = true
 }
 
@@ -85,43 +84,3 @@ appWatcher = hs.application.watcher.new(
    end
 )
 appWatcher:start()
-
--- Todoist Keybind
-local todoistBindings = hs.fnutils.map(
-   {
-      { key = '1', mod = {'cmd'}, search = 'Inbox' },
-      { key = '2', mod = {'cmd'}, search = 'Today' },
-      { key = '3', mod = {'cmd'}, search = 'Next 7 days' },
-   },
-   function (keymap)
-      local handle = function ()
-         hs.eventtap.keyStroke({}, 'escape', 1000)
-         hs.eventtap.keyStroke({}, '/', 1000)
-         hs.eventtap.keyStrokes(keymap.search)
-         hs.eventtap.keyStroke({}, 'down', 1000)
-         hs.eventtap.keyStroke({}, 'return', 1000)
-      end
-
-      return {
-        keymap = keymap,
-        hotkey = hs.hotkey.new(keymap.mod, keymap.key, handle, nil, handle)
-      }
-   end
-)
-
-todolistWatcher = hs.application.watcher.new(
-   function (name, event, app)
-      if event ~= hs.application.watcher.activated then
-         return
-      end
-
-      for key, binding in pairs(todoistBindings) do
-         if name == 'Todoist' then
-            binding.hotkey.enable(binding.hotkey)
-         else
-            binding.hotkey.disable(binding.hotkey)
-         end
-      end
-   end
-)
-todolistWatcher:start()
