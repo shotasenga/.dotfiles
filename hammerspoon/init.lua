@@ -102,7 +102,6 @@ appWatcher = hs.application.watcher.new(
 
       for key, binding in pairs(evilBindings) do
          if (binding.keymap.key == 'B' or binding.keymap.key == 'F') and partial then
-           print(partial)
            binding.hotkey.disable(binding.hotkey)
          else
            binding.hotkey[method](binding.hotkey)
