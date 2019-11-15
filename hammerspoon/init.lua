@@ -6,6 +6,20 @@ hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "R", function()
 end)
 hs.notify.show("Hammerspoon", "the config loaded", "")
 
+--
+-- activate Dato.app
+--
+hs.hotkey.bind({"alt", "ctrl"}, "space", function()
+  -- the app doens't provide hot-key so similate mouse click event
+  -- The new version will have that function which is comming soon!
+  local pos = hs.mouse.getAbsolutePosition()
+  evt = hs.eventtap.event.newMouseEvent(
+    hs.eventtap.event.types.leftMouseDown,
+    {x=1455, y=7}
+  )
+  evt:post()
+end)
+
 
 --
 -- Vim like keybindings for some apps
