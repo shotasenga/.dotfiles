@@ -22,6 +22,19 @@ end)
 
 
 --
+-- WiFi name
+--
+wifiNameApp = hs.menubar.new()
+
+function handleWifiChanged()
+  wifiNameApp:setTitle(hs.wifi.currentNetwork() or "Offline")
+end
+
+hs.wifi.watcher.new(handleWifiChanged):start()
+handleWifiChanged()
+
+
+--
 -- Vim like keybindings for some apps
 --
 local whiteListApps = {
