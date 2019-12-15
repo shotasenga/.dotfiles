@@ -9,13 +9,17 @@ Installs applications and creates links to configuration files.
 curl https://raw.githubusercontent.com/senta/.dotfiles/master/setup.sh| sh
 ```
 
+## Script Structure
 
-## Directory Structure
+| path       | description                                        |
+|------------|----------------------------------------------------|
+| install.sh | The main setup script                              |
+| link.sh    | A submodule that creates symlinks for each configs |
+| darwin.sh  | Mac specific setup script                          |
+| arch.sh    | To be implemented ...                              |
+| common/    | Conf files to be linked for all environments       |
+| macos/     | Conf files to be linked for _MacOS_                |
 
-| directory | description                           |
-|-----------+---------------------------------------|
-| `common/` | conf files for both _MacOS and Linux_ |
-| `macos/`  | conf files for _MacOS_                |
 
 
 ## Local Settings

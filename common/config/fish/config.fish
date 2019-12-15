@@ -19,16 +19,16 @@ set -x PATH /usr/local/bin /usr/local/sbin $PATH
 # - nodebrew
 set -x PATH $HOME/.nodebrew/current/bin $PATH
 
-# - composer
+# - php
+source ~/.phpbrew/phpbrew.fish
 # set -x PATH $HOME/.composer/vendor/bin $PATH
 
 # - Android SDK
 # set -x ANDROID_HOME /Developer/SDKs/android-sdk-macosx
 # set -x PATH $PATH $ANDROID_HOME/tools $ANDROID_HOME/platform-tools
 
-## rbenv
+# rbenv
 status --is-interactive; and source (rbenv init -|psub)
-
 
 # Emacs
 set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
@@ -42,9 +42,12 @@ set -x PATH $HOME/.deno/bin $PATH
 # Python
 set -x PYENV_ROOT $HOME/.pyenv
 set -x PATH $PYENV_ROOT/bin $PATH
-status --is-interactive; and source (pyenv init -|psub)
 set -x PIPENV_VENV_IN_PROJECT true
+status --is-interactive; and source (pyenv init -|psub)
 # status --is-interactive; and source (pyenv virtualenv-init -|psub)
+
+# Rust
+set -x PATH $HOME/.cargo/bin $PATH
 
 
 ## Aliases
@@ -64,6 +67,11 @@ alias pstree="pstree -g 2"
 alias vue="npx -p @vue/cli vue"
 alias create-react-app="npx create-react-app"
 alias diff="colordiff"
+
+function gvm
+    # https://github.com/moovweb/gvm/issues/137#issuecomment-131400212
+    bass source ~/.gvm/scripts/gvm '; GOROOT_BOOTSTRAP=$GOROOT' gvm $argv
+end
 
 ## Sync history between the settions
 function sync_history --on-event fish_preexec
