@@ -7,6 +7,17 @@
 #   - http://veadardiary.blog29.fc2.com/blog-entry-6066.html
 # ------------------------------------------------------------
 
+# Move to working directory
+# TODO: things prompt through setup process
+cd $( dirname "${BASH_SOURCE[0]}" )
+DOT_DIR=$(pwd)
+
+if [ -z $HOME ]; then
+    echo "\$HOME is not defined"
+    exit 1
+fi
+
+
 
 # Check for Homebrew,
 # Install if we don't have it
@@ -199,17 +210,28 @@ composer global require hirak/prestissimo
 # ------------------------------------------------------------
 # Make symlinks
 # ------------------------------------------------------------
-for name in *; do
-    target="$HOME/.$name"
-    if [ -e "$target" ] && [ ! -L "$target" ]; then
-        echo "WARNING: $target already exists however not a symlink"
-    else
-        if [ "$name" != 'setup.sh' ] && [ "$name" != 'README.md' ] && [ "$name" != 'bootstrap.sh' ]; then
-            if [ -e "$target" ]; then
-                rm "$target"
+create_symlinks() {
+    # Parameters
+    #   $1 {string} source directory will be walked through
+    local SOURCE_DIR="$DOT_DIR/$1"
+
+    for FILE in $(ls "$SOURCE_DIR" 2>/dev/null); do
+        local TARGET="$HOME/.$FILE"
+        local SOURCE="$SOURCE_DIR/$FILE"
+
+        echo create a link "'$TARGET" from "'$SOURCE'"
+
+        if [ -e "$TARGET" ] && [ ! -L "$TARGET" ]; then
+            echo "WARNING: $TEARGET already exists however not a symlink"
+        else
+            if [ -L "$TARGET" ]; then
+                echo "WARNING: $TARGET is already linked and will be updated"
+                rm "$TARGET"
             fi
-            echo ln -s "$PWD/$name" "$target"
-            ln -s "$PWD/$name" "$target"
+            ln -s $SOURCE $TARGET
         fi
-    fi
-done
+    done
+}
+
+create_symlinks common
+create_symlinks darwin
