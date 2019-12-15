@@ -9,7 +9,9 @@ if [ -z $HOME ]; then
     exit 1
 fi
 
-xcode-select --install
+if [ ! $(xcode-select --install) ]; then
+   echo "xcode-select is already installed."
+fi
 
 
 # ------------------------------
@@ -26,8 +28,6 @@ brew upgrade
 
 brew tap homebrew/cask
 brew tap homebrew/cask-fonts
-brew tap heroku/brew
-brew tap fisherman/tap
 
 # Dependencies
 brew install aspell
@@ -87,7 +87,6 @@ brew cask install firefox
 brew cask install google-chrome
 brew cask install hammerspoon
 brew cask install hyperswitch
-brew cask install karabiner-elements
 brew cask install linear
 brew cask install mysqlworkbench
 brew cask install processing
@@ -137,13 +136,14 @@ brew install pipenv
 brew install pyenv
 brew install pyenv-virtualenv
 
-PYVERSION=$(pyenv install -l|grep -v -|tail -1)
+PYVERSION=$(pyenv install -l|grep -v -|tail -1|awk '{$1=$1};1')
 
-pyenv install $PYVERSION
-pyenv global $PYVERSION
-
-pyenv rehash
-pip install --upgrade pip
+if [ ! $(pyenv versions --bare|grep $PYVERSION) ]; then
+    pyenv install $PYVERSION
+    pyenv global $PYVERSION
+    pyenv rehash
+    pip install --upgrade pip
+fi
 
 
 # ------------------------------
@@ -154,10 +154,11 @@ PATH=$HOME/.nodebrew/current/bin:$PATH
 
 brew install nodebrew
 
-nodebrew install-binary 12
-nodebrew use 12
-
-npm install -g create-react-app
+if [ ! $(nodebrew ls|grep 12) ]; then
+    nodebrew install-binary 12
+    nodebrew use 12
+    npm install -g create-react-app
+fi
 
 brew install yarn
 
@@ -180,13 +181,15 @@ fi
 # ------------------------------
 # Ruby
 # ------------------------------
-brew "rbenv"
+brew install "rbenv"
 
-RUBYVERSION=$(rbenv install -l | grep -v - | tail -1)
+RUBYVERSION=$(rbenv install -l | grep -v - | tail -1| awk '{$1=$1};1')
 
-rbenv install $RUBYVERSION
-rbenv global $RUBYVERSION
-rbenv rehash
+if [ ! $(rbenv versions --bare|grep $RUBYVERSION) ]; then
+    rbenv install $RUBYVERSION
+    rbenv global $RUBYVERSION
+    rbenv rehash
+fi
 
 
 # ------------------------------
