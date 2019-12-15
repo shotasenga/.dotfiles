@@ -10,7 +10,7 @@ case $(uname -s) in
     # Linux*)
     #     ENV_NAME="linux";;
     Darwin*)
-        ENV_NAME="darwin";;
+        ENV_NAME="macos";;
 esac
 
 if [ $ENV_NAME = "Unknown" ]; then

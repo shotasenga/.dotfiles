@@ -214,4 +214,4 @@ fi
 # ------------------------------
 # Make symlinks
 # ------------------------------
-bash $DOT_DIR/link.sh common darwin
+bash $DOT_DIR/link.sh common macos
