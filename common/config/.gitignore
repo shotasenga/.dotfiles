@@ -1,2 +1,4 @@
-yarn/
-fisherman/
+*
+!fish
+/fish/fish_variables
+!karabiner
