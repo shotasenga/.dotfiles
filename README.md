@@ -1,25 +1,39 @@
 # My .dotfiles
 
-Install applications, binaries and then put DOTFILEs.
+Installs applications and creates links to configuration files.
+
 
 ## Setup
 
-1. clone this repository to ~/.dotfiles
-2. run `bootstrap.sh` to install application and binaries (optional)
-3. run `setup.sh` to put dotfiles
-
 ```
-$cd
-$git clone --recursive https://github.com/senta/.dotfiles.git .dotfiles
-$sh bootstrap.sh
+curl https://raw.githubusercontent.com/senta/.dotfiles/master/setup.sh| sh
 ```
 
-### Configure Git user
 
-To configure `user.name` and `user.email` attribute on your machine, you can make `~/.gitconfig.local` like below. It include by `~/.gitconfig`.
+## Directory Structure
+
+| directory | description                           |
+|-----------+---------------------------------------|
+| `common/` | conf files for both _MacOS and Linux_ |
+| `macos/`  | conf files for _MacOS_                |
+
+
+## Local Settings
+
+When you want to have machine specific setup, you can inject some extra configurations.
+
+
+### Git attributes
+
+`.gitconfig` have `[include]` section with a value `path = ~/.gitconfig.local`. You can put your own attributes in it such as `user.name` and `user.email` like below.
 
 ```
 [user]
     name = "Your Name"
     email = you@example.com
 ```
+
+### Executables
+
+The `$PATH` for fish includes `$HOME/.bin/local`. Put your tool on there.
+
