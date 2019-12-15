@@ -43,6 +43,7 @@ set -x PATH $HOME/.deno/bin $PATH
 set -x PYENV_ROOT $HOME/.pyenv
 set -x PATH $PYENV_ROOT/bin $PATH
 status --is-interactive; and source (pyenv init -|psub)
+set -x PIPENV_VENV_IN_PROJECT true
 # status --is-interactive; and source (pyenv virtualenv-init -|psub)
 
 
