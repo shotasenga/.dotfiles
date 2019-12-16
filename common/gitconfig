@@ -2,6 +2,7 @@
     autocrlf = false
     excludesfile = ~/.gitignore
     editor = vi
+    hooksPath = ~/.githooks
 [alias]
     st = status
     co = checkout
@@ -28,9 +29,3 @@
     textconv = cssbeautify-cli -f
 [diff "js"]
     textconv = js-beautify -f
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
