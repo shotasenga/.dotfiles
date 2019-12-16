@@ -1,0 +1,54 @@
+#+TITLE: Emacs Configuration
+#+AUTHOR: Shota Senga
+#+EMAIL: shota@senta.me
+#+OPTIONS: toc:nil num:nil
+#+STARTUP: content
+
+https://github.com/myrjola/diminish.el Where should I put this? look at https://github.com/danielmai/.emacs.d/blob/master/config.org ;
+
+* Package Loader
+
+Use =use-package= to configure packages and always ensure install the packages.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'use-package-ensure)
+  (setq use-package-always-ensure t)
+#+END_SRC
+
+Always compile packages, and use the newest version available.
+
+#+BEGIN_SRC emacs-lisp
+(use-package auto-compile
+    :config (auto-compile-on-load-mode))
+
+  (setq load-prefer-newer t)
+#+END_SRC
+
+
+* UI Apparence
+
+
+** Theme
+
+My theme of choise is =doom-dracula= which looks better with high contrast compare to dracula original one.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package doom-themes
+    :custom
+    (doom-themes-enable-italic t)
+    (doom-themes-enable-bold t)
+    :custom-face
+    (doom-modeline-bar ((t (:background "#6272a4"))))
+    :config
+    (load-theme 'doom-dracula t)
+    (doom-themes-neotree-config)
+    (doom-themes-org-config))
+#+END_SRC
+
+
+* Links
+
+- https://github.com/hrs/dotfiles/blob/master/emacs/.emacs.d/configuration.org
+- https://github.com/danielmai/.emacs.d/blob/master/config.org
+- https://github.com/sachac/.emacs.d/blob/gh-pages/Sacha.org
+- https://ladicle.com/post/config/

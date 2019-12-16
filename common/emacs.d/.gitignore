@@ -1,3 +1,9 @@
+*
+!init.el
+config.org
+!custom.el
+!legacy.el
+
 auto-save-list
 elpa
 ac-comphist.dat
