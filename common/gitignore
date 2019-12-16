@@ -1,5 +1,9 @@
-.DS_Store
+# General
 *.log
+
+
+# Editor/IDE
+
 *~
 \#*
 \.#*
@@ -8,10 +12,16 @@
 *.sublime-project
 *.sublime-workspace
 *.swp
+.vscode
 GPATH
 GRTAGS
 GTAGS
+
+
+# macOS
+.DS_Store
 Thumbs.db
-.powder
-.vscode
+
+
+# Python
 __pycache__
