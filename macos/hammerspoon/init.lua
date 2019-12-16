@@ -1,19 +1,22 @@
 --
 -- Reload the hammerspoon config
 --
-hs.hotkey.bind({"cmd", "alt", "ctrl", "shift"}, "R", function()
-      hs.reload()
-end)
-hs.notify.show("Hammerspoon", "the config loaded", "")
+hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", hs.reload):start()
 
 
 --
--- WiFi name
+-- WiFi notification
 --
-wifiNameApp = hs.menubar.new()
-
 function handleWifiChanged()
-  wifiNameApp:setTitle(hs.wifi.currentNetwork() or "Offline")
+   local network = hs.wifi.currentNetwork() or "Offline"
+
+   local notify = hs.notify.new()
+   notify:title("WiFi status ")
+   notify:informativeText('changed to \"' .. network .. '"')
+   notify:autoWithdraw(false)
+   notify:withdrawAfter(0)
+   notify:setIdImage(hs.image.imageFromName("NSNetwork"))
+   notify:send()
 end
 
 hs.wifi.watcher.new(handleWifiChanged):start()
