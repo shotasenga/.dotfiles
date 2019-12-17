@@ -24,6 +24,12 @@ Always compile packages, and use the newest version available.
   (setq load-prefer-newer t)
 #+END_SRC
 
+You can try package without isntallation!
+
+#+BEGIN_SRC emacs-lisp
+  (use-package try
+    :ensure t)
+#+END_SRC
 
 * UI Apparence
 
@@ -37,12 +43,23 @@ My theme of choise is =doom-dracula= which looks better with high contrast compa
     :custom
     (doom-themes-enable-italic t)
     (doom-themes-enable-bold t)
-    :custom-face
-    (doom-modeline-bar ((t (:background "#6272a4"))))
     :config
     (load-theme 'doom-dracula t)
-    (doom-themes-neotree-config)
     (doom-themes-org-config))
+#+END_SRC
+
+
+* Keybindings
+** Helper
+
+=which-key= shows keybindings that follows your input.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :ensure t
+    :config
+    (setq which-key-idle-delay 0.4)
+    (which-key-mode))
 #+END_SRC
 
 
