@@ -185,28 +185,6 @@
 ;;(set-face-foreground 'highlight nil)
 ;;(set-face-underline 'highlight nil)
 
-;; when runing with window system
-(when window-system
-  ;; hide window bar
-  (scroll-bar-mode -1)
-  (tool-bar-mode -1)
-  (menu-bar-mode -1)
-
-  ;; full screen
-  ;; http://emacs.stackexchange.com/a/3008
-  (add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-  ;; frame title
-  (setq frame-title-format '(buffer-file-name "%f" ("%b")))
-
-  ;; default buffer
-  (setq-default indicate-empty-lines t)
-  (toggle-indicate-empty-lines)
-
-  ;; transparent window
-  (set-frame-parameter nil 'alpha 95)
-  )
-
 ;; powerline
 ;(setq ns-use-srgb-colorspace nil)
 (require 'powerline)

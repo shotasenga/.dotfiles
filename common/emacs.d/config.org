@@ -33,6 +33,28 @@ You can try package without isntallation!
 
 * UI Apparence
 
+** Window
+
+If it runs with =window-system=
+
+#+BEGIN_SRC emacs-lisp
+  (when window-system
+    ;; hide tool bars
+    (scroll-bar-mode -1)
+    (tool-bar-mode -1)
+    (menu-bar-mode -1)
+
+    ;; enter full screen
+    ;; http://emacs.stackexchange.com/a/3008
+    (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+    ;; frame title
+    (setq frame-title-format '(buffer-file-name "%f" ("%b")))
+
+    ;; transparency
+    (set-frame-parameter nil 'alpha 95)
+    )
+#+END_SRC
 
 ** Theme
 
@@ -47,6 +69,13 @@ My theme of choise is =doom-dracula= which looks better with high contrast compa
     (load-theme 'doom-dracula t)
     (doom-themes-org-config))
 #+END_SRC
+
+** Small adjustments
+
+#+BEGIN_SRC emacs-lisp
+  (toggle-indicate-empty-lines)
+#+END_SRC
+
 
 
 * Keybindings
