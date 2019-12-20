@@ -92,6 +92,15 @@ My theme of choise is =doom-dracula= which looks better with high contrast compa
 #+END_SRC
 
 
+* org
+** apparence
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-bullets
+    :hook (org-mode . (lambda () (org-bullets-mode 1))))
+#+END_SRC
+
+
 * Links
 
 - https://github.com/hrs/dotfiles/blob/master/emacs/.emacs.d/configuration.org
