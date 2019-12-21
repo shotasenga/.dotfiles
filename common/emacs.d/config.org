@@ -193,13 +193,10 @@ Load babel languages for the languages I use often. In default, only =emacs-lisp
    (python . t)))
 #+end_src
 
-Do not ask me to confirm evaluation for these languages.
+Do not ask me to confirm evaluation for any languages.
 
 #+begin_src emacs-lisp
-(defun my--org-confirm-babel-evaluate (lang body)
-  (not (or (string= lang "python")
-           (string= lang "js"))))
-(setq org-confirm-babel-evaluate 'my--org-confirm-babel-evaluate)
+(setq org-confirm-babel-evaluate nil)
 #+end_src
 
 Default JS template has a problem to run on newer version of =Node.js=. To fix it, replace the template code. /I've only checked on v12.10.0/
@@ -244,6 +241,17 @@ Track when a TODO was maked as =DONE=.
 (setq org-log-done t)
 #+end_src
 
+
+
+** Export
+
+Use =ox-hugo= as a exportar for Markdown. (You can use ~org-blackfriday-export-as-markdown~ for plain markdown exportation without front-matter.) For the other format, =pandoc= does a grate job!
+
+#+begin_src emacs-lisp
+;; (require 'ox-md)
+(use-package ox-hugo :after ox)
+(use-package ox-pandoc :after ox :disabled)
+#+end_src
 
 
 ** Misc
