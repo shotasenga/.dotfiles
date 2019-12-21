@@ -4,92 +4,130 @@
 #+OPTIONS: toc:nil num:nil
 #+STARTUP: content
 
-https://github.com/myrjola/diminish.el Where should I put this? look at https://github.com/danielmai/.emacs.d/blob/master/config.org ;
+* Boot
+
+Define utility variables for the rest of config.
+
+#+begin_src emacs-lisp
+(setq my:is-macos (eq window-system 'ns))
+#+end_src
+
 
 * Package Loader
 
 Use =use-package= to configure packages and always ensure install the packages.
 
-#+BEGIN_SRC emacs-lisp
-  (require 'use-package-ensure)
-  (setq use-package-always-ensure t)
-#+END_SRC
+#+begin_src emacs-lisp
+(require 'use-package-ensure)
+(setq use-package-always-ensure t)
+#+end_src
 
 Always compile packages, and use the newest version available.
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
 (use-package auto-compile
-    :config (auto-compile-on-load-mode))
+  :config (auto-compile-on-load-mode))
 
-  (setq load-prefer-newer t)
-#+END_SRC
+(setq load-prefer-newer t)
+#+end_src
 
 You can try package without isntallation!
 
-#+BEGIN_SRC emacs-lisp
-  (use-package try
-    :ensure t)
-#+END_SRC
+#+begin_src emacs-lisp
+(use-package try
+  :ensure t)
+#+end_src
 
-* UI Apparence
+
+* Apparence
 
 ** Window
 
-If it runs with =window-system=
+Run if Emacs runs with =window-system=
 
-#+BEGIN_SRC emacs-lisp
-  (when window-system
-    ;; hide tool bars
-    (scroll-bar-mode -1)
-    (tool-bar-mode -1)
-    (menu-bar-mode -1)
+#+begin_src emacs-lisp
+(when window-system
+  ;; hide tool bars
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
 
-    ;; enter full screen
-    ;; http://emacs.stackexchange.com/a/3008
-    (add-to-list 'default-frame-alist '(fullscreen . maximized))
+  ;; enter full screen
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-    ;; frame title
-    (setq frame-title-format '(buffer-file-name "%f" ("%b")))
+  ;; frame title
+  (setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
-    ;; transparency
-    (set-frame-parameter nil 'alpha 95)
-    )
-#+END_SRC
+  ;; transparency
+  (set-frame-parameter nil 'alpha 95)
+  )
+#+end_src
 
 ** Theme
 
 My theme of choise is =doom-dracula= which looks better with high contrast compare to dracula original one.
 
-#+BEGIN_SRC emacs-lisp
-  (use-package doom-themes
-    :custom
-    (doom-themes-enable-italic t)
-    (doom-themes-enable-bold t)
-    :config
-    (load-theme 'doom-dracula t)
-    (doom-themes-org-config))
-#+END_SRC
+#+begin_src emacs-lisp
+(use-package doom-themes
+  :custom
+  (doom-themes-enable-italic t)
+  (doom-themes-enable-bold t)
+  :config
+  (load-theme 'doom-dracula t)
+  (doom-themes-org-config))
+#+end_src
 
 ** Small adjustments
 
-#+BEGIN_SRC emacs-lisp
-  (toggle-indicate-empty-lines)
-#+END_SRC
+Show symbols to indicate empty lines
+
+#+begin_src emacs-lisp
+(toggle-indicate-empty-lines)
+#+end_src
 
 
 
-* Keybindings
-** Helper
+* Global Interface
+
+** Key helper
 
 =which-key= shows keybindings that follows your input.
 
-#+BEGIN_SRC emacs-lisp
-  (use-package which-key
-    :ensure t
-    :config
-    (setq which-key-idle-delay 0.4)
-    (which-key-mode))
-#+END_SRC
+#+begin_src emacs-lisp
+(use-package which-key
+  :ensure t
+  :config
+  (setq which-key-idle-delay 0.4)
+  (which-key-mode))
+#+end_src
+
+
+* File Management
+
+
+* Project Management
+
+
+* Programming
+
+
+* Programming Languages
+
+** Python
+
+** C/C++
+
+** Web (HTML, CSS, JavaScript)
+
+** PHP
+
+** Lisp
+
+** Ruby
+
+** Go
+
+** Rust
 
 
 * org
