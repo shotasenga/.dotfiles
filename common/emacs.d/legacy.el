@@ -72,7 +72,6 @@
                       magit-popup
                       markdown-mode
                       multiple-cursors
-                      org
                       php-mode
                       pkg-info
                       popup
@@ -498,35 +497,6 @@
 (add-hook 'scss-mode-hook 'rainbow-mode)
 (add-hook 'php-mode-hook 'rainbow-mode)
 (add-hook 'html-mode-hook 'rainbow-mode)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ org-mode
-(setq org-log-done t)
-(setq org-list-allow-alphabetical t)
-
-;; RST export for orgtbl
-(defun orgtbl-to-rst-line (line)
-  (apply 'format (cons *org-rst-lfmt* line)))
-(defun orgtbl-to-rst (table params)
-  "Convert the Orgtbl mode TABLE to ReStructuredText."
-  (let* ((hline (concat
-                 "+-"
-                 (mapconcat (lambda (width) (apply 'string (make-list width ?-)))
-                            org-table-last-column-widths "-+-")
-                 "-+"))
-         (*org-rst-lfmt* (concat
-                          "| "
-                          (mapconcat (lambda (width) (format "%%-%ss" width))
-                                     org-table-last-column-widths " | ")
-                          " |"))
-         (params2
-          (list
-           :tstart hline
-           :hline hline
-           :lfmt 'orgtbl-to-rst-line
-           )))
-    (orgtbl-to-generic table (org-combine-plists params2 params))))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ ReST restructuredtext
