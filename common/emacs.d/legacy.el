@@ -32,7 +32,6 @@
 ;; NOTE show current activated packages
 ;;     `C-h v` (describe-variable) package-activated-list
 (defvar my:packages '(
-                      ace-jump-mode
                       ag
                       async
                       auto-complete
@@ -45,7 +44,6 @@
                       emmet-mode
                       epl
                       exec-path-from-shell
-                      expand-region
                       fish-mode
                       flymake-cursor
                       flymake-easy
@@ -58,25 +56,16 @@
                       helm-descbinds
                       helm-emmet
                       helm-gtags
-                      helm-projectile
                       highlight-indentation
-                      iedit
                       jade-mode
-                      js2-mode
-                      json-mode
                       json-reformat
                       json-snatcher
-                      magit
-                      magit-popup
                       markdown-mode
-                      multiple-cursors
                       php-mode
                       pkg-info
                       popup
                       powerline
-                      projectile
                       rainbow-mode
-                      redo+
                       restclient
                       rich-minority
                       sass-mode
@@ -90,17 +79,17 @@
                       )
   "Default packages")
 
-(defun my:packages-installed-p ()
-  (loop for pkg in my:packages
-        when (not (package-installed-p pkg)) do (return nil)
-        finally (return t)))
+;; (defun my:packages-installed-p ()
+;;   (loop for pkg in my:packages
+;;         when (not (package-installed-p pkg)) do (return nil)
+;;         finally (return t)))
 
-(unless (my:packages-installed-p)
-  (message "%s" "Refreshing package database...")
-  (package-refresh-contents)
-  (dolist (pkg my:packages)
-    (when (not (package-installed-p pkg))
-      (package-install pkg))))
+;; (unless (my:packages-installed-p)
+;;   (message "%s" "Refreshing package database...")
+;;   (package-refresh-contents)
+;;   (dolist (pkg my:packages)
+;;     (when (not (package-installed-p pkg))
+;;       (package-install pkg))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -153,37 +142,6 @@
 ;; C-h as delete
 (keyboard-translate ?\C-h ?\C-?)
 (global-set-key [?\C-c ?h] 'help-command)
-;; other-window
-(global-set-key (kbd "C-<tab>") 'other-window)
-;; move windows <SHIFT>-<ARROW>
-(windmove-default-keybindings)
-(setq windmoove-wrap-around t)
-;; resize window M-<ARROW>
-(global-set-key (kbd "M-<up>") 'enlarge-window)
-(global-set-key (kbd "M-<down>") 'shrink-window)
-(global-set-key (kbd "M-<left>") 'enlarge-window-horizontally)
-(global-set-key (kbd "M-<right>") 'shrink-window-horizontally)
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ theme & visual
-;; show line numbers
-(global-linum-mode t)
-(setq linum-format "%5d ")
-(setq column-number-mode t)
-
-;; higlight current line
-(global-linum-mode 0)
-(global-hl-line-mode nil)
-;;(set-face-background 'hl-line "#3a3a3a")
-;;(set-face-foreground 'highlight nil)
-;;(set-face-underline 'highlight nil)
-
-;; powerline
-;(setq ns-use-srgb-colorspace nil)
-(require 'powerline)
-(powerline-default-theme)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -218,13 +176,6 @@
 
 
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ undo/redo
-(when (require 'redo+ nil t)
-  (setq undo-no-redo t)
-  (global-set-key (kbd "C-?") 'redo)
-  )
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ indentation
@@ -300,29 +251,6 @@
 ;(global-whitespace-mode 1)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ isearch region
-(defadvice isearch-mode
-    (around isearch-mode-default-string
-            (forward &optional regexp op-fun recursive-edit word-p) activate)
-  (if (and transient-mark-mode mark-active (not (eq (mark) (point))))
-      (progn
-        (isearch-update-ring (buffer-substring-no-properties (mark) (point)))
-        (deactivate-mark)
-        ad-do-it
-        (if (not forward)
-            (isearch-repeat-backward)
-          (goto-char (mark))
-          (isearch-repeat-forward)))
-    ad-do-it))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ Rect
-;; key-bindings -> http://dev.ariel-networks.com/articles/emacs/part5/
-(cua-mode t)
-(setq cua-enable-cua-keys nil)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ copy current file name to clipboard
 ;; from http://stackoverflow.com/questions/2416655/file-path-to-clipboard-in-emacs
 (defun copy-file-name-to-clipboard ()
@@ -349,17 +277,6 @@
 ;; @ yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ i-edit
-(define-key global-map (kbd "C-c ;") 'iedit-mode)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ ace-jump-mode
-(require 'ace-jump-mode)
-(define-key global-map (kbd "C-;") 'ace-jump-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -454,12 +371,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ js2-mode
-(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . rjsx-mode))
-(add-to-list 'auto-mode-alist '("\\.babelrc$" . js2-mode))
-(setq js2-basic-offset 2)
+;(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . rjsx-mode))
+;(add-to-list 'auto-mode-alist '("\\.babelrc$" . js2-mode))
 (setq sgml-basic-offset 2)
-(setq js2-strict-missing-semi-warning nil)
-(add-hook 'js-mode-hook 'js2-minor-mode)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ jade-mode
@@ -509,22 +423,6 @@
 (setq deft-text-mode 'markdown-mode)
 (global-set-key (kbd "<f8>") 'deft)
 (setq deft-recursive t)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ expand-region
-;; bind keys
-(global-set-key (kbd "C-2") 'er/expand-region)
-(global-set-key (kbd "C-@") 'er/contract-region)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ multiple-cursors
-;; bind keys
-(global-set-key (kbd "C->") 'mc/mark-next-like-this)
-(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-(global-set-key (kbd "C-c C->") 'mc/mark-all-like-this)
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ helm

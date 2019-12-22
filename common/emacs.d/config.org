@@ -15,7 +15,7 @@ Define utility variables for the rest of config.
 
 * Package Loader
 
-Use =use-package= to configure packages and always ensure install the packages.
+Use =use-package= to configure packages and always ensure install the packages. Read [[https://jwiegley.github.io/use-package/keywords/][the doc]] for each keywords.
 
 #+begin_src emacs-lisp
 (require 'use-package-ensure)
@@ -77,19 +77,81 @@ My theme of choise is =doom-dracula= which looks better with high contrast compa
   (doom-themes-org-config))
 #+end_src
 
+** Modeline
+
+My modeline is =moody= + =minions=. I put some customization to adopt to the theme.
+
+/TODO: fix glitchy look of separator./
+
+#+begin_src emacs-lisp
+(use-package moody
+  :config
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode)
+  (let ((line (face-attribute 'mode-line :underline)))
+    (set-face-attribute 'mode-line          nil :font "Hack-12")
+    (set-face-attribute 'mode-line-inactive nil :font "Hack-12")
+    (set-face-attribute 'mode-line          nil :overline   line)
+    (set-face-attribute 'mode-line-inactive nil :overline   line)
+    (set-face-attribute 'mode-line-inactive nil :underline  line)
+    (set-face-attribute 'mode-line          nil :box        nil)
+    (set-face-attribute 'mode-line          nil :background "#64729F")
+    (set-face-attribute 'mode-line-inactive nil :box        nil)
+    (set-face-attribute 'mode-line-inactive nil :foreground "#626262")
+    (set-face-attribute 'mode-line-inactive nil :background "#40424E"))
+  :custom
+  (moody-mode-line-height 26))
+#+end_src
+
+(setq moody-mode-line-height 20)
+
+#+begin_src emacs-lisp
+(use-package minions
+  :config
+  ;; (setq minions-mode-line-lighter ""
+  ;;       minions-mode-line-delimiters '("" . ""))
+  (minions-mode t))
+#+end_src
+
 ** Small adjustments
 
-Show symbols to indicate empty lines
+Show symbols to indicate empty lines.
 
 #+begin_src emacs-lisp
 (toggle-indicate-empty-lines)
 #+end_src
 
+Don't show line numbers. Show column numbers.
+
+#+begin_src emacs-lisp
+;; (global-linum-mode 0)
+(setq column-number-mode t)
+;; (setq linum-format "%5d ")
+#+end_src
 
 
 * Global Interface
 
-** Key helper
+** Window Control
+
+Select window with S-<ARROW>
+
+#+begin_src emacs-lisp
+(windmove-default-keybindings)
+(setq windmoove-wrap-around t)
+#+end_src
+
+Resize window with M-<ARROW>
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "M-<up>") 'enlarge-window)
+(global-set-key (kbd "M-<down>") 'shrink-window)
+(global-set-key (kbd "M-<left>") 'enlarge-window-horizontally)
+(global-set-key (kbd "M-<right>") 'shrink-window-horizontally)
+#+end_src
+
+** keybinding Enhancement
 
 =which-key= shows keybindings that follows your input.
 
@@ -99,6 +161,65 @@ Show symbols to indicate empty lines
   :config
   (setq which-key-idle-delay 0.4)
   (which-key-mode))
+#+end_src
+
+Redo
+/TODO: try undo-tree/
+
+#+begin_src emacs-lisp
+(use-package redo+
+  :bind ("C-?" . redo)
+  :config
+  (setq undo-no-redo t))
+#+end_src
+
+Search text in region.
+
+#+begin_src emacs-lisp
+(defadvice isearch-mode
+    (around isearch-mode-default-string
+            (forward &optional regexp op-fun recursive-edit word-p) activate)
+  (if (and transient-mark-mode mark-active (not (eq (mark) (point))))
+      (progn
+        (isearch-update-ring (buffer-substring-no-properties (mark) (point)))
+        (deactivate-mark)
+        ad-do-it
+        (if (not forward)
+            (isearch-repeat-backward)
+          (goto-char (mark))
+          (isearch-repeat-forward)))
+    ad-do-it))
+#+end_src
+
+Enable rectangle region. =C-x SPC= to set mark for region.
+
+#+begin_src emacs-lisp
+(cua-mode t)
+(setq cua-enable-cua-keys nil)
+#+end_src
+
+Jump to anywhere on the screen.
+
+#+begin_src emacs-lisp
+(use-package ace-jump-mode
+  :bind ("C-;" . ace-jump-mode))
+#+end_src
+
+Gradualy expand/condense the region.
+
+#+begin_src emacs-lisp
+(use-package expand-region
+  :bind (("C-2" . 'er/expand-region)
+         ("C-@" . 'er/contract-region)))
+#+end_src
+
+Multiple cursors.
+
+#+begin_src emacs-lisp
+(use-package multiple-cursors
+  :bind (("C->" . 'mc/mark-next-like-this)
+         ("C-<" . 'mc/mark-previous-like-this)
+         ("C-c C->" . 'mc/mark-all-like-this)))
 #+end_src
 
 ** Helm
