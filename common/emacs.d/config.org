@@ -184,7 +184,7 @@ Prefer no indentation in the =src= block.
 (setq org-src-tab-acts-natively t)
 #+end_src
 
-Load babel languages for the languages I use often. In default, only =emacs-lisp= is loaded. The available languages are listed on [[https://orgmode.org/manual/Languages.html][here]].
+Activate languages for Babel. Only =emacs-lisp= is activated in default. The available languages are listed on [[https://orgmode.org/manual/Languages.html][here]].
 
 #+begin_src emacs-lisp
 (org-babel-do-load-languages
@@ -210,22 +210,12 @@ Default JS template has a problem to run on newer version of =Node.js=. To fix i
 )")
 #+end_src
 
-Set default options for =Python= evaluation. It' much more intuitive, to me.
-
-#+begin_src emacs-lisp
-(add-to-list 'org-babel-default-header-args:python
-             '(:results . "output"))
-#+end_src
-
 Add structure templates for languages which frequently used.
 
 #+begin_src emacs-lisp
-(add-to-list 'org-structure-template-alist
-             '("el" . "src emacs-lisp"))
-(add-to-list 'org-structure-template-alist
-             '("py" . "src python"))
-(add-to-list 'org-structure-template-alist
-             '("js" . "src js"))
+(add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
+(add-to-list 'org-structure-template-alist '("py" . "src python"))
+(add-to-list 'org-structure-template-alist '("js" . "src js"))
 #+end_src
 
 *** TODO add ob-restclient if I find useful
@@ -274,3 +264,4 @@ TBD
 - https://github.com/danielmai/.emacs.d/blob/master/config.org
 - https://github.com/sachac/.emacs.d/blob/gh-pages/Sacha.org
 - https://ladicle.com/post/config/
+- https://github.com/zzamboni/dot-emacs/blob/master/init.org
