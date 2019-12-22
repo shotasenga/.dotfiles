@@ -51,8 +51,6 @@
                       flymake-easy
                       flymake-google-cpplint
                       ggtags
-                      git-commit
-                      git-gutter
                       go-mode
                       haml-mode
                       helm
@@ -133,8 +131,7 @@
 (setq echo-keystrokes 0.1)
 ;; dired-dwim-target
 (setq dired-dwim-target t)
-;; git-gutter
-(global-git-gutter-mode +1)
+
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Encoding
@@ -166,8 +163,7 @@
 (global-set-key (kbd "M-<down>") 'shrink-window)
 (global-set-key (kbd "M-<left>") 'enlarge-window-horizontally)
 (global-set-key (kbd "M-<right>") 'shrink-window-horizontally)
-;; magit
-(global-set-key (kbd "C-x g") 'magit-status)
+
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

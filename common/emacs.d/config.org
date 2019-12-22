@@ -239,6 +239,24 @@ Enhance =company-mode= with icons. You need to run ~all-the-icons-install-fonts~
           company-box-icons-alist 'company-box-icons-all-the-icons)))
 #+end_src
 
+** Snippets
+
+** Git
+
+Magit for Git.
+
+#+begin_src emacs-lisp
+(use-package magit
+  :bind ("C-x g" . magit-status))
+#+end_src
+
+Show changed lines.
+
+#+begin_src emacs-lisp
+(use-package git-gutter
+  :config (global-git-gutter-mode t))
+#+end_src
+
 * Programming Languages
 
 ** Python
