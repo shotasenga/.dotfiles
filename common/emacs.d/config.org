@@ -101,15 +101,32 @@ Show symbols to indicate empty lines
   (which-key-mode))
 #+end_src
 
+** Helm
+
+#+begin_src emacs-lisp
+;; (use-package helm)
+#+end_src
+
 
 * File Management
 
 
-* Project Management
-
-
 * Programming
 
+** Project Management
+
+#+begin_src emacs-lisp
+(use-package projectile
+  ;; :after "helm"
+  :bind-keymap
+  ("C-c p" . projectile-command-map) 
+  :config
+  (setq projectile-completion-system 'helm
+        projectile-switch-project-action 'helm-projectile)
+  (projectile-global-mode))
+#+end_src
+
+** Complition
 
 * Programming Languages
 

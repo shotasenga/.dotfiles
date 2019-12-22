@@ -595,11 +595,8 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Projectile
 ;; enable projectile + helm!
-(projectile-global-mode)
-(setq projectile-completion-system 'helm)
-;;(helm-projectile-on)
-(setq projectile-switch-project-action 'helm-projectile)
-(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+;(projectile-global-mode)
+;(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 ;; ag
 ;; (setq ag-executable "/usr/local/bin/rg")
