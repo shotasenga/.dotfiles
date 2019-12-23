@@ -1,4 +1,5 @@
 ;; Configure package repositories
+;; We need to configure it here, not in config.org. Otherwise, Emacs loads built-in version of org-mode to evaluate babel.
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
@@ -13,7 +14,6 @@
   (package-install 'diminish))
 
 
-;; TODO: create and load config.org though org-babel
 ;; load literate configuration
 (org-babel-load-file (expand-file-name "config.org" user-emacs-directory))
 
