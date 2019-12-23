@@ -34,8 +34,6 @@
 (defvar my:packages '(
                       ag
                       async
-                      auto-complete
-                      auto-complete-c-headers
                       autopair
                       blank-mode
                       coffee-mode
@@ -265,15 +263,6 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ auto complition
-(when (require 'auto-complete-config nil t)
-  (setq ac-use-menu-map t)
-  (setq popup-use-optimized-column-computation nil)
-  (ac-config-default)
-  )
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
@@ -499,7 +488,6 @@
 ;; @ C/C++
 ;; auto complete headers
 (defun my:ac-c-header-init ()
-  (require 'auto-complete-c-headers)
   (add-to-list 'ac-sources 'ac-source-c-headers)
   (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/include"))
 
