@@ -4,6 +4,28 @@
 #+OPTIONS: toc:nil num:nil
 #+STARTUP: content
 
+* Reference
+:PROPERTIES:
+:VISIBILITY: showall
+:END:
+
+- [[https://jwiegley.github.io/use-package/keywords/#mode-interpreter][use-package — Keywords]]
+- https://github.com/hrs/dotfiles/blob/master/emacs/.emacs.d/configuration.org
+- https://github.com/danielmai/.emacs.d/blob/master/config.org
+- https://github.com/sachac/.emacs.d/blob/gh-pages/Sacha.org
+- https://ladicle.com/post/config/
+- https://github.com/zzamboni/dot-emacs/blob/master/init.org
+- https://git.trevdev.ca/trevdev/dotfiles/src/commit/4b684ba5877278aee0d3d6a2e1dea51ed5df6898/emacs/configuration.org
+
+* Install
+
+This configuration is for Emacs version 27, or avobe. Although most part work with older version, =jsx= doesn't.
+
+#+begin_src sh
+brew tap daviderestivo/emacs-head
+brew install emacs-head --with-cocoa --with-imagemagick --with-jansson --HEAD
+#+end_src
+
 * Boot
 
 Define utility variables for the rest of config.
@@ -18,8 +40,13 @@ Define utility variables for the rest of config.
 Use =use-package= to configure packages and always ensure install the packages. Read [[https://jwiegley.github.io/use-package/keywords/][the doc]] for each keywords.
 
 #+begin_src emacs-lisp
-(require 'use-package-ensure)
-(setq use-package-always-ensure t)
+(eval-when-compile
+  (require 'use-package)
+  (require 'use-package-ensure)
+  (setq use-package-always-ensure t))
+
+(require 'diminish)
+(require 'bind-key)
 #+end_src
 
 Always compile packages, and use the newest version available.
@@ -79,7 +106,7 @@ My theme of choise is =doom-dracula= which looks better with high contrast compa
 
 ** Modeline
 
-My modeline is =moody= + =minions=. I put some customization to adopt to the theme.
+I picked =moody= modeline with some tweak.
 
 /TODO: fix glitchy look of separator./
 
@@ -102,16 +129,6 @@ My modeline is =moody= + =minions=. I put some customization to adopt to the the
     (set-face-attribute 'mode-line-inactive nil :background "#40424E"))
   :custom
   (moody-mode-line-height 26))
-#+end_src
-
-(setq moody-mode-line-height 20)
-
-#+begin_src emacs-lisp
-(use-package minions
-  :config
-  ;; (setq minions-mode-line-lighter ""
-  ;;       minions-mode-line-delimiters '("" . ""))
-  (minions-mode t))
 #+end_src
 
 ** Small adjustments
@@ -164,7 +181,9 @@ Resize window with M-<ARROW>
 #+end_src
 
 Redo
-/TODO: try undo-tree/
+
+/TODO: try undo-tree or download redo+ source/
+https://www.emacswiki.org/emacs/RedoPlus
 
 #+begin_src emacs-lisp
 (use-package redo+
@@ -242,9 +261,14 @@ Multiple cursors.
   :bind-keymap
   ("C-c p" . projectile-command-map) 
   :config
+  ;; use projectile globally
+  (projectile-global-mode)
+  ;; use helm as frontend
   (setq projectile-completion-system 'helm
         projectile-switch-project-action 'helm-projectile)
-  (projectile-global-mode))
+  ;; and some other
+  (setq projectile-sort-order 'recently-active
+        projectile-switch-project-action #'projectile-dired))
 #+end_src
 
 ** Complition
@@ -360,7 +384,15 @@ Enhance =company-mode= with icons. You need to run ~all-the-icons-install-fonts~
           company-box-icons-alist 'company-box-icons-all-the-icons)))
 #+end_src
 
+
 ** Snippets
+
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+#+end_src
+
 
 ** Git
 
@@ -378,23 +410,213 @@ Show changed lines.
   :config (global-git-gutter-mode t))
 #+end_src
 
+
 * Programming Languages
+
+** Language Server Protocol
+
+I use =eglot= as the front-end of LSP. You need to install language server for each language. See  [[https://github.com/joaotavora/eglot#connecting-to-a-server][eglot doc]] for the details.
+
+#+begin_src emacs-lisp
+(use-package eglot)
+#+end_src
+
+
+** Front-end
+
+*** Prettier
+
+Set up =Prettier= for code fomatting. This requires =Prettier= executable. You can install it by running ~npm install -g~. 
+
+/Keep this section top to define reusable function for a keybinding./
+
+#+begin_src emacs-lisp
+(defun my-bind-prettier-js ()
+  (message "my-bind-prettier-js hello")
+  (local-set-key "\C-\M-\\" 'prettier-js))
+
+(use-package prettier-js
+  :commands prettier-js)
+  ;; :hook (prettier-js-mode . (lambda ()
+  ;;                          (local-set-key (kbd "C-M-\\") prettier-js))))
+#+end_src
+
+Some projects I'm currently working on doesn't use =Prettier=, so I cannot enable auto formatting hook globally. You can enable the hook with [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Directory-Variables.html][Directory Variables]]. Put the code below in =.dir-locals.el=.
+
+#+begin_example
+((js-mode . ((eval . (prettier-js-mode t))))
+ (web-mode . ((eval . (prettier-js-mode t)))))
+#+end_example
+
+*** Markup
+
+#+begin_src emacs-lisp
+(use-package web-mode
+  :mode
+  ("\\.html\\'"
+   "\\.phtml\\'"
+   "\\.tpl\\.php\\'"
+   "\\.jsp\\'"
+   "\\.as[cp]x\\'"
+   "\\.erb\\'"
+   "\\.mustache\\'"
+   "\\.djhtml\\'"
+   "\\.blade\\.php\\'" ;; move this under PHP
+   "\\.ejs\\'"
+   "\\.tag\\'")
+  :hook (web-mode . #'my-bind-prettier-js)
+  :config
+  ;; engine
+  (setq web-mode-engines-alist
+        '(("php"    . "\\.phtml\\'")
+          ("ruby"  . "\\.erb\\'")))
+  ;; indentation
+  (setq web-mode-markup-indent-offset 2
+        web-mode-enable-auto-indentation nil
+        web-mode-css-indent-offset 2
+        web-mode-code-indent-offset 2
+        web-mode-indent-style 2
+        web-mode-script-padding 0
+        web-mode-style-padding 0
+        web-mode-block-padding 0))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package emmet-mode
+  :hook (css-mode web-mode sgml-mode)
+  :config
+  (setq emmet-self-closing-tag-style " /"
+        emmet-move-cursor-between-quotes t))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package jade-mode
+  :mode "\\.pug\\'")
+#+end_src
+
+*** TypeScript
+
+For TypeScript, I use [[https://github.com/ananthakumaran/tide][tide]] instead of eglot due to better TSX support. It requires =typescript= installed globally before using.
+
+#+begin_src sh
+npm install -g typescript
+#+end_src
+
+As it's documented, I need to define a function to share it in some modes.
+
+#+begin_src emacs-lisp
+(defun setup-tide-mode ()
+  (interactive)
+  (message "setup-tide-mode")
+  (my-bind-prettier-js)
+  (tide-setup)
+  (flycheck-mode t)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode t)
+  (tide-hl-identifier-mode t)
+  (company-mode t))
+#+end_src
+
+Use =typescript-mode= as the major mode for TS.
+
+#+begin_src emacs-lisp
+(use-package typescript-mode
+  :mode ("\\.ts\\'"))
+
+;; I get max-lisp-eval-depth error with =:hook=. So use add-hook instead.
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+#+end_src
+
+And finally, enable tide for =typescript-mode= and =web-mode=.
+
+#+begin_src emacs-lisp
+(use-package tide
+  :after (typescript-mode js-mode company flycheck))
+  ;; :hook ((typescript-mode . tide-setup)
+  ;;        (typescript-mode . tide-hl-identifier-mode)))
+#+end_src
+
+*** JavaScript
+
+Emacs 27 has grate support of JSX built-in!! Using it with =tide= is a thing.
+
+#+begin_src emacs-lisp
+(add-hook 'js-mode-hook #'setup-tide-mode)
+;; configure javascript-tide checker to run after your default javascript checker
+;; (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
+;; prevent eslint check command: eslint --print-config .
+;;https://github.com/suonlight/.emacs.d/blob/8f9b8a2aa6fc7a38d2b97b0b0c0a6acecf676a65/core/lang-js.el
+;; (advice-add 'flycheck-eslint-config-exists-p :override (lambda() t))
+#+end_src
+
+*** TSX, JSX
+
+=typescript-mode= doesn't support TSX. So I need to mix it with =web-mode=. (As for JavaScript, =js-mode= supports JSX in Emacs 27.)
+
+#+begin_src emacs-lisp
+(use-package web-mode
+  :mode ("\\.tsx\\'")
+  :hook (web-mode . (lambda ()
+                      (when (string-equal "tsx" (file-name-extension buffer-file-name))
+                        (setup-tide-mode)))))
+
+;; TODO: enable linter, maybe
+;; (flycheck-add-mode 'typescript-tslint 'web-mode) ; tsx
+;; (flycheck-add-mode 'javascript-eslint 'web-mode) ; jsx
+;; (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
+#+end_src
+
+*** Vue
+
+Vue provides own LSP. However, eglot needs one LSP for one major-mode. So define =vue-mode= as an alias of =web-mode=. (Also see this https://github.com/joaotavora/eglot/issues/47)
+
+#+begin_src emacs-lisp
+(use-package web-mode
+  :config
+  (define-derived-mode vue-mode web-mode "Vue")
+  (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
+  (add-to-list 'eglot-server-programs '(vue-mode . ("vls"))))
+(add-hook 'web-mode-hook #'my-bind-prettier-js)
+#+end_src
+
+*** TODO ESLint
+
+setup with Flycheck
+
 
 ** Python
 
+
 ** C/C++
 
-** Web (HTML, CSS, JavaScript)
-
-** PHP
 
 ** Lisp
 
+
+** PHP
+
+
 ** Ruby
+
 
 ** Go
 
+
 ** Rust
+
+
+** JSON
+
+#+begin_src emacs-lisp
+(use-package json-mode
+  :mode
+  ("\\.babelrc\\'"
+   "\\.browserslistrc\\'"
+   "\\.eslintrc\\'"
+   "\\.prettierrc\\'"
+   "\\.tslintrc\\'")
+  :hook (json-mode . #'my-bind-prettier-js))
+#+end_src
 
 
 * org
@@ -524,11 +746,3 @@ Enable alphabetical lists.
 
 TBD
 
-
-* Links
-
-- https://github.com/hrs/dotfiles/blob/master/emacs/.emacs.d/configuration.org
-- https://github.com/danielmai/.emacs.d/blob/master/config.org
-- https://github.com/sachac/.emacs.d/blob/gh-pages/Sacha.org
-- https://ladicle.com/post/config/
-- https://github.com/zzamboni/dot-emacs/blob/master/init.org

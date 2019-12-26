@@ -28,8 +28,10 @@ brew upgrade
 
 brew tap homebrew/cask
 brew tap homebrew/cask-fonts
+brew tap daviderestivo/emacs-head
 
 # Dependencies
+brew install jansson
 brew install aspell
 brew install ctags
 brew install global
@@ -47,7 +49,9 @@ brew install fisherman
 # Apps
 brew install awscli
 brew install colordiff
+brew install emacs-head --with-cocoa --with-imagemagick --with-jansson --HEAD
 brew install fasd
+brew install fd
 brew install ffmpeg
 brew install git
 brew install httpie
@@ -82,7 +86,6 @@ brew cask install charles
 brew cask install cyberduck
 brew cask install dash
 brew cask install dropbox
-brew cask install emacs
 brew cask install firefox
 brew cask install google-chrome
 brew cask install hammerspoon

@@ -1,6 +1,4 @@
 ;; -*- mode: Emacs-Lisp ; Coding: utf-8 -*-
-;; TODOs
-;; - setup yasnipet (shell-command "open https://github.com/magnars/.emacs.d" )
 ;; ----------------------------------------------------------------------
 (require 'cl)
 
@@ -39,7 +37,6 @@
                       coffee-mode
                       dash
                       deft
-                      emmet-mode
                       epl
                       exec-path-from-shell
                       fish-mode
@@ -52,10 +49,8 @@
                       helm
                       helm-core
                       helm-descbinds
-                      helm-emmet
                       helm-gtags
                       highlight-indentation
-                      jade-mode
                       json-reformat
                       json-snatcher
                       markdown-mode
@@ -70,10 +65,8 @@
                       slime
                       stylus-mode
                       sws-mode
-                      web-mode
                       with-editor
                       yaml-mode
-                      yasnippet
                       )
   "Default packages")
 
@@ -207,18 +200,18 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ hilight indentation
-(require 'highlight-indentation)
-(set-face-background 'highlight-indentation-face "#10505D")
-(set-face-background 'highlight-indentation-current-column-face "#3f727d")
-(add-hook 'python-mode-hook 'highlight-indentation-mode)
-(add-hook 'js2-mode-hook 'highlight-indentation-mode)
-(add-hook 'ruby-mode-hook 'highlight-indentation-mode)
-(add-hook 'sass-mode-hook 'highlight-indentation-mode)
-(add-hook 'jade-mode-hook 'highlight-indentation-mode)
-(add-hook 'stylus-mode-hook 'highlight-indentation-mode)
-(add-hook 'coffee-mode-hook 'highlight-indentation-mode)
-(add-hook 'emacs-lisp-mode-hook 'highlight-indentation-mode)
-(add-hook 'web-mode-hook 'highlight-indentation-mode)
+;; (require 'highlight-indentation)
+;; (set-face-background 'highlight-indentation-face "#10505D")
+;; (set-face-background 'highlight-indentation-current-column-face "#3f727d")
+;; (add-hook 'python-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'js2-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'ruby-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'sass-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'jade-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'stylus-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'coffee-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'emacs-lisp-mode-hook 'highlight-indentation-mode)
+;; (add-hook 'web-mode-hook 'highlight-indentation-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -263,16 +256,11 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ yasnippet
-(require 'yasnippet)
-(yas-global-mode 1)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ eshell
 ;; via http://syohex.hatenablog.com/entry/20130718/1374154709
 ;;(let ((envs '("PATH" "ANDROID_HOME" "GOROOT" "GOPATH")))
-(when (memq window-system '(mac ns))
+(use-package exec-path-from-shell
+  :config
   (exec-path-from-shell-initialize))
 
 ;; Start eshell or switch to it if it's active.
@@ -310,49 +298,6 @@
 (setq markdown-open-command "/usr/bin/marked")
 (setq markdown-command "/usr/local/bin/pandoc")
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ web-mode
-(when (require 'web-mode)
-  ;; extensions
-  (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.jsp\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.blade\\.php\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.ejs\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.tag\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
-
-  ;; engine
-  (setq web-mode-engines-alist
-        '(("php"    . "\\.phtml\\'")
-          ("ruby"  . "\\.erb\\."))
-        )
-  ;; indent
-  (setq web-mode-markup-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-indent-style 2)
-  (setq web-mode-script-padding 2)
-  (setq web-mode-style-padding 2)
-  (setq web-mode-block-padding 0)
-  )
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ emmet-mode
-(add-hook 'css-mode-hook  'emmet-mode)
-(add-hook 'web-mode-hook  'emmet-mode)
-(add-hook 'html-mode-hook  'emmet-mode)
-(add-hook 'js2-jsx-mode-hook  'emmet-mode)
-(add-hook 'rjsx-mode-hook  'emmet-mode)
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ css-mode
 (setq css-indent-offset 2)
@@ -360,13 +305,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ js2-mode
-;(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . rjsx-mode))
-;(add-to-list 'auto-mode-alist '("\\.babelrc$" . js2-mode))
+;;(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . rjsx-mode))
+;;(add-to-list 'auto-mode-alist '("\\.babelrc$" . js2-mode))
 (setq sgml-basic-offset 2)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ jade-mode
-(add-to-list 'auto-mode-alist '("\\.pug$" . jade-mode))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ html-mode
