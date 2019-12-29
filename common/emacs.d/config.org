@@ -26,6 +26,7 @@ brew tap daviderestivo/emacs-head
 brew install emacs-head --with-cocoa --with-imagemagick --with-jansson --HEAD
 #+end_src
 
+
 * Boot
 
 Define utility variables for the rest of config.
@@ -287,7 +288,6 @@ Show changed lines.
   :config (global-git-gutter-mode t))
 #+end_src
 
-
 ** Snippets
 
 #+begin_src emacs-lisp
@@ -295,7 +295,6 @@ Show changed lines.
   :config
   (yas-global-mode 1))
 #+end_src
-
 
 ** Project Management
 
@@ -316,7 +315,6 @@ Newer version of =Projectile= knows about modern project files like =package.jso
   (setq projectile-sort-order 'recently-active
         projectile-switch-project-action #'projectile-dired))
 #+end_src
-
 
 ** Auto Complition
 
@@ -446,7 +444,6 @@ I use =eglot= as the front-end of LSP. You need to install language server for e
 #+begin_src emacs-lisp
 (use-package eglot :defer t)
 #+end_src
-
 
 ** Front-end
 
@@ -631,7 +628,6 @@ setup with Flycheck
 (use-package less-css-mode :mode "\\.less\\'")
 #+end_src
 
-
 ** Python
 
 #+begin_src emacs-lisp
@@ -648,7 +644,6 @@ You need to install =pls= to use =eglot= for LSP. (see [[https://github.com/pala
 pip install python-language-server 'python-language-server[all]'
 #+end_src
 
-
 ** C/C++
 
 You need to install =ccls= to use =eglot= for LSP. (see [[https://github.com/MaskRay/ccls][the doc]])
@@ -659,10 +654,10 @@ You need to install =ccls= to use =eglot= for LSP. (see [[https://github.com/Mas
          (c-mode-common . 'google-make-newline-indent)))
 #+end_src
 
-
 ** Lisp
 
 Define a list of lisp-ish modes to have the same configuration for the modes.
+TODO: This may slows down Emacs launch
 
 #+begin_src emacs-lisp
 (setq my--lispish-modes '(clojure-mode emacs-lisp-mode lisp-interaction-mode
@@ -700,7 +695,6 @@ Add a keybind for formatting a whole buffer in lisp.
 
 TODO: Try [[https://github.com/joaotavora/sly][SLY]] and/or [[https://common-lisp.net/project/slime/][SLIME]]
 
-
 ** PHP
 
 #+begin_src emacs-lisp
@@ -720,7 +714,6 @@ composer global run-script --working-dir=$HOME/.composer/vendor/felixfbecker/lan
 #+end_src
 
 /2019/12/28: PHP LSP doesn't work for some function, go to the definition for example./
-
 
 ** Ruby
 
@@ -743,7 +736,6 @@ composer global run-script --working-dir=$HOME/.composer/vendor/felixfbecker/lan
 TODO: look at thoes configurtions for more useful config
 https://github.com/hrs/dotfiles/blob/master/emacs/.emacs.d/configuration.org#ruby-and-rspec
 
-
 ** Go
 
 You need to install =gopls= to use =eglot= for LSP. (see [[https://github.com/golang/tools/blob/master/gopls/README.md][the doc]])
@@ -764,7 +756,6 @@ TODO: look at thoes configurtions for more useful config
 https://ladicle.com/post/config/#golang
 https://github.com/hrs/dotfiles/blob/master/emacs/.emacs.d/configuration.org#golang
 
-
 ** Rust
 
 You need to install the Rust Language Server to use =eglot= for LSP. (see [[https://github.com/rust-lang/rls][the doc]])
@@ -781,13 +772,11 @@ rustup component add rls rust-analysis rust-src
   (setq rust-format-on-save t))
 #+end_src
 
-
 ** Fish
 
 #+begin_src emacs-lisp
 (use-package fish-mode :defer t)
 #+end_src
-
 
 ** JSON
 
@@ -802,14 +791,12 @@ rustup component add rls rust-analysis rust-src
   :hook (json-mode . #'my-bind-prettier-js))
 #+end_src
 
-
 ** YAML
 
 #+begin_src emacs-lisp
 (use-package yaml-mode
   :mode ("\\.yml\\'" "\\.yaml\\'"))
 #+end_src
-
 
 ** Markdown
 
@@ -837,7 +824,6 @@ Install org from elpa
   :ensure org-plus-contrib)
 #+end_src
 
-
 ** Display Preference
 
 Pretty style for bullets with =org-bullets==
@@ -858,7 +844,6 @@ Turn on wordwarp.
 #+begin_src emacs-lisp
 (add-hook 'org-mode-hook #'visual-line-mode)
 #+end_src
-
 
 ** Code Block
 
@@ -918,7 +903,6 @@ Add structure templates for languages which frequently used.
 
 see https://github.com/danielmai/.emacs.d/blob/master/config.org#org-babel-languages
 
-
 ** Task Management
 
 Track when a TODO was maked as =DONE=.
@@ -926,7 +910,6 @@ Track when a TODO was maked as =DONE=.
 #+begin_src emacs-lisp
 (setq org-log-done t)
 #+end_src
-
 
 
 ** Export
@@ -939,7 +922,6 @@ Use =ox-hugo= as a exportar for Markdown. (You can use ~org-blackfriday-export-a
 (use-package ox-pandoc :after ox :disabled)
 #+end_src
 
-
 ** Misc
 
 Enable alphabetical lists.
@@ -947,7 +929,6 @@ Enable alphabetical lists.
 #+begin_src emacs-lisp
 (setq org-list-allow-alphabetical t)
 #+end_src
-
 
 ** Capture
 
