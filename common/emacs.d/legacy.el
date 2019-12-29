@@ -48,7 +48,6 @@
                       helm-core
                       helm-descbinds
                       helm-gtags
-                      highlight-indentation
                       json-reformat
                       json-snatcher
                       pkg-info

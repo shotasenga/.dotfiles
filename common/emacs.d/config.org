@@ -32,7 +32,7 @@ brew install emacs-head --with-cocoa --with-imagemagick --with-jansson --HEAD
 Define utility variables for the rest of config.
 
 #+begin_src emacs-lisp
-(setq my:is-macos (eq window-system 'ns))
+(setq my--is-macos (eq window-system 'ns))
 #+end_src
 
 
@@ -274,7 +274,7 @@ Multiple cursors.
 
 * Programming
 
-** Misc
+** Parenceis
 
 Highlight matched parenceis
 
@@ -454,6 +454,21 @@ Enhance =company-mode= with icons. You need to run ~all-the-icons-install-fonts~
           company-box-icons-alist 'company-box-icons-all-the-icons)))
 #+end_src
 
+** Indentation Highlight
+
+I preffer having indent highlight especially for Python. It works a bit odd though.
+
+#+begin_src emacs-lisp
+(use-package highlight-indent-guides
+  ;; :disabled
+  :hook (prog-mode . highlight-indent-guides-mode)
+  :custom
+  (highlight-indent-guides-method 'character)
+  (highlight-indent-guides-responsive 'stack)
+  ;; (highlight-indent-guides-character ?\x678)
+  (highlight-indent-guides-character ?\x2307)
+)
+#+end_src
 
 * Programming/Markup Languages
 
