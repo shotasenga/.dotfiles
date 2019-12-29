@@ -253,7 +253,53 @@ Multiple cursors.
 
 * Programming
 
+** Misc
+
+Highlight matched parenceis
+
+#+begin_src emacs-lisp
+(show-paren-mode t)
+#+end_src
+
+Enable =rainbow-delimiters= for =prog-mode=, not only lispish language.
+
+#+begin_src emacs-lisp
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode)
+  :config
+  (eldoc-add-command 'paredit-backward-delete
+                     'paredit-close-round))
+#+end_src
+
+** Git
+
+Magit for Git.
+
+#+begin_src emacs-lisp
+(use-package magit
+  :bind ("C-x g" . magit-status))
+#+end_src
+
+Show changed lines.
+
+#+begin_src emacs-lisp
+(use-package git-gutter
+  :config (global-git-gutter-mode t))
+#+end_src
+
+
+** Snippets
+
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
+#+end_src
+
+
 ** Project Management
+
+Newer version of =Projectile= knows about modern project files like =package.json= and =Pipfile= even though it's not documented.
 
 #+begin_src emacs-lisp
 (use-package projectile
@@ -271,14 +317,20 @@ Multiple cursors.
         projectile-switch-project-action #'projectile-dired))
 #+end_src
 
-** Complition
+
+** Auto Complition
+
+
+TODO: see this to improve complition
+https://git.trevdev.ca/trevdev/dotfiles/src/commit/4b684ba5877278aee0d3d6a2e1dea51ed5df6898/emacs/configuration.org?lang=cs-CZ#company-auto-complete
 
 #+begin_src emacs-lisp
 (use-package company
   :hook
   (after-init . global-company-mode)
   :bind
-  (("C-." . company-complete-common))
+  (("TAB" . company-indent-or-complete-common)
+   ("C-." . company-complete-common))
   (:map company-active-map
         ("C-n" . company-select-next)
         ("C-p" . company-select-previous)
@@ -291,7 +343,7 @@ Multiple cursors.
   :custom
   (company-idle-delay 0)
   (company-echo-delay 0)
-  (company-minimum-prefix-length 1))
+  (company-minimum-prefix-length 3))
 #+end_src
 
 Enhance =company-mode= with icons. You need to run ~all-the-icons-install-fonts~ to install icons.
@@ -385,40 +437,14 @@ Enhance =company-mode= with icons. You need to run ~all-the-icons-install-fonts~
 #+end_src
 
 
-** Snippets
-
-#+begin_src emacs-lisp
-(use-package yasnippet
-  :config
-  (yas-global-mode 1))
-#+end_src
-
-
-** Git
-
-Magit for Git.
-
-#+begin_src emacs-lisp
-(use-package magit
-  :bind ("C-x g" . magit-status))
-#+end_src
-
-Show changed lines.
-
-#+begin_src emacs-lisp
-(use-package git-gutter
-  :config (global-git-gutter-mode t))
-#+end_src
-
-
-* Programming Languages
+* Programming/Markup Languages
 
 ** Language Server Protocol
 
 I use =eglot= as the front-end of LSP. You need to install language server for each language. See  [[https://github.com/joaotavora/eglot#connecting-to-a-server][eglot doc]] for the details.
 
 #+begin_src emacs-lisp
-(use-package eglot)
+(use-package eglot :defer t)
 #+end_src
 
 
@@ -490,8 +516,8 @@ Some projects I'm currently working on doesn't use =Prettier=, so I cannot enabl
 #+end_src
 
 #+begin_src emacs-lisp
-(use-package jade-mode
-  :mode "\\.pug\\'")
+(use-package pug-mode
+  :mode ("\\.pug\\'" "\\.jade\\'"))
 #+end_src
 
 *** TypeScript
@@ -572,6 +598,7 @@ Vue provides own LSP. However, eglot needs one LSP for one major-mode. So define
 
 #+begin_src emacs-lisp
 (use-package web-mode
+  :after eglot
   :config
   (define-derived-mode vue-mode web-mode "Vue")
   (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
@@ -583,26 +610,183 @@ Vue provides own LSP. However, eglot needs one LSP for one major-mode. So define
 
 setup with Flycheck
 
+*** CSS/SCSS
+
+#+begin_src emacs-lisp
+(use-package css-mode
+  :config
+  (setq css-indent-offset 2))
+;; (add-to-list 'company-backends 'company-css))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package scss-mode
+  :mode ("\\.scss\\'" "\\.sass\\'")
+  :config
+  (setq scss-compile-at-save nil)
+  (add-to-list 'company-backends 'company-css))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package less-css-mode :mode "\\.less\\'")
+#+end_src
+
 
 ** Python
+
+#+begin_src emacs-lisp
+(use-package python-mode
+  :defer t
+  :config
+  ;; And add the path to executables.
+  (add-to-list 'exec-path "~/.pyenv/shims"))
+#+end_src
+
+You need to install =pls= to use =eglot= for LSP. (see [[https://github.com/palantir/python-language-server][the doc]])
+
+#+begin_src sh
+pip install python-language-server 'python-language-server[all]'
+#+end_src
 
 
 ** C/C++
 
+You need to install =ccls= to use =eglot= for LSP. (see [[https://github.com/MaskRay/ccls][the doc]])
+
+#+begin_src emacs-lisp
+(use-package google-c-style
+  :hook ((c-mode-common . google-set-c-style)
+         (c-mode-common . 'google-make-newline-indent)))
+#+end_src
+
 
 ** Lisp
+
+Define a list of lisp-ish modes to have the same configuration for the modes.
+
+#+begin_src emacs-lisp
+(setq my--lispish-modes '(clojure-mode emacs-lisp-mode lisp-interaction-mode
+                                       lisp-mode scheme-mode))
+#+end_src
+
+I found =paredit= useful. But, it has very unique keybindings. For the later reference, you can look at below.
+
+- [[http://pub.gajendra.net/src/paredit-refcard.pdf][Cheat sheet (PDF)]]
+- [[http://www.daregada.sakuraweb.com/paredit_tutorial_ja.html][日本語チュートリアル]]
+
+TODO: [[https://github.com/abo-abo/lispy][lispy]] seems worth take a look
+
+#+begin_src emacs-lisp
+(eval `(use-package paredit
+         :hook (,my--lispish-modes . paredit-mode)))
+#+end_src
+
+And, .. enable =eldoc=.
+
+#+begin_src emacs-lisp
+(use-package eldoc
+  :hook (emacs-lisp-mode . eldoc-mode))
+#+end_src
+
+Add a keybind for formatting a whole buffer in lisp.
+
+#+begin_src emacs-lisp
+(eval `(use-package srefactor
+         :hook (,my--lispish-modes
+                . (lambda ()
+                    (require 'srefactor-lisp)
+                    (local-set-key "\C-\M-\\" #'srefactor-lisp-format-buffer)))))
+#+end_src
+
+TODO: Try [[https://github.com/joaotavora/sly][SLY]] and/or [[https://common-lisp.net/project/slime/][SLIME]]
 
 
 ** PHP
 
+#+begin_src emacs-lisp
+(use-package php-mode
+  :defer t
+  :after eglot
+  :config
+  (add-to-list 'eglot-server-programs
+               (cons 'php-mode (list "php" (expand-file-name "~/.composer/vendor/bin/php-language-server.php")))))
+#+end_src
+
+You need to install =pls= to use =eglot= for LSP. (see [[https://github.com/felixfbecker/php-language-server][the doc]])
+
+#+begin_src sh
+composer global require felixfbecker/language-server
+composer global run-script --working-dir=$HOME/.composer/vendor/felixfbecker/language-server parse-stubs
+#+end_src
+
+/2019/12/28: PHP LSP doesn't work for some function, go to the definition for example./
+
 
 ** Ruby
+
+#+begin_src emacs-lisp
+(use-package ruby-mode
+  :mode
+  ("\\.rake\\'"
+   "\\.gemspec\\'"
+   "Rakefile"
+   "Gemfile"
+   "Capfile"
+   "Vagrantfile"
+   "Berksfle"))
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package ruby-end)
+#+end_src
+
+TODO: look at thoes configurtions for more useful config
+https://github.com/hrs/dotfiles/blob/master/emacs/.emacs.d/configuration.org#ruby-and-rspec
 
 
 ** Go
 
+You need to install =gopls= to use =eglot= for LSP. (see [[https://github.com/golang/tools/blob/master/gopls/README.md][the doc]])
+
+#+begin_src emacs-lisp
+(use-package go-mode
+  :bind (:map go-mode-map
+              ("C-c C-n" . go-run)
+              ("C-c ."   . go-test-current-test)
+              ("C-c f"   . go-test-current-file)
+              ("C-c a"   . go-test-current-project))
+  :config
+  (setq gofmt-command "goimports")
+  (add-hook 'before-save-hook #'gofmt-before-save))
+#+end_src
+
+TODO: look at thoes configurtions for more useful config
+https://ladicle.com/post/config/#golang
+https://github.com/hrs/dotfiles/blob/master/emacs/.emacs.d/configuration.org#golang
+
 
 ** Rust
+
+You need to install the Rust Language Server to use =eglot= for LSP. (see [[https://github.com/rust-lang/rls][the doc]])
+
+#+begin_src sh
+rustup update
+rustup component add rls rust-analysis rust-src
+#+end_src
+
+#+begin_src emacs-lisp
+(use-package rust-mode
+  :config
+  ;; (add-to-list 'exec-path "~/.cargo/bin")
+  (setq rust-format-on-save t))
+#+end_src
+
+
+** Fish
+
+#+begin_src emacs-lisp
+(use-package fish-mode :defer t)
+#+end_src
 
 
 ** JSON
@@ -616,6 +800,29 @@ setup with Flycheck
    "\\.prettierrc\\'"
    "\\.tslintrc\\'")
   :hook (json-mode . #'my-bind-prettier-js))
+#+end_src
+
+
+** YAML
+
+#+begin_src emacs-lisp
+(use-package yaml-mode
+  :mode ("\\.yml\\'" "\\.yaml\\'"))
+#+end_src
+
+
+** Markdown
+
+Use =Github Flavored Markdown= for markdown files. It provides tons of functionalities. Check [[https://jblevins.org/projects/markdown-mode/][the document]].
+
+#+begin_src emacs-lisp
+(use-package markdown-mode
+  :commands (markdown-mode gfm-mode)
+  :mode (("\\.md\\'"  . gfm-mode)
+         ("\\.markdown\\'"  . gfm-mode))
+  :config
+  ;; (setq markdown-open-command "/usr/bin/marked") ; I don't use marked anymore. I need to find a replacement.
+  (setq markdown-command "pandoc --standalone --mathjax --from=markdown"))
 #+end_src
 
 

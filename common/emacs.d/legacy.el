@@ -39,12 +39,10 @@
                       deft
                       epl
                       exec-path-from-shell
-                      fish-mode
                       flymake-cursor
                       flymake-easy
                       flymake-google-cpplint
                       ggtags
-                      go-mode
                       haml-mode
                       helm
                       helm-core
@@ -53,8 +51,6 @@
                       highlight-indentation
                       json-reformat
                       json-snatcher
-                      markdown-mode
-                      php-mode
                       pkg-info
                       popup
                       powerline
@@ -66,7 +62,6 @@
                       stylus-mode
                       sws-mode
                       with-editor
-                      yaml-mode
                       )
   "Default packages")
 
@@ -270,61 +265,11 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ Ruby
-(add-hook 'ruby-mode-hook
-          (lambda ()
-            (autopair-mode)))
-(add-to-list 'auto-mode-alist '("\\.rake$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.gemspec$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("\\.ru$" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Rakefile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Gemfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Capfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Vagrantfile" . ruby-mode))
-(add-to-list 'auto-mode-alist '("Berksfle" . ruby-mode))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ YAML
-(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
-(add-to-list 'auto-mode-alist '("\\.yaml$" . yaml-mode))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ Markdown
-(add-to-list 'auto-mode-alist '("\\.md$" . markdown-mode))
-(add-to-list 'auto-mode-alist '("\\.markdown$" . markdown-mode))
-(add-hook 'markdown-mode-hook (lambda () (visual-line-mode t)))
-(setq markdown-open-command "/usr/bin/marked")
-(setq markdown-command "/usr/local/bin/pandoc")
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ css-mode
-(setq css-indent-offset 2)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ js2-mode
-;;(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . rjsx-mode))
-;;(add-to-list 'auto-mode-alist '("\\.babelrc$" . js2-mode))
-(setq sgml-basic-offset 2)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ html-mode
-(add-hook 'html-mode-hook
-          (lambda ()
-            ;; Default indentation is usually 2 spaces, changing to 4.
-            (set (make-local-variable 'sgml-basic-offset) 4)))
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ PHP
-(add-hook 'php-mode-user-hook 'semantic-default-java-setup)
-(add-hook 'php-mode-user-hook
-          (lambda ()
-            (setq imenu-create-index-function
-                  'semantic-create-imenu-index)
-            ))
+;; (add-hook 'html-mode-hook
+;;           (lambda ()
+;;             ;; Default indentation is usually 2 spaces, changing to 4.
+;;             (set (make-local-variable 'sgml-basic-offset) 4)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -421,37 +366,9 @@
 ;; enable projectile + helm!
 ;(projectile-global-mode)
 ;(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-
 ;; ag
 ;; (setq ag-executable "/usr/local/bin/rg")
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ C/C++
-;; auto complete headers
-(defun my:ac-c-header-init ()
-  (add-to-list 'ac-sources 'ac-source-c-headers)
-  (add-to-list 'achead:include-directories '"/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/../lib/clang/6.1.0/include"))
-
-(add-hook 'c++-mode-hook 'my:ac-c-header-init)
-(add-hook 'c-mode-hook 'my:ac-c-header-init)
-
-;; google style guide
-(defun my:flymake-google-init ()
-  (require 'flymake-google-cpplint)
-  (custom-set-variables
-   '(flymake-google-cpplint-command "/usr/local/bin/cpplint"))
-  (flymake-google-cpplint-load)
-  )
-(add-hook 'c++-mode-hook 'my:flymake-google-init)
-(add-hook 'c-mode-hook 'my:flymake-google-init)
-
-;; semantic
-(semantic-mode 1)
-(global-semantic-idle-scheduler-mode 1)
-(defun my:add-semantic-to-autocomplete()
-  (add-to-list 'ac-sources 'ac-source-semantic)
-  )
-(add-hook 'c-mode-common-hook 'my:add-semantic-to-autocomplete)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Emacs server
@@ -516,14 +433,3 @@
 
 ;; user site local
 (load (expand-file-name "local.el" user-emacs-directory) 'no-error)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ Lisp environment ..?
-(add-hook 'lisp-mode-hook (lambda () (slime-mode t)))
-(add-hook 'inferior-lisp-mode-hook (lambda () (inferior-slime-mode t)))
-(setq inferior-lisp-program "sbcl")
-;;(slime-setup '(slime-repl slime-fancy slime-banner))
-(put 'narrow-to-region 'disabled nil)
-(put 'set-goal-column 'disabled nil)
-(put 'downcase-region 'disabled nil)
