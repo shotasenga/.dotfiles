@@ -495,7 +495,7 @@ Set up =Prettier= for code fomatting. This requires =Prettier= executable. You c
 #+begin_src emacs-lisp
 (defun my-bind-prettier-js ()
   (message "my-bind-prettier-js hello")
-  (local-set-key "\C-\M-\\" 'prettier-js))
+  (local-set-key (kbd "C-M-\\") 'prettier-js))
 
 (use-package prettier-js
   :commands prettier-js)
@@ -729,7 +729,7 @@ Add a keybind for formatting a whole buffer in lisp.
          :hook (,my--lispish-modes
                 . (lambda ()
                     (require 'srefactor-lisp)
-                    (local-set-key "\C-\M-\\" #'srefactor-lisp-format-buffer)))))
+                    (local-set-key (kbd "C-M-\\") #'srefactor-lisp-format-buffer)))))
 #+end_src
 
 TODO: Try [[https://github.com/joaotavora/sly][SLY]] and/or [[https://common-lisp.net/project/slime/][SLIME]]
