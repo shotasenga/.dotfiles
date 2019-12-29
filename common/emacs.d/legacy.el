@@ -144,26 +144,6 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ font
-(when window-system
-  ;; http://d.hatena.ne.jp/minus9d/20131103/1383475472
-  ;; default
-  (set-face-attribute 'default nil
-                      :family "Hack" ;; font
-                      :height 125)    ;; font size
-
-  ;; japanese
-  (set-fontset-font
-   nil 'japanese-jisx0208
-   ;; (font-spec :family "Hiragino Mincho Pro")) ;; font
-   (font-spec :family "Hiragino Kaku Gothic ProN")) ;; font
-  (setq face-font-rescale-alist
-        '((".*Hiragino_Mincho_pro.*" . 1.2))))
-
-
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ indentation
 ;; indent size and type
 (setq-default tab-width 4)
@@ -191,22 +171,6 @@
 
 (global-set-key (kbd "C-x M-t") 'cleanup-region)
 (global-set-key (kbd "C-M-l") 'cleanup-buffer)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ hilight indentation
-;; (require 'highlight-indentation)
-;; (set-face-background 'highlight-indentation-face "#10505D")
-;; (set-face-background 'highlight-indentation-current-column-face "#3f727d")
-;; (add-hook 'python-mode-hook 'highlight-indentation-mode)
-;; (add-hook 'js2-mode-hook 'highlight-indentation-mode)
-;; (add-hook 'ruby-mode-hook 'highlight-indentation-mode)
-;; (add-hook 'sass-mode-hook 'highlight-indentation-mode)
-;; (add-hook 'jade-mode-hook 'highlight-indentation-mode)
-;; (add-hook 'stylus-mode-hook 'highlight-indentation-mode)
-;; (add-hook 'coffee-mode-hook 'highlight-indentation-mode)
-;; (add-hook 'emacs-lisp-mode-hook 'highlight-indentation-mode)
-;; (add-hook 'web-mode-hook 'highlight-indentation-mode)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -386,50 +350,50 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ gtag and helm
-(require 'ggtags)
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
-              (ggtags-mode 1))))
+;; (require 'ggtags)
+;; (add-hook 'c-mode-common-hook
+;;           (lambda ()
+;;             (when (derived-mode-p 'c-mode 'c++-mode 'java-mode 'asm-mode)
+;;               (ggtags-mode 1))))
 
-(define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
-(define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
-(define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
-(define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
-(define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
-(define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
+;; (define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
+;; (define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
+;; (define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
+;; (define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
+;; (define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
+;; (define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
 
-(define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
+;; (define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
 
-(setq
- helm-gtags-ignore-case t
- helm-gtags-auto-update t
- helm-gtags-use-input-at-cursor t
- helm-gtags-pulse-at-cursor t
- helm-gtags-prefix-key "\C-cg"
- helm-gtags-suggested-key-mapping t
- )
+;; (setq
+;;  helm-gtags-ignore-case t
+;;  helm-gtags-auto-update t
+;;  helm-gtags-use-input-at-cursor t
+;;  helm-gtags-pulse-at-cursor t
+;;  helm-gtags-prefix-key "\C-cg"
+;;  helm-gtags-suggested-key-mapping t
+;;  )
 
-(require 'helm-gtags)
-;; Enable helm-gtags-mode
-(add-hook 'dired-mode-hook 'helm-gtags-mode)
-(add-hook 'eshell-mode-hook 'helm-gtags-mode)
-(add-hook 'c-mode-hook 'helm-gtags-mode)
-(add-hook 'c++-mode-hook 'helm-gtags-mode)
-(add-hook 'asm-mode-hook 'helm-gtags-mode)
-(add-hook 'web-mode-hook 'helm-gtags-mode)
-(add-hook 'js-mode-hook 'helm-gtags-mode)
+;; (require 'helm-gtags)
+;; ;; Enable helm-gtags-mode
+;; (add-hook 'dired-mode-hook 'helm-gtags-mode)
+;; (add-hook 'eshell-mode-hook 'helm-gtags-mode)
+;; (add-hook 'c-mode-hook 'helm-gtags-mode)
+;; (add-hook 'c++-mode-hook 'helm-gtags-mode)
+;; (add-hook 'asm-mode-hook 'helm-gtags-mode)
+;; (add-hook 'web-mode-hook 'helm-gtags-mode)
+;; (add-hook 'js-mode-hook 'helm-gtags-mode)
 
-(define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
-(define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
-(define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
-(define-key global-map (kbd "<s-mouse-1>") 'helm-gtags-dwim)
-(define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
-(define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
-(define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
+;; (define-key helm-gtags-mode-map (kbd "C-c g a") 'helm-gtags-tags-in-this-function)
+;; (define-key helm-gtags-mode-map (kbd "C-j") 'helm-gtags-select)
+;; (define-key helm-gtags-mode-map (kbd "M-.") 'helm-gtags-dwim)
+;; (define-key global-map (kbd "<s-mouse-1>") 'helm-gtags-dwim)
+;; (define-key helm-gtags-mode-map (kbd "M-,") 'helm-gtags-pop-stack)
+;; (define-key helm-gtags-mode-map (kbd "C-c <") 'helm-gtags-previous-history)
+;; (define-key helm-gtags-mode-map (kbd "C-c >") 'helm-gtags-next-history)
 
 
-(setq-local imenu-create-index-function #'ggtags-build-imenu-index)
+;; (setq-local imenu-create-index-function #'ggtags-build-imenu-index)
 
-;; user site local
-(load (expand-file-name "local.el" user-emacs-directory) 'no-error)
+;; ;; user site local
+;; (load (expand-file-name "local.el" user-emacs-directory) 'no-error)

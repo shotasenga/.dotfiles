@@ -69,6 +69,26 @@ You can try package without isntallation!
 
 * Apparence
 
+** Font
+
+Use =Hack= as the default font, =Hiragino= for Japanese. It seems [[https://ladicle.com/post/config/#gui-font][there is a way]] to make all font fammily align well.
+
+#+begin_src emacs-lisp
+(when window-system
+  (setq use-default-font-for-symbols nil)
+
+  ;; To avoid crashing Emacs with =whic-key=
+  ;; https://github.com/justbur/emacs-which-key/issues/130#issuecomment-416299329
+  (setq inhibit-compacting-font-caches t)
+
+  (set-face-attribute 'default nil :family "Hack"
+                      :height 125)
+  (set-fontset-font nil
+                    'japanese-jisx0208
+                    (font-spec :family "Hiragino Kaku Gothic ProN"))
+  (setq face-font-rescale-alist '(("Hiragino Kaku Gothic ProN" . 1.0))))
+#+end_src
+
 ** Window
 
 Run if Emacs runs with =window-system=
@@ -826,11 +846,32 @@ Install org from elpa
 
 ** Display Preference
 
-Pretty style for bullets with =org-bullets==
+Set header line faces.
+
+#+begin_src emacs-lisp
+(custom-set-faces
+  '(org-level-1 ((t (:inherit outline-1 :height 1.1))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.1))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
+  '(org-level-5 ((t (:inherit outline-5 :height 1.1)))))
+#+end_src
+
+Pretty style for bullets with =org-bullets==. Thanks to [[https://zhangda.wordpress.com/2016/02/15/configurations-for-beautifying-emacs-org-mode/][this blog post]].
 
 #+begin_src emacs-lisp
 (use-package org-bullets
-  :hook (org-mode . (lambda () (org-bullets-mode t))))
+  :hook (org-mode . (lambda ()
+                      (org-bullets-mode t)))
+  :init
+  (defface org-bullet-face
+    '((t :weight normal
+         :height 0.9))
+    "Face for function parameters."
+    :group 'org-bullet-face)
+  :custom
+  (org-bullets-bullet-list '("✣" "✦" "✪" "✡" "❂" "✼")))
+
 #+end_src
 
 Enable =org-indent-mode= globally to show virtual indentations.
