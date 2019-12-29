@@ -49,6 +49,7 @@ brew install fisherman
 # Apps
 brew install awscli
 brew install colordiff
+brew install ccls
 brew install emacs-head --with-cocoa --with-imagemagick --with-jansson --HEAD
 brew install fasd
 brew install fd
@@ -148,6 +149,9 @@ if [ ! $(pyenv versions --bare|grep $PYVERSION) ]; then
     pip install --upgrade pip
 fi
 
+# install LSP server for Python
+# pip install python-language-server 'python-language-server[all]'
+
 
 # ------------------------------
 # Node.js
@@ -179,6 +183,10 @@ fi
 
 # composer config -g repos.packagist composer https://packagist.jp
 # composer global require hirak/prestissimo
+
+# install LSP server for PHP
+# composer global require felixfbecker/language-server
+# composer global run-script --working-dir=$HOME/.composer/vendor/felixfbecker/language-server parse-stubs
 
 
 # ------------------------------
@@ -214,6 +222,9 @@ fi
 # ------------------------------
 if [ ! $(which cargo) ]; then
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+    # install the formatter and LSP server for Rust
+    # rustup component add rustfmt rls rust-analysis rust-src
 fi
 
 
