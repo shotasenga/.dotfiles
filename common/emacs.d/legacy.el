@@ -324,16 +324,7 @@
   )
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ Projectile
-;; enable projectile + helm!
-;(projectile-global-mode)
-;(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-;; ag
-;; (setq ag-executable "/usr/local/bin/rg")
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ Emacs server
 (when (require 'server)
   (unless (server-running-p)

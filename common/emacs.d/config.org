@@ -336,6 +336,10 @@ Newer version of =Projectile= knows about modern project files like =package.jso
         projectile-switch-project-action #'projectile-dired))
 #+end_src
 
+#+begin_src emacs-lisp
+(use-package projectile-ripgrep :after projectile)
+#+end_src
+
 ** Auto Complition
 
 
