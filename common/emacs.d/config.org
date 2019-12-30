@@ -539,6 +539,18 @@ Enhance =company-mode= with icons. You need to run ~all-the-icons-install-fonts~
           company-box-icons-alist 'company-box-icons-all-the-icons)))
 #+end_src
 
+** Jump to definition
+
+=Dumb Jump= just works in most of the cases! If you need more acculate solution, use LSP (just enable =eglot=) or =GNU Global=.
+
+#+begin_src emacs-lisp
+(use-package dumb-jump
+  :bind
+  (("M-." . dumb-jump-go))
+  :config
+  (setq dumb-jump-selector 'ivy))
+#+end_src
+
 ** Indentation Highlight
 
 I preffer having indent highlight especially for Python. It works a bit odd though.
