@@ -16,6 +16,7 @@
 - https://ladicle.com/post/config/
 - https://github.com/zzamboni/dot-emacs/blob/master/init.org
 - https://git.trevdev.ca/trevdev/dotfiles/src/commit/4b684ba5877278aee0d3d6a2e1dea51ed5df6898/emacs/configuration.org
+- https://github.com/bzg/dotemacs/blob/master/emacs.org
 
 * Install
 
@@ -76,10 +77,6 @@ Use =Hack= as the default font, =Hiragino= for Japanese. It seems [[https://ladi
 #+begin_src emacs-lisp
 (when window-system
   (setq use-default-font-for-symbols nil)
-
-  ;; To avoid crashing Emacs with =whic-key=
-  ;; https://github.com/justbur/emacs-which-key/issues/130#issuecomment-416299329
-  (setq inhibit-compacting-font-caches t)
 
   (set-face-attribute 'default nil :family "Hack"
                       :height 125)
@@ -171,25 +168,7 @@ Don't show line numbers. Show column numbers.
 
 * Global Interface
 
-** Window Control
-
-Select window with S-<ARROW>
-
-#+begin_src emacs-lisp
-(windmove-default-keybindings)
-(setq windmoove-wrap-around t)
-#+end_src
-
-Resize window with M-<ARROW>
-
-#+begin_src emacs-lisp
-(global-set-key (kbd "M-<up>") 'enlarge-window)
-(global-set-key (kbd "M-<down>") 'shrink-window)
-(global-set-key (kbd "M-<left>") 'enlarge-window-horizontally)
-(global-set-key (kbd "M-<right>") 'shrink-window-horizontally)
-#+end_src
-
-** keybinding Enhancement
+** Which Key
 
 =which-key= shows keybindings that follows your input.
 
@@ -200,6 +179,77 @@ Resize window with M-<ARROW>
   (setq which-key-idle-delay 0.4)
   (which-key-mode))
 #+end_src
+
+Sometimes =which-key== crashes Emacs.
+https://github.com/justbur/emacs-which-key/issues/130#issuecomment-416299329
+
+#+begin_src emacs-lisp
+(setq inhibit-compacting-font-caches t)
+#+end_src
+
+** Window Control
+
+Resize window with =M-<ARROW>=.
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "M-<up>") 'enlarge-window)
+(global-set-key (kbd "M-<down>") 'shrink-window)
+(global-set-key (kbd "M-<left>") 'enlarge-window-horizontally)
+(global-set-key (kbd "M-<right>") 'shrink-window-horizontally)
+#+end_src
+
+Jump around the windows with =ace-window=. The package provides ways to swiching and manuplating "other windows".
+
+#+begin_src emacs-lisp
+(use-package ace-window
+  :bind ("C-c C-;" . ace-window)
+  :config
+  (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l ?\;)))
+#+end_src
+
+| key               | what                |
+| =C-c C-;=         | Activate ace-window |
+| =C-u C-c C-;=     | Swap window         |
+| =C-u C-u C-c C-;= | Delete window       |
+
+** Avy (switched from ace-jump)
+
+=avy-goto-char-timer= accepts arbitrary number of characters as it's input. This is much more convinient than just one character idnex.
+
+#+begin_src emacs-lisp
+(use-package avy
+  :bind ("C-;" . avy-goto-char-timer)
+  :config
+  (setq avy-timeout-seconds 0.3))
+#+end_src
+
+** Cursor and Region
+
+Multiple cursors.
+
+#+begin_src emacs-lisp
+(use-package multiple-cursors
+  :init
+  (global-unset-key (kbd "M-<down-mouse-1>"))
+  :bind (("C->" . 'mc/mark-next-like-this)
+         ("C-<" . 'mc/mark-previous-like-this)
+         ("M-<mouse-1>" . 'mc/add-cursor-on-click)
+         ;; TODO these keybindings are conflicting with =outline-promote/demote=
+         ("C-c C-<" . 'mc/mark-all-like-this)
+         ("C-c C->" . 'mc/edit-lines)))
+#+end_src
+
+Expand region.
+
+#+begin_src emacs-lisp
+(use-package expand-region
+  :bind (("C-2" . 'er/expand-region)
+         ("C-@" . 'er/contract-region)))
+#+end_src
+
+As for rectangle manuplation, Emac has many commands built-in. [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Rectangles.html][See the doc]].
+
+** keybinding Enhancement
 
 Redo
 
@@ -231,41 +281,76 @@ Search text in region.
     ad-do-it))
 #+end_src
 
-Enable rectangle region. =C-x SPC= to set mark for region.
+** ivy (+ counsel swiper)
+
+TODO: consider bind some more commands
+
+- ivy-push-view
+- ivy-pop-view
+- counsel-rg (counsel-git-grep is covered by Projectile)
+- ivy-resume
+- counsel-bookmark
+- counsel-descbinds
+- counsel-outline
+- counsel-org-file
+
+TODO: How do I select actions for selected buffers/files?
+I wanna do kill/delete selected items like Helm's =helm-select-action=.
+see https://github.com/abo-abo/swiper/wiki/Copy,-move-and-delete-file-actions-for-counsel-find-file
+
+TIP: Press =M-n= on swiper inserts a "thing" at point (=swiper-isearch-thing-at-point=)
 
 #+begin_src emacs-lisp
-(cua-mode t)
-(setq cua-enable-cua-keys nil)
+(use-package counsel
+  :hook
+  (after-init . ivy-mode)
+
+  :config
+  ;; (use-package flx)
+  ;; (use-package smex)
+  (ivy-mode t)
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "(%d/%d) "
+        ivy-height 15
+        ivy-initial-inputs-alist nil
+        )
+  ;; prefer unordered search
+  (setq ivy-re-builders-alist
+        '((swiper . ivy--regex-plus)
+          (swiper-isearch . ivy--regex-plus)
+          (counsel-rg . ivy--regex-plus)
+          (t . ivy--regex-fuzzy)))
+
+  :bind
+  (("M-x" . 'counsel-M-x)
+   ("C-x C-b" .  'ivy-switch-buffer)
+   ("C-x C-f" .  'counsel-find-file)
+   ("C-s" . 'swiper-isearch)
+   ("C-r" . 'swiper-isearch-backward)
+   ("C-c s" . 'isearch-forward-regexp)
+   ("M-y" . 'counsel-yank-pop)
+   ("<f1> f" . 'counsel-describe-function)
+   ("<f1> v" . 'counsel-describe-variable)
+   ("<f2> i" . 'counsel-info-lookup-symbol)
+   ("<f2> u" . 'counsel-unicode-char)
+   ("<f2> j" . 'counsel-set-variable)
+
+   :map ivy-minibuffer-map
+   ;; TODO this doesn't work with Swiper .. so I need to use =C-'= (default keybinding) instead
+   ("C-;" . 'ivy-avy)))
 #+end_src
 
-Jump to anywhere on the screen.
+- =ivy-rich= prettify ivy mini-buffer.
+- =amex= prioritalize =M-x=.
+- =flx= provide more flexible fuzzy search. (I found [[https://oremacs.com/2016/01/06/ivy-flx/][a blog post]] by the author of =ivy=)
 
 #+begin_src emacs-lisp
-(use-package ace-jump-mode
-  :bind ("C-;" . ace-jump-mode))
-#+end_src
-
-Gradualy expand/condense the region.
-
-#+begin_src emacs-lisp
-(use-package expand-region
-  :bind (("C-2" . 'er/expand-region)
-         ("C-@" . 'er/contract-region)))
-#+end_src
-
-Multiple cursors.
-
-#+begin_src emacs-lisp
-(use-package multiple-cursors
-  :bind (("C->" . 'mc/mark-next-like-this)
-         ("C-<" . 'mc/mark-previous-like-this)
-         ("C-c C->" . 'mc/mark-all-like-this)))
-#+end_src
-
-** Helm
-
-#+begin_src emacs-lisp
-;; (use-package helm)
+(use-package amx :after counsel)
+(use-package flx :after counsel)
+(use-package ivy-rich
+  :after counsel
+  :config 
+  (ivy-rich-mode t))
 #+end_src
 
 

@@ -44,10 +44,6 @@
                       flymake-google-cpplint
                       ggtags
                       haml-mode
-                      helm
-                      helm-core
-                      helm-descbinds
-                      helm-gtags
                       json-reformat
                       json-snatcher
                       pkg-info
@@ -127,19 +123,6 @@
 ;; C-h as delete
 (keyboard-translate ?\C-h ?\C-?)
 (global-set-key [?\C-c ?h] 'help-command)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ Screen swap
-(defun swap-screen-with-cursor()
-  "Swap two screen,with cursor in same buffer."
-  (interactive)
-  (let ((thiswin (selected-window))
-        (thisbuf (window-buffer)))
-    (other-window 1)
-    (set-window-buffer thiswin (window-buffer))
-    (set-window-buffer (selected-window) thisbuf)))
-(global-set-key [f2] 'swap-screen-with-cursor)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -261,67 +244,6 @@
 (setq deft-text-mode 'markdown-mode)
 (global-set-key (kbd "<f8>") 'deft)
 (setq deft-recursive t)
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ helm
-(require 'helm)
-(require 'helm-config nil t)
-
-;; set helm command prefix as "C-c c"
-(global-set-key (kbd "C-c c") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
-
-;; buffer switching
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-b") 'switch-to-buffer)
-
-;; find-file
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-;; use ack instead of grep on find-file
-(when (executable-find "ack")
-  (setq helm-grep-default-command "ack -Hn --no-group --no-color %e %p %f"
-        helm-grep-default-recurse-command "ack -H --no-group --no-color %e %p %f"))
-;; helm-M-x
-(global-set-key (kbd "M-x") 'helm-M-x)
-
-(when (executable-find "curl")
-  (setq helm-google-suggest-use-curl-p t))
-
-;; rebind tab to do persistent action
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-;; make TAB works in terminal
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action)
-;; list actions using C-z
-(define-key helm-map (kbd "C-z")  'helm-select-action)
-;;
-(setq helm-ff-file-name-history-use-recentf t)
-;; killing history
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-
-;; occur
-(global-set-key (kbd "C-c c o") 'helm-occur)
-
-;; google suggest
-(global-set-key (kbd "C-c c g") 'helm-google-suggest)
-
-;; all-mark-ring
-(global-set-key (kbd "C-c c SPC") 'helm-all-mark-rings)
-
-;; auto-resize
-(helm-autoresize-mode t)
-
-;; fuzzy-match
-(setq helm-buffers-fuzzy-matching t
-      helm-recentf-fuzzy-match t)
-(setq helm-M-x-fuzzy-match t)
-(setq helm-locate-fuzzy-match t)
-(setq helm-lisp-fuzzy-completion t)
-
-(helm-mode 1)
-
-(when (require 'helm-descbinds)
-  (helm-descbinds-mode 1)
-  )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
