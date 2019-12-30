@@ -405,27 +405,21 @@ Show changed lines.
 
 ** Project Management
 
-Newer version of =Projectile= knows about modern project files like =package.json= and =Pipfile= even though it's not documented.
+Due to better integration with =ivy=, use =counsel-projectile= insstead. The package provides [[https://github.com/ericdanan/counsel-projectile#summary-of-interactive-commands][some more commands]].
 
 #+begin_src emacs-lisp
-(use-package projectile
-  ;; :after "helm"
+(use-package counsel-projectile
+  :hook
+  (after-init . counsel-projectile-mode)
   :bind-keymap
   ("C-c p" . projectile-command-map) 
   :config
-  ;; use projectile globally
-  (projectile-global-mode)
-  ;; use helm as frontend
-  (setq projectile-completion-system 'helm
-        projectile-switch-project-action 'helm-projectile)
-  ;; and some other
   (setq projectile-sort-order 'recently-active
-        projectile-switch-project-action #'projectile-dired))
+        counsel-projectile-switch-project-action 'dired)
+)
 #+end_src
 
-#+begin_src emacs-lisp
-(use-package projectile-ripgrep :after projectile)
-#+end_src
+TIP: Newer version of =Projectile= knows about modern project files like =package.json= and =Pipfile= even though it's not documented. The definition is listed as =projectile-project-types=.
 
 ** Auto Complition
 
