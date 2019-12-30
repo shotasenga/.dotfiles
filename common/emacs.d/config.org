@@ -9,7 +9,7 @@
 :VISIBILITY: showall
 :END:
 
-- [[https://jwiegley.github.io/use-package/keywords/#mode-interpreter][use-package — Keywords]]
+- https://github.com/abo-abo/oremacs
 - https://github.com/hrs/dotfiles/blob/master/emacs/.emacs.d/configuration.org
 - https://github.com/danielmai/.emacs.d/blob/master/config.org
 - https://github.com/sachac/.emacs.d/blob/gh-pages/Sacha.org
@@ -549,6 +549,17 @@ Enhance =company-mode= with icons. You need to run ~all-the-icons-install-fonts~
   (("M-." . dumb-jump-go))
   :config
   (setq dumb-jump-selector 'ivy))
+#+end_src
+
+Install =ggtags= for GNU Global.
+
+TODO: Does =ivy= support TAGS?
+- https://github.com/syohex/emacs-counsel-gtags
+- https://www.reddit.com/r/emacs/comments/5453d4/what_does_your_ivyswiper_configuration_look_like/d7zejp8/
+- You can find my old configuration with =helm= [[https://github.com/senta/.dotfiles/blob/b8dd3eb0d562f23820ae4deab7a4455a3315fee1/common/emacs.d/legacy.el#L681][here]].
+
+#+begin_src emacs-lisp
+(use-package ggtags :disabled)
 #+end_src
 
 ** Indentation Highlight
