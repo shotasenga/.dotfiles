@@ -581,7 +581,6 @@ Set up =Prettier= for code fomatting. This requires =Prettier= executable. You c
 
 #+begin_src emacs-lisp
 (defun my-bind-prettier-js ()
-  (message "my-bind-prettier-js hello")
   (local-set-key (kbd "C-M-\\") 'prettier-js))
 
 (use-package prettier-js
@@ -656,7 +655,6 @@ As it's documented, I need to define a function to share it in some modes.
 #+begin_src emacs-lisp
 (defun setup-tide-mode ()
   (interactive)
-  (message "setup-tide-mode")
   (my-bind-prettier-js)
   (tide-setup)
   (flycheck-mode t)
