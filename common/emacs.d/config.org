@@ -383,7 +383,9 @@ Magit for Git.
 
 #+begin_src emacs-lisp
 (use-package magit
-  :bind ("C-x g" . magit-status))
+  :bind ("C-x g" . magit-status)
+  :config
+  (setq magit-completing-read-function 'ivy-completing-read))
 #+end_src
 
 Show changed lines.
@@ -437,14 +439,14 @@ https://git.trevdev.ca/trevdev/dotfiles/src/commit/4b684ba5877278aee0d3d6a2e1dea
   (after-init . global-company-mode)
   :bind
   (("TAB" . company-indent-or-complete-common)
-   ("C-." . company-complete-common))
-  (:map company-active-map
-        ("C-n" . company-select-next)
-        ("C-p" . company-select-previous)
-        ("<tab>" . company-complete-common-or-cycle)
-        :map company-search-map
-        ("C-p" . company-select-previous)
-        ("C-n" . company-select-next))
+   ("C-." . company-complete-common)
+   :map company-active-map
+   ("C-n" . company-select-next)
+   ("C-p" . company-select-previous)
+   ("<tab>" . company-complete-common-or-cycle)
+   :map company-search-map
+   ("C-p" . company-select-previous)
+   ("C-n" . company-select-next))
   :defines
   (company-dabbrev-ignore-case company-dabbrev-downcase)
   :custom
