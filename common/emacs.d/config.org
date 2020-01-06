@@ -638,6 +638,7 @@ Some projects I'm currently working on doesn't use =Prettier=, so I cannot enabl
    "\\.djhtml\\'"
    "\\.blade\\.php\\'" ;; move this under PHP
    "\\.ejs\\'"
+   "\\.vue\\'"
    "\\.tag\\'")
   :hook (web-mode . #'my-bind-prettier-js)
   :config
@@ -742,17 +743,19 @@ Emacs 27 has grate support of JSX built-in!! Using it with =tide= is a thing.
 
 *** Vue
 
-Vue provides own LSP. However, eglot needs one LSP for one major-mode. So define =vue-mode= as an alias of =web-mode=. (Also see this https://github.com/joaotavora/eglot/issues/47)
+It doesn't work ... Use =web-mode= until I find workaround.
 
-#+begin_src emacs-lisp
-(use-package web-mode
-  :after eglot
-  :config
-  (define-derived-mode vue-mode web-mode "Vue")
-  (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
-  (add-to-list 'eglot-server-programs '(vue-mode . ("vls"))))
-(add-hook 'web-mode-hook #'my-bind-prettier-js)
-#+end_src
+# Vue provides own LSP. However, eglot needs one LSP for one major-mode. So define =vue-mode= as an alias of =web-mode=. (Also see this https://github.com/joaotavora/eglot/issues/47)
+
+# #+begin_src emacs-lisp
+# (use-package web-mode
+#   :after eglot
+#   :config
+#   (define-derived-mode vue-mode web-mode "Vue")
+#   (add-to-list 'auto-mode-alist '("\\.vue\\'" . vue-mode))
+#   (add-to-list 'eglot-server-programs '(vue-mode . ("vls"))))
+# (add-hook 'web-mode-hook #'my-bind-prettier-js)
+# #+end_src
 
 *** TODO ESLint
 
