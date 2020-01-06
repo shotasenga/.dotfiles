@@ -16,12 +16,13 @@ create_symlinks() {
 
     for FILE in $(ls "$SOURCE_DIR" 2>/dev/null); do
         local TARGET="$HOME/.$FILE"
+        # local TARGET="$HOME/.config/$FILE"
         local SOURCE="$SOURCE_DIR/$FILE"
 
         echo create a link "'$TARGET" from "'$SOURCE'"
 
         if [ -e "$TARGET" ] && [ ! -L "$TARGET" ]; then
-            echo "WARNING: $TEARGET already exists however not a symlink"
+            echo "WARNING: $TEARGET already exists, but not a symlink"
         else
             if [ -L "$TARGET" ]; then
                 echo "WARNING: $TARGET is already linked and will be updated"

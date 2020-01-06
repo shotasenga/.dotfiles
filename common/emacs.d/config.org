@@ -33,7 +33,8 @@ brew install emacs-head --with-cocoa --with-imagemagick --with-jansson --HEAD
 Define utility variables for the rest of config.
 
 #+begin_src emacs-lisp
-(setq my--is-macos (eq window-system 'ns))
+(setq my--is-macos (eq system-type 'darwin))
+(setq my--is-linux (eq system-type 'gnu/linux))
 #+end_src
 
 
@@ -78,8 +79,11 @@ Use =Hack= as the default font, =Hiragino= for Japanese. It seems [[https://ladi
 (when window-system
   (setq use-default-font-for-symbols nil)
 
-  (set-face-attribute 'default nil :family "Hack"
-                      :height 125)
+  (if my--is-macos
+      (set-face-attribute 'default nil :font "Hack-12"))
+  (if my--is-linux
+      (set-face-attribute 'default nil :font "Hack-10"))
+
   (set-fontset-font nil
                     'japanese-jisx0208
                     (font-spec :family "Hiragino Kaku Gothic ProN"))
@@ -126,8 +130,6 @@ My theme of choise is =doom-dracula= which looks better with high contrast compa
 
 I picked =moody= modeline with some tweak.
 
-/TODO: fix glitchy look of separator./
-
 #+begin_src emacs-lisp
 (use-package moody
   :config
@@ -135,8 +137,16 @@ I picked =moody= modeline with some tweak.
   (moody-replace-mode-line-buffer-identification)
   (moody-replace-vc-mode)
   (let ((line (face-attribute 'mode-line :underline)))
-    (set-face-attribute 'mode-line          nil :font "Hack-12")
-    (set-face-attribute 'mode-line-inactive nil :font "Hack-12")
+    (when my--is-linux
+      (set-face-attribute 'mode-line          nil :font "Hack-11")
+      (set-face-attribute 'mode-line-inactive nil :font "Hack-11"))
+
+    (when my--is-macos
+      (set-face-attribute 'mode-line          nil :font "Hack-9")
+      (set-face-attribute 'mode-line-inactive nil :font "Hack-9"))
+
+    (set-face-attribute 'mode-line          nil :font "Hack-9")
+    (set-face-attribute 'mode-line-inactive nil :font "Hack-9")
     (set-face-attribute 'mode-line          nil :overline   line)
     (set-face-attribute 'mode-line-inactive nil :overline   line)
     (set-face-attribute 'mode-line-inactive nil :underline  line)

@@ -48,13 +48,13 @@ brew install fisherman
 
 # Apps
 brew install awscli
-brew install colordiff
 brew install ccls
 brew install emacs-head --with-cocoa --with-imagemagick --with-jansson --HEAD
 brew install fasd
 brew install fd
 brew install ffmpeg
 brew install git
+brew install heroku
 brew install httpie
 brew install hugo
 brew install imagemagick
@@ -69,10 +69,10 @@ brew install rmtrash
 brew install sqlite3
 brew install subversion
 brew install tig
+brew install tmux
 brew install tree
-brew install youtube-dl
-brew install heroku
 brew install watch
+brew install youtube-dl
 
 
 # ------------------------------
