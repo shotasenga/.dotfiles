@@ -56,6 +56,8 @@ switch (uname)
     case Linux
         set -x SHELL /usr/bin/fish
         alias del='gio trash'
+        alias pbcopy='xsel -i -p; and xsel -o -p | xsel -i -b'
+        alias pbpaste='xsel -o'
     case Darwin
         set -x SHELL /usr/local/bin/fish
         set -x PATH /usr/local/bin /usr/local/sbin $PATH
