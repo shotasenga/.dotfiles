@@ -36,7 +36,6 @@
                       blank-mode
                       coffee-mode
                       dash
-                      deft
                       epl
                       exec-path-from-shell
                       flymake-cursor
@@ -231,18 +230,6 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; @ ReST restructuredtext
 (add-hook 'rst-mode-hook 'turn-on-orgtbl)
-
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; @ Deft
-;; http://jblevins.org/projects/deft/
-(setq deft-directory "~/Dropbox/Notes")
-(setq deft-use-filename-as-title t)
-;; TODO include "taskpaper" ?
-(setq deft-extensions '("md" "markdown" "txt" "text" "org"))
-(setq deft-text-mode 'markdown-mode)
-(global-set-key (kbd "<f8>") 'deft)
-(setq deft-recursive t)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
