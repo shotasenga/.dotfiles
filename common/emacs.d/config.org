@@ -729,6 +729,7 @@ As it's documented, I need to define a function to share it in some modes.
 
 #+begin_src emacs-lisp
 (defun setup-tide-mode ()
+  "Activate tide-mode"
   (interactive)
   (my-bind-prettier-js)
   (tide-setup)
@@ -746,7 +747,7 @@ Use =typescript-mode= as the major mode for TS.
   :mode ("\\.ts\\'"))
 
 ;; I get max-lisp-eval-depth error with =:hook=. So use add-hook instead.
-(add-hook 'typescript-mode-hook #'setup-tide-mode)
+;; (add-hook 'typescript-mode-hook #'setup-tide-mode)
 #+end_src
 
 And finally, enable tide for =typescript-mode= and =web-mode=.
@@ -763,7 +764,7 @@ And finally, enable tide for =typescript-mode= and =web-mode=.
 Emacs 27 has grate support of JSX built-in!! Using it with =tide= is a thing.
 
 #+begin_src emacs-lisp
-(add-hook 'js-mode-hook #'setup-tide-mode)
+;; (add-hook 'js-mode-hook #'setup-tide-mode)
 ;; configure javascript-tide checker to run after your default javascript checker
 ;; (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
 ;; prevent eslint check command: eslint --print-config .
@@ -776,11 +777,11 @@ Emacs 27 has grate support of JSX built-in!! Using it with =tide= is a thing.
 =typescript-mode= doesn't support TSX. So I need to mix it with =web-mode=. (As for JavaScript, =js-mode= supports JSX in Emacs 27.)
 
 #+begin_src emacs-lisp
-(use-package web-mode
-  :mode ("\\.tsx\\'")
-  :hook (web-mode . (lambda ()
-                      (when (string-equal "tsx" (file-name-extension buffer-file-name))
-                        (setup-tide-mode)))))
+;; (use-package web-mode
+;;   :mode ("\\.tsx\\'")
+;;   :hook (web-mode . (lambda ()
+;;                       (when (string-equal "tsx" (file-name-extension buffer-file-name))
+;;                         (setup-tide-mode)))))
 
 ;; TODO: enable linter, maybe
 ;; (flycheck-add-mode 'typescript-tslint 'web-mode) ; tsx
