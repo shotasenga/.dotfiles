@@ -215,7 +215,12 @@ Jump around the windows with =ace-window=. The package provides ways to swiching
   :diminish
   :bind ("C-c C-;" . ace-window)
   :config
-  (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l ?\;)))
+  (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l ?\;))
+  (set-face-attribute
+   'aw-leading-char-face nil
+   :foreground "deep sky blue"
+   :weight 'bold
+   :height 3.0))
 #+end_src
 
 | key               | what                |
