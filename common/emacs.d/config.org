@@ -184,7 +184,7 @@ Don't show line numbers. Show column numbers.
 
 #+begin_src emacs-lisp
 (use-package which-key
-  :ensure t
+  :diminish
   :config
   (setq which-key-idle-delay 0.4)
   (which-key-mode))
@@ -212,6 +212,7 @@ Jump around the windows with =ace-window=. The package provides ways to swiching
 
 #+begin_src emacs-lisp
 (use-package ace-window
+  :diminish
   :bind ("C-c C-;" . ace-window)
   :config
   (setq aw-keys '(?a ?s ?d ?f ?j ?k ?l ?\;)))
@@ -228,6 +229,7 @@ Jump around the windows with =ace-window=. The package provides ways to swiching
 
 #+begin_src emacs-lisp
 (use-package avy
+  :diminish
   :bind ("C-;" . avy-goto-char-timer)
   :config
   (setq avy-timeout-seconds 0.3))
@@ -239,6 +241,7 @@ Multiple cursors.
 
 #+begin_src emacs-lisp
 (use-package multiple-cursors
+  :diminish
   :init
   (global-unset-key (kbd "M-<down-mouse-1>"))
   :bind (("C->" . 'mc/mark-next-like-this)
@@ -268,6 +271,7 @@ https://www.emacswiki.org/emacs/RedoPlus
 
 #+begin_src emacs-lisp
 (use-package redo+
+  :diminish
   :bind ("C-?" . redo)
   :config
   (setq undo-no-redo t))
@@ -325,6 +329,7 @@ TIP: Press =M-n= on swiper inserts a "thing" at point (=swiper-isearch-thing-at-
 
 #+begin_src emacs-lisp
 (use-package counsel
+  :diminish ivy-mode counsel-mode
   :hook
   (after-init . ivy-mode)
 
@@ -368,9 +373,10 @@ TIP: Press =M-n= on swiper inserts a "thing" at point (=swiper-isearch-thing-at-
 - =flx= provide more flexible fuzzy search. (I found [[https://oremacs.com/2016/01/06/ivy-flx/][a blog post]] by the author of =ivy=)
 
 #+begin_src emacs-lisp
-(use-package amx :after counsel)
-(use-package flx :after counsel)
+(use-package amx :diminish :after counsel)
+(use-package flx :diminish :after counsel)
 (use-package ivy-rich
+  :diminish
   :after counsel
   :config 
   (ivy-rich-mode t))
@@ -394,6 +400,7 @@ Enable =rainbow-delimiters= for =prog-mode=, not only lispish language.
 
 #+begin_src emacs-lisp
 (use-package rainbow-delimiters
+  :diminish
   :hook (prog-mode . rainbow-delimiters-mode)
   :config
   (eldoc-add-command 'paredit-backward-delete
@@ -415,6 +422,7 @@ Show changed lines.
 
 #+begin_src emacs-lisp
 (use-package git-gutter
+  :diminish
   :config (global-git-gutter-mode t))
 #+end_src
 
@@ -422,6 +430,7 @@ Show changed lines.
 
 #+begin_src emacs-lisp
 (use-package yasnippet
+  :diminish
   :config
   (yas-global-mode 1))
 #+end_src
@@ -452,6 +461,7 @@ https://git.trevdev.ca/trevdev/dotfiles/src/commit/4b684ba5877278aee0d3d6a2e1dea
 
 #+begin_src emacs-lisp
 (use-package company
+  :diminish
   :hook
   (after-init . global-company-mode)
   :bind
@@ -479,6 +489,7 @@ Enhance =company-mode= with icons. You need to run ~all-the-icons-install-fonts~
 #+begin_src emacs-lisp
 (use-package all-the-icons)
 (use-package company-box
+  :diminish
   :hook (company-mode . company-box-mode)
   :init (setq company-box-backends-colors nil
               company-box-show-single-candidate t
@@ -568,6 +579,7 @@ Enhance =company-mode= with icons. You need to run ~all-the-icons-install-fonts~
 
 #+begin_src emacs-lisp
 (use-package dumb-jump
+  :diminish
   :bind
   (("M-." . dumb-jump-go))
   :config
@@ -591,6 +603,7 @@ I preffer having indent highlight especially for Python. It works a bit odd thou
 
 #+begin_src emacs-lisp
 (use-package highlight-indent-guides
+  :disabled
   ;; :disabled
   :hook (prog-mode . highlight-indent-guides-mode)
   :custom
