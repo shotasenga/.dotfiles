@@ -1180,3 +1180,11 @@ Enable alphabetical lists.
 
 TBD
 
+
+* Other Utilities
+** Scratch
+=M-x scratch= to create a scratch buffer with the current =major-mode=. =C-u M-x scratch= propmpts you to choose the mode.
+
+#+begin_src emacs-lisp
+(use-package scratch :commands scratch)
+#+end_src
