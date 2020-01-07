@@ -308,6 +308,14 @@ Search text in region.
   (after-init . global-hungry-delete-mode))
 #+end_src
 
+** Beacon
+
+#+begin_src emacs-lisp
+(use-package beacon
+  :hook
+  (after-init . beacon-mode))
+#+end_src
+
 ** TODO Japanese Input with Mozc
 =emacs-mozc= is conflicting with =fcitx-mozc=.
 https://wiki.archlinux.org/index.php/Mozc
