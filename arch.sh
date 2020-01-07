@@ -40,6 +40,7 @@ sudo pacman -S --needed tmux
 sudo pacman -S --needed tree
 sudo pacman -S --needed unarchiver
 sudo pacman -S --needed unzip
+sudo pacman -S --needed xsel
 sudo pacman -S --needed youtube-dl
 sudo pacman -S --needed z
 sudo pacman -S --needed zip
