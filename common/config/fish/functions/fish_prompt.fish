@@ -12,8 +12,8 @@ function fish_prompt
   end
 
   # show cwd
-  set_color $fish_color_cwd
-  printf '  %s' (prompt_pwd)
+  set_color 81a1c1
+  printf ' %s' (prompt_pwd)
 
   # show git infomation
   set_color normal
@@ -24,7 +24,7 @@ function fish_prompt
   end
 
   # show FISH
-  set_color -o yellow
+  set_color -o ebcb8b
   printf '⋊> '
   set_color normal
 end
