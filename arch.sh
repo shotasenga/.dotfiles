@@ -44,6 +44,7 @@ sudo pacman -S --needed xsel
 sudo pacman -S --needed youtube-dl
 sudo pacman -S --needed z
 sudo pacman -S --needed zip
+sudo pacman -S --needed unarchiver
 yay         -S --needed global
 yay         -S --needed heroku-cli
 yay         -S --needed peco
