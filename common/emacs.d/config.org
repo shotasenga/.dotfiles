@@ -768,7 +768,9 @@ Use =typescript-mode= as the major mode for TS.
 
 #+begin_src emacs-lisp
 (use-package typescript-mode
-  :mode ("\\.ts\\'"))
+  :mode ("\\.ts\\'")
+  :config
+  (setq typescript-indent-level 2))
 
 ;; I get max-lisp-eval-depth error with =:hook=. So use add-hook instead.
 ;; (add-hook 'typescript-mode-hook #'setup-tide-mode)
