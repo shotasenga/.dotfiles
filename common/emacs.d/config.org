@@ -404,6 +404,11 @@ TIP: Press =M-n= on swiper inserts a "thing" at point (=swiper-isearch-thing-at-
   (ivy-rich-mode t))
 #+end_src
 
+** ibuffer
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-x b") 'ibuffer)
+#+end_src
 
 * Dashboard
 
