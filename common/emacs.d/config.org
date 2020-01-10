@@ -373,7 +373,7 @@ TIP: Press =M-n= on swiper inserts a "thing" at point (=swiper-isearch-thing-at-
 
   :bind
   (("M-x" . 'counsel-M-x)
-   ("C-x C-b" .  'ivy-switch-buffer)
+   ;; ("C-x C-b" .  'ivy-switch-buffer)
    ("C-x C-f" .  'counsel-find-file)
    ("C-s" . 'swiper-isearch)
    ("C-r" . 'swiper-isearch-backward)
@@ -407,7 +407,7 @@ TIP: Press =M-n= on swiper inserts a "thing" at point (=swiper-isearch-thing-at-
 ** ibuffer
 
 #+begin_src emacs-lisp
-(global-set-key (kbd "C-x b") 'ibuffer)
+(global-set-key (kbd "C-x C-b") 'ibuffer)
 #+end_src
 
 * Dashboard
