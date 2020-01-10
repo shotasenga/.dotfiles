@@ -435,6 +435,11 @@ TIP: Press =M-n= on swiper inserts a "thing" at point (=swiper-isearch-thing-at-
 
 * File Management
 
+Prefer files move to the trash.
+
+#+begin_src emacs-lisp
+(setq  delete-by-moving-to-trash t)
+#+end_src
 
 * Programming
 
