@@ -681,6 +681,12 @@ I use =eglot= as the front-end of LSP. You need to install language server for e
 
 ** Front-end
 
+TODO: use /current/ version which defined on =~/.config/nvm/version=
+
+#+begin_src emacs-lisp
+(add-to-list 'exec-path "~/.config/nvm/12.14.0/bin")
+#+end_src
+
 *** Prettier
 
 Set up =Prettier= for code fomatting. This requires =Prettier= executable. You can install it by running ~npm install -g~. 
