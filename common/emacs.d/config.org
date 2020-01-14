@@ -792,6 +792,12 @@ Use =typescript-mode= as the major mode for TS.
 ;; (add-hook 'typescript-mode-hook #'setup-tide-mode)
 #+end_src
 
+#+begin_src emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+;; enable typescript-tslint checker
+;; (flycheck-add-mode 'typescript-tslint 'web-mode)
+#+end_src
+
 And finally, enable tide for =typescript-mode= and =web-mode=.
 
 #+begin_src emacs-lisp
