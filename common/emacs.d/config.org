@@ -727,7 +727,7 @@ Some projects I'm currently working on doesn't use =Prettier=, so I cannot enabl
    "\\.ejs\\'"
    "\\.vue\\'"
    "\\.tag\\'")
-  :hook (web-mode . #'my-bind-prettier-js)
+  ;; :hook (web-mode . #'my-bind-prettier-js)
   :config
   ;; engine
   (setq web-mode-engines-alist
@@ -1038,7 +1038,8 @@ rustup component add rls rust-analysis rust-src
    "\\.eslintrc\\'"
    "\\.prettierrc\\'"
    "\\.tslintrc\\'")
-  :hook (json-mode . #'my-bind-prettier-js))
+  ;; :hook (json-mode . #'my-bind-prettier-js)
+)
 #+end_src
 
 ** YAML
