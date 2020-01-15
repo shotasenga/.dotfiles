@@ -48,7 +48,6 @@
                       popup
                       powerline
                       rainbow-mode
-                      restclient
                       rich-minority
                       sass-mode
                       slime

@@ -669,6 +669,14 @@ I preffer having indent highlight especially for Python. It works a bit odd thou
 )
 #+end_src
 
+** Restclient
+
+#+begin_src emacs-lisp
+(use-package restclient
+  :mode
+  (("\\.http\\'" "\\.restclient") . restclient-mode))
+#+end_src
+
 * Programming/Markup Languages
 
 ** Language Server Protocol
@@ -1144,10 +1152,13 @@ Prefer no indentation in the =src= block.
 Activate languages for Babel. Only =emacs-lisp= is activated in default. The available languages are listed on [[https://orgmode.org/manual/Languages.html][here]].
 
 #+begin_src emacs-lisp
+(use-package ob-restclient)
+
 (org-babel-do-load-languages
  'org-babel-load-languages
  '((js . t)
-   (python . t)))
+   (python . t)
+   (restclient . t)))
 #+end_src
 
 Do not ask me to confirm evaluation for any languages.
@@ -1173,11 +1184,8 @@ Add structure templates for languages which frequently used.
 (add-to-list 'org-structure-template-alist '("el" . "src emacs-lisp"))
 (add-to-list 'org-structure-template-alist '("py" . "src python"))
 (add-to-list 'org-structure-template-alist '("js" . "src js"))
+(add-to-list 'org-structure-template-alist '("rest" . "src restclient"))
 #+end_src
-
-*** TODO add ob-restclient if I find useful
-
-see https://github.com/danielmai/.emacs.d/blob/master/config.org#org-babel-languages
 
 ** Task Management
 
