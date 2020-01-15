@@ -410,6 +410,18 @@ TIP: Press =M-n= on swiper inserts a "thing" at point (=swiper-isearch-thing-at-
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 #+end_src
 
+** Origami
+
+Immitate the keybind form =vscode= to fold/unfold code blocks. /I should try and compare other packages/.
+
+#+begin_src emacs-lisp
+(use-package origami
+  :hook ((prog-mode web-mode) . origami-mode)
+  :bind (:map origami-mode-map
+               ("M-s-[" . origami-close-node)
+               ("M-s-]" . origami-show-node)))
+#+end_src
+
 * Dashboard
 
 #+begin_src emacs-lisp
