@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+
+import sys
+import re
+from datetime import datetime, timedelta
+
+TIMEZONE = (
+    ("JST", +9),
+    ("PST", -8),
+    # ("PDT", -7),
+)
+
+def conver_time(time):
+    for from_name, from_delta in TIMEZONE:
+        utc = time + timedelta(hours=from_delta * -1)
+        print(time.strftime("%H:%M"), f"({from_name}) is: ", end="")
+
+        for to_name, to_delta in TIMEZONE:
+            if from_name == to_name:
+                continue
+            t = utc + timedelta(hours=to_delta)
+            print(t.strftime("%H:%M"), f"({to_name}) ", end="")
+        print("")
+
+
+def main():
+    if len(sys.argv) < 2:
+        input_text = datetime.now().strftime("%H:%M")
+    else:
+        input_text = sys.argv[1]
+
+    if not re.match(r"\d{1,2}:\d{1,2}$", input_text):
+        print("time format error")
+        sys.exit(1)
+
+    time = datetime.strptime(input_text, "%H:%M")
+    conver_time(time)
+
+if __name__ == '__main__':
+    main()
