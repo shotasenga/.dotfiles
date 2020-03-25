@@ -80,8 +80,14 @@ Use =Hack= as the default font, =Hiragino= for Japanese. It seems [[https://ladi
 (when window-system
   (setq use-default-font-for-symbols nil)
 
-  (if my--is-macos
-      (set-face-attribute 'default nil :font "Hack-12"))
+  (when my--is-macos
+    (setq
+     mac-option-key-is-meta t
+     mac-option-modifier 'none
+     mac-command-key-is-meta t
+     mac-command-modifier 'meta)
+    (set-face-attribute 'default nil :font "Hack-12"))
+
   (if my--is-linux
       (set-face-attribute 'default nil :font "Hack-10"))
 
