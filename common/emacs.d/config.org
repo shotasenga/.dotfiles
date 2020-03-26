@@ -83,10 +83,10 @@ Use =Hack= as the default font, =Hiragino= for Japanese. It seems [[https://ladi
   (when my--is-macos
     (setq
      mac-option-key-is-meta t
-     mac-option-modifier 'none
+     mac-option-modifier 'meta
      mac-command-key-is-meta t
      mac-command-modifier 'meta)
-    (set-face-attribute 'default nil :font "Hack-12"))
+    (set-face-attribute 'default nil :font "Hack-13"))
 
   (if my--is-linux
       (set-face-attribute 'default nil :font "Hack-10"))
@@ -149,11 +149,9 @@ I picked =moody= modeline with some tweak.
       (set-face-attribute 'mode-line-inactive nil :font "Hack-11"))
 
     (when my--is-macos
-      (set-face-attribute 'mode-line          nil :font "Hack-9")
-      (set-face-attribute 'mode-line-inactive nil :font "Hack-9"))
+      (set-face-attribute 'mode-line          nil :font "Hack-11")
+      (set-face-attribute 'mode-line-inactive nil :font "Hack-11"))
 
-    (set-face-attribute 'mode-line          nil :font "Hack-9")
-    (set-face-attribute 'mode-line-inactive nil :font "Hack-9")
     (set-face-attribute 'mode-line          nil :overline   line)
     (set-face-attribute 'mode-line-inactive nil :overline   line)
     (set-face-attribute 'mode-line-inactive nil :underline  line)
@@ -194,6 +192,7 @@ Don't show line numbers. Show column numbers.
   :diminish
   :config
   (setq which-key-idle-delay 0.4)
+  (setq inhibit-compacting-font-caches nil)
   (which-key-mode))
 #+end_src
 
