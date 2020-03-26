@@ -257,6 +257,7 @@ Multiple cursors.
   (global-unset-key (kbd "M-<down-mouse-1>"))
   :bind (("C->" . 'mc/mark-next-like-this)
          ("C-<" . 'mc/mark-previous-like-this)
+         ("C-:" . 'mc/edit-lines)
          ("M-<mouse-1>" . 'mc/add-cursor-on-click)
          ;; TODO these keybindings are conflicting with =outline-promote/demote=
          ("C-c C-<" . 'mc/mark-all-like-this)
@@ -691,7 +692,8 @@ I preffer having indent highlight especially for Python. It works a bit odd thou
 #+begin_src emacs-lisp
 (use-package restclient
   :mode
-  (("\\.http\\'" "\\.restclient") . restclient-mode))
+  ("\\.http\\'" . restclient-mode)
+  ("\\.restclient" . restclient-mode))
 #+end_src
 
 * Programming/Markup Languages
@@ -709,6 +711,7 @@ I use =eglot= as the front-end of LSP. You need to install language server for e
 TODO: use /current/ version which defined on =~/.config/nvm/version=
 
 #+begin_src emacs-lisp
+;; TODO: why won't this line executed?
 (add-to-list 'exec-path "~/.config/nvm/12.14.0/bin")
 #+end_src
 
@@ -742,21 +745,28 @@ Some projects I'm currently working on doesn't use =Prettier=, so I cannot enabl
   :mode
   ("\\.html\\'"
    "\\.phtml\\'"
-   "\\.tpl\\.php\\'"
+   "\\.tpl.php\\'"
    "\\.jsp\\'"
    "\\.as[cp]x\\'"
    "\\.erb\\'"
    "\\.mustache\\'"
    "\\.djhtml\\'"
-   "\\.blade\\.php\\'" ;; move this under PHP
+   "\\.blade.php\\'" ;; move this under PHP
    "\\.ejs\\'"
    "\\.vue\\'"
+   "\\.jinja2\\'"
+   "\\.j2\\'"
+   "\\.tpl\\'"
    "\\.tag\\'")
   ;; :hook (web-mode . #'my-bind-prettier-js)
   :config
   ;; engine
   (setq web-mode-engines-alist
         '(("php"    . "\\.phtml\\'")
+          ("php"    . "\\.blade.php\\'")
+          ("django" . "\\.jinja\\")
+          ("django" . "\\.jinja2\\")
+          ("django" . "\\.j2\\")
           ("ruby"  . "\\.erb\\'")))
 
   ;; face
@@ -775,7 +785,7 @@ Some projects I'm currently working on doesn't use =Prettier=, so I cannot enabl
 
 #+begin_src emacs-lisp
 (use-package emmet-mode
-  :hook (css-mode web-mode sgml-mode)
+  :hook (css-mode web-mode sgml-mode js-jsx-mode)
   :config
   (setq emmet-self-closing-tag-style " /"
         emmet-move-cursor-between-quotes t))
@@ -847,6 +857,8 @@ Emacs 27 has grate support of JSX built-in!! Using it with =tide= is a thing.
 ;; prevent eslint check command: eslint --print-config .
 ;;https://github.com/suonlight/.emacs.d/blob/8f9b8a2aa6fc7a38d2b97b0b0c0a6acecf676a65/core/lang-js.el
 ;; (advice-add 'flycheck-eslint-config-exists-p :override (lambda() t))
+;;(add-to-list 'auto-mode-alist "\\.js\\'" . js-jsx-mode)
+;;(add-to-list 'auto-mode-alist "\\.jsx\\'" . js-jsx-mode)
 #+end_src
 
 *** TSX, JSX
@@ -1242,5 +1254,7 @@ TBD
 =M-x scratch= to create a scratch buffer with the current =major-mode=. =C-u M-x scratch= propmpts you to choose the mode.
 
 #+begin_src emacs-lisp
-(use-package scratch :commands scratch)
+(use-package scratch
+  :commands scratch
+  :bind ("<f12>" . scratch))
 #+end_src
