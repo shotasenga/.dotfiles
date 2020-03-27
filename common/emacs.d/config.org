@@ -189,6 +189,7 @@ Don't show line numbers. Show column numbers.
 
 #+begin_src emacs-lisp
 (use-package which-key
+  :disabled
   :diminish
   :config
   (setq which-key-idle-delay 0.4)
@@ -196,8 +197,8 @@ Don't show line numbers. Show column numbers.
   (which-key-mode))
 #+end_src
 
-Sometimes =which-key== crashes Emacs.
-https://github.com/justbur/emacs-which-key/issues/130#issuecomment-416299329
+I've disabled this because of [[https://github.com/justbur/emacs-which-key/issues/130#issuecomment-416299329][this issue]]
+
 
 #+begin_src emacs-lisp
 (setq inhibit-compacting-font-caches t)
