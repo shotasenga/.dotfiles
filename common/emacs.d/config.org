@@ -502,6 +502,8 @@ Show changed lines.
 
 ** Snippets
 
+The snippets are not include in the repo. By now, I use [[https://github.com/AndreaCrotti/yasnippet-snippets][AndreaCrotti/yasnippet-snippets]] by cpyoing the files under =.snippets= directory.
+
 #+begin_src emacs-lisp
 (use-package yasnippet
   :diminish
