@@ -36,7 +36,8 @@ local whiteListApps = {
    iThoughtsX = true,
    Dynalist = true,
    Slack = true,
-   ['Google Chrome'] = true
+   ['Google Chrome'] = true,
+   Notion = true
 }
 
 local appsForPartialKeymap = {
