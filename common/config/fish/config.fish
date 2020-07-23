@@ -8,12 +8,23 @@ set -x EDITOR emacsclient
 set -x VISUAL $EDITOR
 
 ## Paths
+switch (uname)
+    case Linux
+        set -x SHELL /usr/bin/fish
+    case Darwin
+        set -x SHELL /usr/local/bin/fish
+        set -x PATH /usr/local/bin /usr/local/sbin $PATH
+        set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
+        set -x PATH "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $PATH
+end
+
+
 # - local scripts
 set -x PATH $HOME/.bin $PATH
 set -x PATH $HOME/.bin/local $PATH
 
 # # - nodebrew
-# set -x PATH $HOME/.nodebrew/current/bin $PATH
+set -x PATH $HOME/.nodebrew/current/bin $PATH
 
 # - php
 # source ~/.phpbrew/phpbrew.fish
@@ -34,7 +45,7 @@ set -x PYENV_ROOT $HOME/.pyenv
 set -x PATH $PYENV_ROOT/bin $PATH
 set -x PIPENV_VENV_IN_PROJECT true
 status --is-interactive; and source (pyenv init -|psub)
-# status --is-interactive; and source (pyenv virtualenv-init -|psub)
+status --is-interactive; and source (pyenv virtualenv-init -|psub)
 
 # Rust
 set -x PATH $HOME/.cargo/bin $PATH
@@ -54,16 +65,10 @@ alias create-react-app="npx create-react-app"
 
 switch (uname)
     case Linux
-        set -x SHELL /usr/bin/fish
         alias del='gio trash'
         alias pbcopy='xsel -i -p; and xsel -o -p | xsel -i -b'
         alias pbpaste='xsel -o'
     case Darwin
-        set -x SHELL /usr/local/bin/fish
-        set -x PATH /usr/local/bin /usr/local/sbin $PATH
-        set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
-        set -x PATH "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $PATH
-
         alias del=rmtrash
         alias cliptmux="tmux showb|pbcopy"
         alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
