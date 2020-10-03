@@ -3,6 +3,7 @@
     excludesfile = ~/.gitignore
     editor = vi
     hooksPath = ~/.githooks
+	ignorecase = false
 [alias]
     st = status
     co = checkout
