@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Trable shooting Bluetooth connection with Mac and Bose headphone
+# https://www.notion.so/senta/Bluetooth-Trouble-on-macOS-349406b46d3f498abc94fc1deead19b9#3d54b36d43c1431da89dc89a87a30261
+
+# rm /Library/Preferences/com.apple.Bluetooth.plist
+# echo reboot the Mac and hold CMD + OPTION + P + R for 20 seconds
+
+
+# https://community.bose.com/t5/Around-On-Ear-Headphones/Bose-QuietComfort-35-II-keeps-disconnecting-connecting-to-macOS/m-p/528211#M63431
+# it seems "coreaudio" has something to do with the issue. so KILL it.
+
+sudo kill -9 `ps ax | grep 'coreaudiod' | grep -v grep | awk '{print $1}'`
