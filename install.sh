@@ -21,14 +21,14 @@ fi
 
 if [ -e $DESTINATION ]; then
     echo "It seems like you already have the dotfiles"
-    read -p "Do you want to run the setup script? [y/n]: " YN
+    read -p "Do you want to run the setup script anyway? [y/n]: " YN
 
     case $YN in
         [Yy]*) ;;
         *) exit 0;;
     esac
 else
-    echo git clone --recursive $REPO_URI $DESTINATION    
+    git clone --recursive $REPO_URI $DESTINATION    
 fi
 
 sh $DESTINATION/$ENV_NAME.sh
