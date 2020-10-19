@@ -6,7 +6,7 @@ Installs applications and creates links to configuration files.
 ## Setup
 
 ```
-curl https://raw.githubusercontent.com/senta/.dotfiles/master/setup.sh| sh
+curl https://raw.githubusercontent.com/senta/.dotfiles/master/install.sh| sh
 ```
 
 ## Script Structure
