@@ -1,0 +1,15 @@
+#!/bin/bash
+# Toggle desktop icons by modify the defults value
+
+CURRENT_VALUE=$(defaults read com.apple.finder CreateDesktop false 2>&1)
+
+if [ "$CURRENT_VALUE" = "false" ]; then
+  defaults write com.apple.finder CreateDesktop true
+  echo "Desktop is visible 🤗"
+else
+  defaults write com.apple.finder CreateDesktop false
+  echo "Desktop is hidden 🤫"
+fi
+
+killall Finder
+
