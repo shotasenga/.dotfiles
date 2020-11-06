@@ -701,6 +701,20 @@ I preffer having indent highlight especially for Python. It works a bit odd thou
 
 * Programming/Markup Languages
 
+** Scheme
+I need these settings to enjoy SICP. But first of all, you need to have =scheme=. You can install it by running ~brew info mit-scheme~ for Mac or ~sudo apt install mit-scheme~ for Linux.
+
+Here is the cheet-sheet for =Geiser=. See also: [[https://medium.com/@joshfeltonm/setting-up-emacs-for-sicp-from-scratch-daa6473885c5][Setting up Emacs for SICP from Scratch]].
+
+
+#+begin_src emacs-lisp
+(use-package geiser
+  :config
+  (setq geiser-mit-binary "/usr/local/bin/scheme"
+        geiser-active-implementations '(mit)))
+#+end_src
+
+
 ** Language Server Protocol
 
 I use =eglot= as the front-end of LSP. You need to install language server for each language. See  [[https://github.com/joaotavora/eglot#connecting-to-a-server][eglot doc]] for the details.
