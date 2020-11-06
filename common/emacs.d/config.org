@@ -704,6 +704,12 @@ I preffer having indent highlight especially for Python. It works a bit odd thou
 ** Scheme
 I need these settings to enjoy SICP. But first of all, you need to have =scheme=. You can install it by running ~brew info mit-scheme~ for Mac or ~sudo apt install mit-scheme~ for Linux.
 
+1. open a scheme file =*.scm=
+2. Launch Scheme REPL by =M-x run-geiser=
+3. enjoy!
+
+=C-M-x= to evaluate the current line. =C-c-M-e= to evaluate on the REPL.
+
 Here is the cheet-sheet for =Geiser=. See also: [[https://medium.com/@joshfeltonm/setting-up-emacs-for-sicp-from-scratch-daa6473885c5][Setting up Emacs for SICP from Scratch]].
 
 
