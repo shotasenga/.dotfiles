@@ -66,6 +66,7 @@ brew install pup
 brew install rename
 brew install ripgrep
 brew install rmtrash
+brew install spark # https://github.com/holman/spark
 brew install sqlite3
 brew install subversion
 brew install tig
