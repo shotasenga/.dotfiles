@@ -136,6 +136,9 @@ mas install 904280696  # Things 3
 # ------------------------------
 # Python
 # ------------------------------
+# Package management:
+#   install packages globally for day-to-day scripting and use pipenv for projects
+#   that I want to maintain for a long/short term or something I want to share.
 PATH=$HOME/.pyenv/shims:$PATH
 
 brew install pipenv
@@ -153,6 +156,9 @@ fi
 
 # install LSP server for Python
 # pip install python-language-server 'python-language-server[all]'
+# TODO: install termgraph https://github.com/mkaz/termgraph
+# ex. git shortlog -s| awk '{print $2 " " $1}'| termgraph
+# pip install termgraph
 
 
 # ------------------------------
