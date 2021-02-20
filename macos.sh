@@ -83,6 +83,7 @@ brew install youtube-dl
 brew cask install alfred
 brew cask install anki
 brew cask install appcleaner
+brew cask install beekeeper-studio
 brew cask install bettertouchtool
 brew cask install charles
 brew cask install cyberduck
