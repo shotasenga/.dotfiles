@@ -28,7 +28,7 @@ brew upgrade
 
 brew tap homebrew/cask
 brew tap homebrew/cask-fonts
-brew tap daviderestivo/emacs-head
+brew tap d12frosted/emacs-plus
 
 # Dependencies
 brew install jansson
@@ -49,7 +49,7 @@ brew install fisherman
 # Apps
 brew install awscli
 brew install ccls
-brew install emacs-head --with-cocoa --with-imagemagick --with-jansson --HEAD
+brew install emacs-plus
 brew install fasd
 brew install fd
 brew install ffmpeg
