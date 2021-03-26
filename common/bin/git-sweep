@@ -10,16 +10,17 @@ git fetch --all --prune > /dev/null
 MAIN_BRANCH=$(git rev-parse --abbrev-ref origin/HEAD|cut -d '/' -f 2-)
 
 # delete merged branches
-for BRANCH in $(git branch --merged origin/HEAD); do
+git branch --merged origin/HEAD
+for BRANCH in $(git branch --merged origin/HEAD| cut -d ' ' -f 2); do
     if [ $BRANCH = $MAIN_BRANCH ]; then
         continue
     fi
-
+    echo "'" $BRANCH "'"
     git branch -d $BRANCH
 done
 
 # delete tracking branches no longer on remote
-for BRANCH in $(git branch -vv|grep gone|awk '{print $1}'); do
+for BRANCH in $(git branch -vv| grep -vE '(\*|\+)'| grep gone|awk '{print $1}'); do
     if [ $BRANCH = $MAIN_BRANCH ]; then
         continue
     fi
