@@ -13,6 +13,7 @@
 *.sublime-workspace
 *.swp
 .vscode
+*.code-workspace
 GPATH
 GRTAGS
 GTAGS
