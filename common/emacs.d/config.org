@@ -1163,9 +1163,7 @@ Pretty style for bullets with =org-bullets==. Thanks to [[https://zhangda.wordpr
     '((t :weight normal
          :height 0.9))
     "Face for function parameters."
-    :group 'org-bullet-face)
-  :custom
-  (org-bullets-bullet-list '("✣" "✦" "✪" "✡" "❂" "✼")))
+    :group 'org-bullet-face))
 
 #+end_src
 
