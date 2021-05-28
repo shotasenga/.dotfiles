@@ -33,6 +33,7 @@ brew tap d12frosted/emacs-plus
 # Dependencies
 brew install jansson
 brew install aspell
+brew install coreutils
 brew install ctags
 brew install global
 brew install mercurial
@@ -48,6 +49,7 @@ brew install fisherman
 
 # Apps
 brew install awscli
+brew install android-platform-tools
 brew install ccls
 brew install emacs-plus
 brew install fasd
