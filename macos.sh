@@ -94,8 +94,6 @@ brew cask install dropbox
 brew cask install firefox
 brew cask install google-chrome
 brew cask install hammerspoon
-brew cask install hyperswitch
-brew cask install karabiner-elements
 brew cask install linear
 brew cask install mysqlworkbench
 brew cask install processing
