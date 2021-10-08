@@ -182,4 +182,4 @@ source $ZDOTDIR/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $ZDOTDIR/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # https://github.com/kevinywlui/zlong_alert.zsh
 source $ZDOTDIR/plugins/zlong_alert.zsh/zlong_alert.zsh
-export zlong_ignore_cmds="vim ssh less git"
+export zlong_ignore_cmds="vim ssh less git tmux watch"
