@@ -1,3 +1,4 @@
 function fish_user_key_bindings
-  bind \cr 'peco_select_history (commandline -b)'
+    bind \e. 'fzf_complete'
+    bind \cr 'fzf_history'
 end
