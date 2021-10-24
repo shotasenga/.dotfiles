@@ -35,7 +35,7 @@ function asdf_install_versions -d "install all plugins I use for asdf"
 
     # nodejs
     # you can skip pgg key check with NODEJS_CHECK_SIGNAURES=no
-    if ! asdf which nodejs > /dev/null 2>&1
+    if ! asdf which node > /dev/null 2>&1
         asdf plugin add nodejs
         and asdf install nodejs lts-fermium
         and asdf global nodejs lts-fermium
@@ -49,11 +49,11 @@ function asdf_install_versions -d "install all plugins I use for asdf"
     end
 
     # php
-    # if ! asdf which php > /dev/null 2>&1
-    #     asdf plugin-add php
-    #     asdf install php 7.3.31
-    #     asdf global php 7.3.31
-    # end
+    if ! asdf which php > /dev/null 2>&1
+        asdf plugin-add php
+        and PHP_WITHOUT_PDO_PGSQL=yes asdf install php 7.3.31 # I needed to install extra packages like libzip on Arch
+        and asdf global php 7.3.31
+    end
 
     # TODO: ruby
     # TODO: go
