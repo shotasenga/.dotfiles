@@ -1,0 +1,12 @@
+#!/bin/bash
+
+DIR_NAME=${SCREEN_CAPTURE_DIR:-$HOME/images/screenshots}
+FILE_NAME="$(date +%Y-%m-%dT%H:%M:%S).jpg"
+
+maim $@ $DIR_NAME/$FILE_NAME
+
+ACTION=$(dunstify 'Screenshot saved' $FILE_NAME -A "default,Reply" -A "forwardAction,Forward" "Message Received")
+
+if [ $ACTION -eq 2 ]; then
+    xdg-open $DIR_NAME/$FILE_NAME
+fi
