@@ -24,6 +24,7 @@
     path = ~/.gitconfig.local
 [init]
     templatedir = ~/.gittemplate
+    defaultBranch = main
 [diff "sjis"]
     textconv = iconv -f sjis
 [diff "css"]
