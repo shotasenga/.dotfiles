@@ -1,0 +1,21 @@
+#!/bin/bash
+# git subcommand to discard the current changes
+
+if [ $(git status -s | wc -l) -eq 0 ]; then
+    exit 0
+fi
+
+git status -s
+
+read -p "Are you sure you want discard these files? [y/n] " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    git add .
+    git stash > /dev/null
+    hash=$(git stash drop | cut -d '(' -f 2 | cut -d ')' -f 1)
+    echo Run the command below if you want to recover the discarded changes
+    echo -e "\t" git stash apply $hash
+else
+    echo canceled
+fi
