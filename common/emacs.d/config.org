@@ -89,7 +89,7 @@ Use =Hack= as the default font, =Hiragino= for Japanese. It seems [[https://ladi
     (set-face-attribute 'default nil :font "Hack-13"))
 
   (if my--is-linux
-      (set-face-attribute 'default nil :font "Hack-15"))
+      (set-face-attribute 'default nil :font "Hack-11"))
 
   (set-fontset-font nil
                     'japanese-jisx0208
