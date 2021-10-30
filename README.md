@@ -9,6 +9,10 @@ Installs applications and creates links to configuration files.
 curl https://raw.githubusercontent.com/senta/.dotfiles/master/install.sh| sh
 ```
 
+### Emacs
+
+You need to manully run `all-the-icons-install-fonts` to render icons.
+
 ## Script Structure
 
 | path       | description                                        |
