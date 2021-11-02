@@ -5,6 +5,7 @@ DOT_DIR=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 main() {
     # pacman -Syy
     # sudo pacman -S --needed tree htop jq
+    module fish
 }
 
 
