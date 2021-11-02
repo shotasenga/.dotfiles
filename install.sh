@@ -1,34 +1,22 @@
 #!/bin/bash
+#
+# Usage:
+#   git clone git@github.com:shotasenga/.dotfiles.git
+#   bash ./.dotfiles/install.sh
 
 set -e
 
-REPO_URI=git@github.com:senta/.dotfiles.git
-DESTINATION="$HOME/.dotfiles"
+DOT_DIR=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 
-ENV_NAME="Unknown"
 case $(uname -s) in
-    # Linux*)
-    #     ENV_NAME="linux";;
-    Darwin*)
-        ENV_NAME="macos";;
+    Linux)
+        bash $DOT_DIR/install-arch.sh
+        ;;
+    Darwin)
+        bash $DOT_DIR/install-osx.sh
+        ;;
+    *)
+        echo Unknown system
+        exit 1
+        ;;
 esac
-
-if [ $ENV_NAME = "Unknown" ]; then
-    echo "Unknown environment detected."
-    exit 1
-fi
-   
-
-if [ -e $DESTINATION ]; then
-    echo "It seems like you already have the dotfiles"
-    read -p "Do you want to run the setup script anyway? [y/n]: " YN
-
-    case $YN in
-        [Yy]*) ;;
-        *) exit 0;;
-    esac
-else
-    git clone --recursive $REPO_URI $DESTINATION    
-fi
-
-sh $DESTINATION/$ENV_NAME.sh
