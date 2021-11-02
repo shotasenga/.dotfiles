@@ -6,6 +6,7 @@ main() {
     # pacman -Syy
     # sudo pacman -S --needed tree htop jq
     module fish
+    module i3wm
 }
 
 
