@@ -7,4 +7,5 @@ source $DOT_DIR/utils.sh
 # pacman -Syy
 # sudo pacman -S --needed tree htop jq
 module fish
+module git
 module i3wm

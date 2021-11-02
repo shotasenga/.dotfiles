@@ -1,8 +1,7 @@
 [core]
     autocrlf = false
-    excludesfile = ~/.gitignore
-    editor = vi
-    hooksPath = ~/.githooks
+    excludesfile = ~/.config/git/ignore
+    hooksPath = ~/.config/git/hooks
 	ignorecase = false
 [alias]
     st = status
@@ -23,7 +22,7 @@
 [include]
     path = ~/.gitconfig.local
 [init]
-    templatedir = ~/.gittemplate
+    templatedir = ~/.config/git/template
     defaultBranch = main
 [diff "sjis"]
     textconv = iconv -f sjis
