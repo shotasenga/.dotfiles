@@ -1,15 +1,12 @@
 #!/bin/bash
 
+set -e
+
 MODULE_ROOT=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 
-FISH_CONFIG="${XDG_CONFIG_HOME:-$HOME/.config}/fish"
+source $MODULE_ROOT/../utils.sh
 
-if [ -e $FISH_CONFIG -a ! -L $FISH_CONFIG ]; then
-    echo fish config already exists: $FISH_CONFIG
-    exit 1
-fi
-
-ln -Tfs $MODULE_ROOT/fish $FISH_CONFIG
+link_config $MODULE_ROOT/fish "${XDG_CONFIG_HOME:-$HOME/.config}/fish"
 
 if [[ "$SHELL" != *fish ]]; then
     echo run the command below to change your shell to fish
