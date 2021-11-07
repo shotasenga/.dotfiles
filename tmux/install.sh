@@ -8,10 +8,6 @@ source $MODULE_ROOT/../utils.sh
 
 link_config $MODULE_ROOT/tmux/tmux.conf "${HOME}/.tmux.conf"
 
-if [ ! -e "${HOME}/.tmux.env.conf" ]; then
-    touch "${HOME}/.tmux.env.conf"
-fi
-
 
 # Installing plugins
 
