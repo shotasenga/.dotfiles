@@ -12,3 +12,4 @@ module i3wm
 module asdf
 module emacs
 module tmux
+module nvim

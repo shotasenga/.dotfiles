@@ -2,7 +2,7 @@ alias less='less -R'
 alias youtube-dl="youtube-dl -f 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best'"
 alias pstree="pstree -g 2"
 
-alias vi="vim"
+alias vi="nvim"
 
 switch (uname)
     case Linux
