@@ -1,14 +1,4 @@
 function fish_prompt
-    if command -q starship
-        starship init fish | source
-        commandline -f repaint
-    else
-        __fish_prompt_monkey
-    end
-end
-
-
-function __fish_prompt_monkey
     # set monkey randomly
     set __r (random)
     if [ (math $__r '%7') -eq 1 ]
@@ -28,10 +18,6 @@ function __fish_prompt_monkey
     # show git infomation
     set_color normal
     printf '%s ' (__fish_git_prompt)
-
-    if git rev-parse --is-inside-work-tree > /dev/null 2>&1
-        printf '[%s] ' (__fish_git_prompt_informative_status)
-    end
 
     # show FISH
     set_color -o ebcb8b
