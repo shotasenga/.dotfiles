@@ -13,3 +13,4 @@ module asdf
 module emacs
 module tmux
 module nvim
+module scripts
