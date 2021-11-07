@@ -9,3 +9,4 @@ source $DOT_DIR/utils.sh
 module fish
 module git
 module i3wm
+module asdf
