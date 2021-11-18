@@ -1,0 +1,25 @@
+#!/bin/sh
+# 
+# Sort commit hash in topological order (oldest -> newest)
+# *Unknown commit hash will be silently ignored
+# 
+# This can be used to cherry-pick commits in appropriate order
+# $ git cherry-pick `git sort hash-1 hash-2 ... hash-n`
+# $ git cherry-pick `cat /path/to/commit-hash/file | git sort`
+
+# create temporary file descriptor (see: https://unix.stackexchange.com/a/181938/501792)
+tmpfile=$(mktemp /tmp/git-sort.XXXXXX)
+
+exec 3>"$tmpfile"
+exec 4<"$tmpfile"
+rm $tmpfile
+
+cat /dev/stdin >&3
+
+for ((i=1; i<=$#; i++))
+do
+  echo "${!i}" >&3
+done
+
+# rev-list 
+git rev-list --all --topo-order --reverse | grep -f <(cat <&4)
