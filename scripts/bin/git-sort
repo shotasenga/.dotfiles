@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # 
 # Sort commit hash in topological order (oldest -> newest)
 # *Unknown commit hash will be silently ignored
