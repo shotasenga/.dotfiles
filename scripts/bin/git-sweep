@@ -14,7 +14,7 @@ for BRANCH in $(git branch --merged origin/HEAD| cut -d ' ' -f 2); do
     if [ $BRANCH = $MAIN_BRANCH ]; then
         continue
     fi
-    git branch -d $BRANCH > /dev/null 2>&1
+    git branch -D $BRANCH > /dev/null 2>&1
 done
 
 
@@ -24,7 +24,7 @@ for BRANCH in $(git branch -vv| grep -vE '(\*|\+)'| grep gone|awk '{print $1}');
         continue
     fi
 
-    git branch -d $BRANCH > /dev/null 2>&1
+    git branch -D $BRANCH > /dev/null 2>&1
 done
 
 # rebase-and-merged branches
@@ -36,6 +36,6 @@ for BRANCH in $(git branch --format='%(refname:short)'); do
 
     HEAD_COMMIT=$(git log --pretty=reference $BRANCH| head -1| cut -d ' ' -f 2-)
     if git log --pretty=reference origin/HEAD| grep -qF "$HEAD_COMMIT"; then
-        git branch -d $BRANCH > /dev/null 2>&1
+        git branch -D $BRANCH > /dev/null 2>&1
     fi
 done
