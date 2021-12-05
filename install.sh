@@ -10,10 +10,10 @@ DOT_DIR=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 
 case $(uname -s) in
     Linux)
-        bash $DOT_DIR/install-arch.sh
+        bash $DOT_DIR/arch.sh
         ;;
     Darwin)
-        bash $DOT_DIR/install-osx.sh
+        bash $DOT_DIR/macos.sh
         ;;
     *)
         echo Unknown system
