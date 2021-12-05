@@ -1,0 +1,9 @@
+Xft.dpi: 134.4
+
+# do I need hese? I just copied from the internet, but, don't remember why.
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb

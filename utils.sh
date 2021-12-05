@@ -55,3 +55,22 @@ link_config() {
 
     ln -Tfs $SOURCE $DEST
 }
+
+put_config() {
+    SOURCE=$1
+    DEST=$2
+
+    if [ -e $DEST -a $(diff $SOURCE $DEST 2>&1 > /dev/null) ]; then
+        echo The file already exists $DEST
+        diff $SOURCE $DEST
+        confirm "Do you want to copy anyway?" || return 1
+    fi
+
+    # TODO: remove echo once you confirm no accidental overwrite happens
+    echo cp -a $SOURCE $DEST
+}
+
+confirm() {
+    # TODO: implement
+    return 1
+}

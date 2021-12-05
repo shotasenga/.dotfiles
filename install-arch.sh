@@ -5,12 +5,19 @@ DOT_DIR=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 source $DOT_DIR/utils.sh
 
 # pacman -Syy
+# X11
+module x11
+
+# Developer tools
 # sudo pacman -S --needed tree htop jq
-module fish
 module git
-module i3wm
+module fish
 module asdf
-module emacs
 module tmux
+
+# Editor
+module emacs
 module nvim
+
+# Custom scripts
 module scripts
