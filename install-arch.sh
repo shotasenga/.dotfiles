@@ -5,6 +5,9 @@ DOT_DIR=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 source $DOT_DIR/utils.sh
 
 # pacman -Syy
+# System
+module yay
+
 # X11
 module x11
 
