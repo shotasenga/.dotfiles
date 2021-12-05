@@ -24,3 +24,8 @@ module nvim
 
 # Custom scripts
 module scripts
+
+
+# Install applications
+pacman -S --needed firefox bat plocate udisks2
+yay -S --needed anki-official-binary-bundle google-chrome brave-bin zoom slack-desktop

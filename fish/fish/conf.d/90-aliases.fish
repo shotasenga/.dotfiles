@@ -15,3 +15,7 @@ switch (uname)
         alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
         alias sourcetree='open -a sourcetree'
 end
+
+if type -q plocate
+    alias locate=plocate
+end
