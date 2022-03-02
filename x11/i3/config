@@ -216,3 +216,6 @@ exec --no-startup-id fcitx -d
 
 # Notification
 exec --no-startup-id dunst
+
+# Application/Window specific behaviour
+for_window [class="1Password"] floating enable, resize set 50 ppt 70 ppt, move absolute position center
