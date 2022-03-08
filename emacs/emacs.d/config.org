@@ -1246,6 +1246,11 @@ Track when a TODO was maked as =DONE=.
 (setq calendar-week-start-day 1)
 #+end_src
 
+** Agenda
+
+#+begin_src emacs-lisp
+(setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
+#+end_src
 
 ** Export
 
