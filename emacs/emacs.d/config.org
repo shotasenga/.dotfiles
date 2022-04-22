@@ -1127,6 +1127,13 @@ Use =Github Flavored Markdown= for markdown files. It provides tons of functiona
   (setq markdown-command "pandoc --standalone --mathjax --from=markdown"))
 #+end_src
 
+** CSV
+
+#+begin_src emacs-lisp
+(use-package csv-mode
+  :commands (csv-mode)
+  :mode (("\\.csv\\'"  . csv-mode)))
+#+end_src
 
 * org
 
