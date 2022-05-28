@@ -312,6 +312,8 @@ Search text in region.
 
 #+begin_src emacs-lisp
 (use-package hungry-delete
+  :config
+  (add-to-list 'hungry-delete-except-modes 'minibuffer-mode)
   :hook
   (after-init . global-hungry-delete-mode))
 #+end_src
