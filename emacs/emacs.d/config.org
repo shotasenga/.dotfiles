@@ -301,6 +301,15 @@ Search text in region.
     ad-do-it))
 #+end_src
 
+C-h to backspace
+
+#+begin_src emacs-lisp
+(global-set-key (kbd "C-h") 'delete-backward-char)
+
+;; overrides mark-whole-buffer
+(global-set-key (kbd "C-x h") 'help-for-help)
+#+end_src
+
 ** Hungry Delete
 
 #+begin_src emacs-lisp
