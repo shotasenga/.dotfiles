@@ -18,6 +18,7 @@
 - https://git.trevdev.ca/trevdev/dotfiles/src/commit/4b684ba5877278aee0d3d6a2e1dea51ed5df6898/emacs/configuration.org
 - https://github.com/bzg/dotemacs/blob/master/emacs.org
 - [[https://github.com/emacs-tw/awesome-emacs#jump-to-definition][emacs-tw/awesome-emacs]]
+- https://github.com/daviwil/dotfiles/blob/master/Emacs.org
 
 * Install
 

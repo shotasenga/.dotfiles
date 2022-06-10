@@ -131,6 +131,7 @@ module macos
 # brew cask install font-hack
 # brew cask install font-symbola
 # brew cask install font-fira-code
+# brew install --cask font-jetbrains-mono
 
 
 # # ------------------------------
