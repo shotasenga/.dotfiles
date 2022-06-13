@@ -461,6 +461,8 @@ Prefer files move to the trash.
 
 #+begin_src emacs-lisp
 (setq  delete-by-moving-to-trash t)
+(if (eq system-type 'darwin)
+    (setq trash-directory "~/.Trash"))
 #+end_src
 
 * Programming
