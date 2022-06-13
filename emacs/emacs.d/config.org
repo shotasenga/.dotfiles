@@ -1164,23 +1164,7 @@ Set header line faces.
   '(org-level-5 ((t (:inherit outline-5 :height 1.1)))))
 #+end_src
 
-Pretty style for bullets with =org-bullets==. Thanks to [[https://zhangda.wordpress.com/2016/02/15/configurations-for-beautifying-emacs-org-mode/][this blog post]].
-
-#+begin_src emacs-lisp
-(use-package org-bullets
-  :hook (org-mode . (lambda ()
-                      (org-bullets-mode t)))
-  :config
-  (setq org-bullets-bullet-list '("\u276f"))
-  (defface org-bullet-face
-    '((t :weight normal
-         :height 0.9))
-    "Face for function parameters."
-    :group 'org-bullet-face))
-
-#+end_src
-
-Enable =org-indent-mode= globally to show virtual indentations.
+=org-indent-mode= is clean and less-fancy/less-distracting.
 
 #+begin_src emacs-lisp
 (setq org-startup-indented t)
