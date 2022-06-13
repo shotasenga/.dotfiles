@@ -87,7 +87,7 @@ Use =Hack= as the default font, =Hiragino= for Japanese. It seems [[https://ladi
      mac-option-modifier 'meta
      mac-command-key-is-meta t
      mac-command-modifier 'meta)
-    (set-face-attribute 'default nil :font "Hack-13"))
+    (set-face-attribute 'default nil :font "Jetbrains Mono" :height 140))
 
   (if my--is-linux
       (set-face-attribute 'default nil :font "Hack-11"))
