@@ -219,3 +219,4 @@ exec --no-startup-id dunst
 
 # Application/Window specific behaviour
 for_window [class="1Password"] floating enable, resize set 50 ppt 70 ppt, move absolute position center
+for_window [class="Dragon-drag-and-drop"] sticky enable
