@@ -31,7 +31,7 @@ bindsym $mod+$mod2+Return exec i3-sensible-terminal
 bindsym $mod+$mod2+q kill
 
 # start rofi - dmenu alternative
-bindsym $mod+space exec "rofi -modi drun,run -show drun"
+bindsym $mod+space exec "rofi -combi-modi window,drun -mobi combi -show combi -show-icons -font 'hack 13'"
 
 # change focus
 bindsym $mod+$mod2+j focus left
