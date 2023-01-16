@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DIR_NAME=${SCREEN_CAPTURE_DIR:-$HOME/images/screenshots}
+DIR_NAME=${SCREEN_CAPTURE_DIR:-$HOME/Images/screenshots}
 FILE_NAME="$(date +%Y-%m-%dT%H:%M:%S).jpg"
 
 maim $@ $DIR_NAME/$FILE_NAME
