@@ -1,41 +1,8 @@
 #!/bin/sh
 
-# Deleted branches which are already merged into origin/HEAD
+# Deleted all branches except the main branch and the ones you checked out
 # `git sweep`
-
-# set -e
-git fetch --all --prune > /dev/null
-
 
 MAIN_BRANCH=$(git rev-parse --abbrev-ref origin/HEAD|cut -d '/' -f 2-)
 
-# delete merged branches
-for BRANCH in $(git branch --merged origin/HEAD| cut -d ' ' -f 2); do
-    if [ $BRANCH = $MAIN_BRANCH ]; then
-        continue
-    fi
-    git branch -D $BRANCH > /dev/null 2>&1
-done
-
-
-# delete tracking branches no longer on remote
-for BRANCH in $(git branch -vv| grep -vE '(\*|\+)'| grep gone|awk '{print $1}'); do
-    if [ $BRANCH = $MAIN_BRANCH ]; then
-        continue
-    fi
-
-    git branch -D $BRANCH > /dev/null 2>&1
-done
-
-# rebase-and-merged branches
-# *can be false positive if there are commits that has same headline on the same day*
-for BRANCH in $(git branch --format='%(refname:short)'); do
-    if [ $BRANCH = $MAIN_BRANCH ]; then
-        continue
-    fi
-
-    HEAD_COMMIT=$(git log --pretty=reference $BRANCH| head -1| cut -d ' ' -f 2-)
-    if git log --pretty=reference origin/HEAD| grep -qF "$HEAD_COMMIT"; then
-        git branch -D $BRANCH > /dev/null 2>&1
-    fi
-done
+git br | grep -v $MAIN_BRANCH | grep -E '^ '| xargs -I{} git br -D {}
