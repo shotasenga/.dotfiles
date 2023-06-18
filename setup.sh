@@ -4,7 +4,7 @@
 #   git clone git@github.com:shotasenga/.dotfiles.git
 #   bash ./.dotfiles/install.sh
 
-set -e
+set -ex
 
 DOT_DIR=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 
@@ -17,6 +17,7 @@ case $(uname -s) in
         ;;
     *)
         echo Unknown system
+        uname -s
         exit 1
         ;;
 esac

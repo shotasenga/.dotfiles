@@ -1,35 +1,31 @@
 # My .dotfiles
 
-Installs applications and creates links to configuration files.
+Installs applications and creates symlinks to the configs and scripts.
 
 
 ## Setup
 
 ```
-curl https://raw.githubusercontent.com/senta/.dotfiles/master/install.sh| sh
+curl https://raw.githubusercontent.com/senta/.dotfiles/master/setup.sh| bash
 ```
 
 ### Emacs
 
 You need to manully run `all-the-icons-install-fonts` to render icons.
 
+
 ## Script Structure
 
 | path       | description                                        |
 |------------|----------------------------------------------------|
-| install.sh | The main setup script                              |
-| link.sh    | A submodule that creates symlinks for each configs |
-| darwin.sh  | Mac specific setup script                          |
-| arch.sh    | To be implemented ...                              |
-| common/    | Conf files to be linked for all environments       |
-| macos/     | Conf files to be linked for _MacOS_                |
-
+| setup.sh   | The main setup script                              |
+| marcos.sh  | Bash script for macOS                              |
+| arch.sh    | Bash script for Arch Linux                         |
 
 
 ## Local Settings
 
-When you want to have machine specific setup, you can inject some extra configurations.
-
+You can have machine specific configs for some applications.
 
 ### Git attributes
 
@@ -43,5 +39,5 @@ When you want to have machine specific setup, you can inject some extra configur
 
 ### Executables
 
-The `$PATH` for fish includes `$HOME/.bin/local`. Put your tool on there.
+Put your scripts/binaries in `$HOME/.bin/local`
 

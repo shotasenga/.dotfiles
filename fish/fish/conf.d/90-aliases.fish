@@ -14,6 +14,7 @@ switch (uname)
         alias cliptmux="tmux showb|pbcopy"
         alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
         alias sourcetree='open -a sourcetree'
+        # alias diff='diff -u | diff-so-fancy'
 end
 
 if type -q plocate
