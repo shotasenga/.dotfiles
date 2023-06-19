@@ -1,3 +1,4 @@
 #!/bin/bash
 
-sudo pacman -S --needed git github-cli openssh
+sudo pacman -S --needed git github-cli openssh diff-so-fancy
+
