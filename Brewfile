@@ -6,7 +6,7 @@ brew "mas"
 # Terminal
 brew "fish"
 brew "tmux"
-cask "kitty"
+cask "iterm2"
 
 brew "readline"
 brew "reattach-to-user-namespace" # for Tmux
