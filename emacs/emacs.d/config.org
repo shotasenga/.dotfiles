@@ -466,6 +466,12 @@ Prefer files move to the trash.
     (setq trash-directory "~/.Trash"))
 #+end_src
 
+** Dired
+
+#+begin_src emacs-lisp
+(setq dired-listing-switches "-aBhl  --group-directories-first")
+#+end_src
+
 * Programming
 
 ** Parenceis
