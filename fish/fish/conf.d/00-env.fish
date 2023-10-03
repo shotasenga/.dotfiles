@@ -9,6 +9,7 @@ switch (uname)
     case Linux
         # echo linux
     case Darwin
+        set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
         set -x PATH /usr/local/bin /usr/local/sbin $PATH
         set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
         set -x PATH "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $PATH
