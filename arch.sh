@@ -27,5 +27,5 @@ module scripts
 
 
 # Install applications
-pacman -S --needed firefox bat plocate udisks2
+pacman -S --needed bat plocate udisks2 opera
 yay -S --needed anki-official-binary-bundle google-chrome zoom slack-desktop
