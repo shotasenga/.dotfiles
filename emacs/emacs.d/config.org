@@ -1134,6 +1134,10 @@ Use =Github Flavored Markdown= for markdown files. It provides tons of functiona
   :commands (markdown-mode gfm-mode)
   :mode (("\\.md\\'"  . gfm-mode)
          ("\\.markdown\\'"  . gfm-mode))
+  :init
+  (setq markdown-list-indent-width 2
+        markdown-hide-urls t
+        markdown-gfm-use-electric-backquote nil)
   :config
   ;; (setq markdown-open-command "/usr/bin/marked") ; I don't use marked anymore. I need to find a replacement.
   (setq markdown-command "pandoc --standalone --mathjax --from=markdown"))
