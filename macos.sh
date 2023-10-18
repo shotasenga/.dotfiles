@@ -7,7 +7,7 @@ DOT_DIR=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 set HOMEBREW_NO_AUTO_UPDATE=1
 
 if [ $(which brew) ]; then
-    brew update && brew upgrade
+    echo brew update
 else
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
@@ -15,23 +15,15 @@ fi
 brew bundle --file $DOT_DIR/Brewfile
 
 # WARN: this replaces the target files if exist
-ln -Ffhs $DOT_DIR/git/git "${XDG_CONFIG_HOME:-$HOME/.config}/git"
-ln -Ffhs $DOT_DIR/fish/fish "${XDG_CONFIG_HOME:-$HOME/.config}/fish"
-ln -Ffhs $DOT_DIR/emacs/emacs.d "${HOME}/.emacs.d"
-ln -Ffhs $DOT_DIR/nvim/nvim "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
-ln -Ffhs $DOT_DIR/macos/hammerspoon "${HOME}/hammerspoon"
-ln -Ffhs $DOT_DIR/scripts/bin "${HOME}/.bin"
-ln -Ffhs $DOT_DIR/tmux/tmux/tmux.conf "${HOME}/.tmux.conf"
-ln -Ffhs $DOT_DIR/tmux/tmux/tmux.mac.conf "${HOME}/.tmux.env.conf"
-
-# TODO: consider Nix
-# ln -Ffhs $DOT_DIR/asdf/asdf/envrc "${HOME}/.envrc"
-# ln -Ffhs $DOT_DIR/asdf/asdf/tool-versions "${HOME}/.tool-versions"
-# mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}/asdf"
-# ln -Ffhs $DOT_DIR/asdf/default-python-packages "${XDG_CONFIG_HOME:-$HOME/.config}/default-python-packages"b
-# ln -Ffhs $DOT_DIR/asdf/direnv "${XDG_CONFIG_HOME:-$HOME/.config}/direnv"
-
-# TODO: consider pipx for Python
+ln -Tfs $DOT_DIR/git/git "${XDG_CONFIG_HOME:-$HOME/.config}/git"
+ln -Tfs $DOT_DIR/fish/fish "${XDG_CONFIG_HOME:-$HOME/.config}/fish"
+ln -Tfs $DOT_DIR/rtx "${XDG_CONFIG_HOME:-$HOME/.config}/rtx"
+ln -Tfs $DOT_DIR/emacs/emacs.d "${HOME}/.emacs.d"
+ln -Tfs $DOT_DIR/nvim/nvim "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+ln -Tfs $DOT_DIR/macos/hammerspoon "${HOME}/hammerspoon"
+ln -Tfs $DOT_DIR/scripts/bin "${HOME}/.bin"
+ln -Tfs $DOT_DIR/tmux/tmux/tmux.conf "${HOME}/.tmux.conf"
+ln -Tfs $DOT_DIR/tmux/tmux/tmux.mac.conf "${HOME}/.tmux.env.conf"
 
 # Post install
 # - fish as default shell

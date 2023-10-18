@@ -47,8 +47,8 @@ cask "emacs"
 cask "visual-studio-code"
 
 brew "aspell"
-brew "ctags"
-brew "global"
+# brew "ctags" confliting with universal-ctags which is used by global
+# brew "global" emacs has its own ctags ...
 
 
 # WEB Browser

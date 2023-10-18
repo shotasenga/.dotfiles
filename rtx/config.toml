@@ -1,0 +1,16 @@
+[tools]
+node = 'lts'
+# python = ['3.10', '3.11']
+
+[settings]
+verbose = true
+log_level = 'debug'
+
+legacy_version_file = true
+experimental = true
+
+plugin_autoupdate_last_check_duration = '1 week' # set to 0 to disable updates
+
+trusted_config_paths = [
+    '~/code/shotasenga',
+]
