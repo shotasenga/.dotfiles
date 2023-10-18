@@ -6,16 +6,18 @@ brew "mas"
 # Terminal
 brew "fish"
 brew "tmux"
-cask "iterm2"
 
 brew "readline"
 brew "reattach-to-user-namespace" # for Tmux
 
 
-# Dev tools
-# brew "asdf" # consider Nix
-brew "bat"
+# GNU utils
 brew "coreutils"
+brew "findutils"
+brew "gnu-sed"
+
+# Dev tools
+brew "bat"
 brew "diff-so-fancy"
 brew "fasd"
 brew "fd"
@@ -31,6 +33,7 @@ brew "pstree"
 brew "rename"
 brew "ripgrep"
 brew "rmtrash"
+brew "rtx"
 brew "tree"
 brew "unar" # https://theunarchiver.com/command-line
 brew "watch"
