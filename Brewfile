@@ -83,6 +83,7 @@ cask "quicklook-json"
 brew "syncthing", restart_service: true
 
 cask "1password"
+cask "1password-cli"
 cask "alfred"
 cask "anki"
 cask "slack"
