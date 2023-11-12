@@ -9,10 +9,18 @@ switch (uname)
     case Linux
         # echo linux
     case Darwin
-        set -x PATH /usr/local/opt/coreutils/libexec/gnubin $PATH
-        set -x PATH /usr/local/opt/findutils/libexec/gnubin:$PATH
-        set -x PATH /usr/local/opt/gnu-sed/libexec/gnubin:$PATH
-        set -x PATH /usr/local/bin /usr/local/sbin $PATH
+        set -l BREW_HOME
+        if test -e /opt/homebrew
+          set BREW_HOME /opt/homebrew
+        else
+          set BREW_HOME /usr/local
+        end
+
+        set -x PATH $BREW_HOME/bin $PATH
+        set -x PATH $BREW_HOME/sbin $PATH
+        set -x PATH $BREW_HOME/opt/coreutils/libexec/gnubin $PATH
+        set -x PATH $BREW_HOME/opt/findutils/libexec/gnubin $PATH
+        set -x PATH $BREW_HOME/opt/gnu-sed/libexec/gnubin $PATH
         set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
         set -x PATH "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $PATH
 end

@@ -10,7 +10,7 @@ switch (uname)
         alias pbcopy='xsel -i -p; and xsel -o -p | xsel -i -b'
         alias pbpaste='xsel -o'
     case Darwin
-        alias del=rmtrash
+        alias del=trash
         alias cliptmux="tmux showb|pbcopy"
         alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
         alias sourcetree='open -a sourcetree'

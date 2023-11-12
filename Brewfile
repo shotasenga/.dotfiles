@@ -1,4 +1,5 @@
 tap "homebrew/bundle"
+tap "hashicorp/tap"
 tap "homebrew/cask-fonts"
 
 brew "mas"
@@ -16,10 +17,10 @@ brew "coreutils"
 brew "findutils"
 brew "gnu-sed"
 
-# Dev tools
+# CLI/Dev tools
+brew "autojump"
 brew "bat"
 brew "diff-so-fancy"
-brew "fasd"
 brew "fd"
 brew "ffmpeg"
 brew "fzf"
@@ -28,11 +29,11 @@ brew "git"
 brew "imagemagick"
 brew "jq"
 brew "mike-engel/jwt-cli/jwt-cli"
+brew "macos-trash"
 brew "openssh"
 brew "pstree"
 brew "rename"
 brew "ripgrep"
-brew "rmtrash"
 brew "rtx"
 brew "tree"
 brew "unar" # https://theunarchiver.com/command-line
@@ -69,8 +70,7 @@ brew "awscli"
 cask "aws-vault"
 
 
-# Extend macOS
-cask "alfred"
+# Customize macOS
 cask "bettertouchtool"
 cask "karabiner-elements"
 cask "qlmarkdown"
@@ -79,11 +79,12 @@ cask "qlstephen"
 cask "quicklook-csv"
 cask "quicklook-json"
 
-
-# GUI Apps
+# Other Apps
 brew "syncthing", restart_service: true
-cask "anki"
 
+cask "1password"
+cask "alfred"
+cask "anki"
 cask "slack"
 cask "zoom"
 
@@ -93,3 +94,4 @@ mas "Day One", id: 1055511498
 
 # Fonts
 cask "font-jetbrains-mono"
+cask "font-hack-nerd-font"

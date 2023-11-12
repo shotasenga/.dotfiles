@@ -10,12 +10,19 @@ if [ $(which brew) ]; then
     echo brew update
 else
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+    if test -e /opt/homebrew; then
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+      PATH=/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH
+    else
+      eval "$(/usr/local/bin/brew shellenv)"
+      PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
+    fi
 fi
 
 brew bundle --file $DOT_DIR/Brewfile
 
-# WARN: this replaces the target files if exist
+# WARN: it replaces the target files if exist
+mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"
 ln -Tfs $DOT_DIR/git/git "${XDG_CONFIG_HOME:-$HOME/.config}/git"
 ln -Tfs $DOT_DIR/fish/fish "${XDG_CONFIG_HOME:-$HOME/.config}/fish"
 ln -Tfs $DOT_DIR/rtx "${XDG_CONFIG_HOME:-$HOME/.config}/rtx"
@@ -30,7 +37,7 @@ ln -Tfs $DOT_DIR/tmux/tmux/tmux.mac.conf "${HOME}/.tmux.env.conf"
 # - fish as default shell
 FISH_BIN=$(brew --prefix)/bin/fish
 if ! grep -q $FISH_BIN /etc/shells; then
-    sudo bash -c "echo ${FISH_BIN} /etc/shells"
+    sudo bash -c "echo ${FISH_BIN} >> /etc/shells"
 fi
 
 if [[ "$SHELL" != *fish ]]; then
