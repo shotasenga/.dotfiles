@@ -63,7 +63,7 @@ brew "docker"
 # cask "vagrant"
 
 
-# Cloud Ops
+# Cloud and Ops
 brew "hashicorp/tap/terraform"
 brew "awscli"
 cask "aws-vault"
@@ -72,7 +72,7 @@ cask "aws-vault"
 # Extend macOS
 cask "alfred"
 cask "bettertouchtool"
-cask "hammerspoon"
+cask "karabiner-elements"
 cask "qlmarkdown"
 cask "qlprettypatch"
 cask "qlstephen"
@@ -81,17 +81,15 @@ cask "quicklook-json"
 
 
 # GUI Apps
-cask "todoist"
-cask "obsidian"
 brew "syncthing", restart_service: true
 cask "anki"
 
 cask "slack"
 cask "zoom"
 
+mas "Things", id: 904280696
 mas "Dato", id: 1470584107
 mas "Day One", id: 1055511498
-
 
 # Fonts
 cask "font-jetbrains-mono"
