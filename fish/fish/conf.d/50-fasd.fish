@@ -1,7 +1,7 @@
 if test -f /opt/homebrew/share/autojump/autojump.fish
   source /opt/homebrew/share/autojump/autojump.fish
 else if test -f /usr/local/share/autojump/autojump.fish
-  source /opt/homebrew/share/autojump/autojump.fish
+  source /usr/local/share/autojump/autojump.fish
 end
 
 function j -d "jump to a directory"
