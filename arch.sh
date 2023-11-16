@@ -29,3 +29,7 @@ module scripts
 # Install applications
 pacman -S --needed bat plocate udisks2 opera
 yay -S --needed anki-official-binary-bundle google-chrome zoom slack-desktop
+
+
+# gh extensions
+bash $DOT_DIR/gh/gh-extensions.sh

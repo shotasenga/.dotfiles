@@ -64,4 +64,7 @@ if [ ! -f ~/.ssh/id_ed25519 ]; then
     gh auth login
 fi
 
+# - gh extensions
+bash $DOT_DIR/gh/gh-extensions.sh
+
 echo COMPLETED 🎉
