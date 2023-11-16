@@ -1,5 +1,6 @@
 import:
-  - ~/.config/alacritty/dracula.yml
+  - ~/.config/alacritty/challenger-deep.yml
+  # - ~/.config/alacritty/hardhacker.yml
   - ~/.config/alacritty/local.yml
 
 key_bindings:
