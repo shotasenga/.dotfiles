@@ -26,6 +26,7 @@
                                         "bundle_identifiers": [
                                             "^org\\.gnu\\.Emacs$",
                                             "^com\\.apple\\.Terminal$",
+                                            "^org\\.alacritty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
@@ -55,6 +56,7 @@
                                         "bundle_identifiers": [
                                             "^org\\.gnu\\.Emacs$",
                                             "^com\\.apple\\.Terminal$",
+                                            "^org\\.alacritty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
@@ -84,6 +86,7 @@
                                         "bundle_identifiers": [
                                             "^org\\.gnu\\.Emacs$",
                                             "^com\\.apple\\.Terminal$",
+                                            "^org\\.alacritty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
@@ -113,6 +116,7 @@
                                         "bundle_identifiers": [
                                             "^org\\.gnu\\.Emacs$",
                                             "^com\\.apple\\.Terminal$",
+                                            "^org\\.alacritty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
@@ -142,6 +146,7 @@
                                         "bundle_identifiers": [
                                             "^org\\.gnu\\.Emacs$",
                                             "^com\\.apple\\.Terminal$",
+                                            "^org\\.alacritty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"

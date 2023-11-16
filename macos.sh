@@ -19,7 +19,7 @@ else
     fi
 fi
 
-brew bundle --file $DOT_DIR/Brewfile
+# brew bundle --file $DOT_DIR/Brewfile
 
 # WARN: it replaces the target files if exist
 mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"
@@ -32,6 +32,8 @@ ln -Tfs $DOT_DIR/macos/karabiner "${HOME}/.config/karabiner"
 ln -Tfs $DOT_DIR/scripts/bin "${HOME}/.bin"
 ln -Tfs $DOT_DIR/tmux/tmux/tmux.conf "${HOME}/.tmux.conf"
 ln -Tfs $DOT_DIR/tmux/tmux/tmux.mac.conf "${HOME}/.tmux.env.conf"
+ln -Tfs $DOT_DIR/alacritty "${XDG_CONFIG_HOME:-$HOME/.config}/alacritty"
+ln -Tfs $DOT_DIR/alacritty/macos.yml "${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/local.yml"
 
 # Post install
 # - fish as default shell

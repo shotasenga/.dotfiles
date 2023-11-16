@@ -11,6 +11,7 @@ brew "tmux"
 brew "readline"
 brew "reattach-to-user-namespace" # for Tmux
 
+cask "alacritty"
 
 # GNU utils
 brew "coreutils"

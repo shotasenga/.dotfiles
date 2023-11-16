@@ -1,0 +1,14 @@
+import:
+  - ~/.config/alacritty/dracula.yml
+  - ~/.config/alacritty/local.yml
+
+key_bindings:
+  - { key: B, mods: Alt, chars: "\x1bb" }
+  - { key: F, mods: Alt, chars: "\x1bf" }
+  - { key: D, mods: Alt, chars: "\x1bd" }
+
+window:
+  startup_mode: Maximized
+  opacity: 0.9
+  blur: true
+  # decorations: none
