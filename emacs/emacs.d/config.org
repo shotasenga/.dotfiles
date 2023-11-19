@@ -87,7 +87,7 @@ Use =Hack= as the default font, =Hiragino= for Japanese. It seems [[https://ladi
      mac-option-modifier 'meta
      mac-command-key-is-meta t
      mac-command-modifier 'meta)
-    (set-face-attribute 'default nil :font "Jetbrains Mono" :height 140))
+    (set-face-attribute 'default nil :font "Hack Nerd Font Mono" :height 130))
 
   (if my--is-linux
       (set-face-attribute 'default nil :font "Hack-11"))
@@ -150,8 +150,8 @@ I picked =moody= modeline with some tweak.
       (set-face-attribute 'mode-line-inactive nil :font "Hack-11"))
 
     (when my--is-macos
-      (set-face-attribute 'mode-line          nil :font "Hack-11")
-      (set-face-attribute 'mode-line-inactive nil :font "Hack-11"))
+      (set-face-attribute 'mode-line          nil :font "Hack Nerd Font Mono" :height 130)
+      (set-face-attribute 'mode-line-inactive nil :font "Hack Nerd Font Mono" :height 130))
 
     (set-face-attribute 'mode-line          nil :overline   line)
     (set-face-attribute 'mode-line-inactive nil :overline   line)
@@ -309,6 +309,13 @@ C-h to backspace
 ;; overrides mark-whole-buffer
 (global-set-key (kbd "C-x h") 'help-for-help)
 #+end_src
+
+Overwrite selected text
+
+#+begin_src emacs-lisp
+(delete-selection-mode t)
+#+end_src
+
 
 ** Hungry Delete
 
@@ -469,7 +476,8 @@ Prefer files move to the trash.
 ** Dired
 
 #+begin_src emacs-lisp
-(setq dired-listing-switches "-aBhl  --group-directories-first")
+(setq dired-listing-switches "-aBhl  --group-directories-first"
+      dired-dwim-target t)
 #+end_src
 
 * Programming
