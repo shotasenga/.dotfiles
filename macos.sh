@@ -19,7 +19,7 @@ else
     fi
 fi
 
-# brew bundle --file $DOT_DIR/Brewfile
+brew bundle --file $DOT_DIR/Brewfile
 
 # WARN: it replaces the target files if exist
 mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"
