@@ -31,7 +31,7 @@ bindsym $mod+$mod2+Return exec i3-sensible-terminal
 bindsym $mod+$mod2+q kill
 
 # start rofi - dmenu alternative
-bindsym $mod+space exec "rofi -combi-modi window,drun -mobi combi -show combi -show-icons -font 'hack 13'"
+bindsym $mod2+space exec "rofi -combi-modi window,drun -mobi combi -show combi -show-icons -font 'hack 13'"
 
 # change focus
 bindsym $mod+$mod2+j focus left
@@ -212,8 +212,8 @@ exec --no-startup-id dunst
 # apparence
 font pango:monospace 12
 font pango:DejaVu Sans Mono 12
-default_border pixel 1
-default_floating_border pixel 1
+# default_border pixel 1
+# default_floating_border pixel 1
 gaps inner 8
 gaps outer 4
 
