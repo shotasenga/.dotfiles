@@ -72,7 +72,7 @@ cask "aws-vault"
 
 
 # Customize macOS
-cask "bettertouchtool"
+cask "bettertouchtool" # settings are synced with Dropbox
 cask "karabiner-elements"
 cask "qlmarkdown"
 cask "qlprettypatch"
