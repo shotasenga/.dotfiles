@@ -276,11 +276,11 @@ Redo
 https://www.emacswiki.org/emacs/RedoPlus
 
 #+begin_src emacs-lisp
-(use-package redo+
-  :diminish
-  :bind ("C-?" . redo)
-  :config
-  (setq undo-no-redo t))
+;; (use-package redo+
+;;   :diminish
+;;   :bind ("C-?" . redo)
+;;   :config
+;;   (setq undo-no-redo t))
 #+end_src
 
 Search text in region.
@@ -1265,7 +1265,7 @@ Track when a TODO was maked as =DONE=.
 ** Agenda
 
 #+begin_src emacs-lisp
-(setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
+;(setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
 #+end_src
 
 ** Export
