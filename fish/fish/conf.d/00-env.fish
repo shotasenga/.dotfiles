@@ -23,6 +23,8 @@ switch (uname)
         set -x PATH $BREW_HOME/opt/gnu-sed/libexec/gnubin $PATH
         set -x PATH /Applications/Emacs.app/Contents/MacOS/bin $PATH
         set -x PATH "/Applications/Visual Studio Code.app/Contents/Resources/app/bin" $PATH
+
+        set -x DOCKER_HOST "unix://$HOME/.colima/default/docker.sock"
 end
 
 set -x PATH $HOME/.bin $PATH
