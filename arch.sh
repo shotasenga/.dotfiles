@@ -25,10 +25,13 @@ module nvim
 # Custom scripts
 module scripts
 
+# Essentials
+pacman -S --needed alacritty
+yay -S --needed autojump
 
 # Install applications
-pacman -S --needed bat plocate udisks2 opera
-yay -S --needed anki-official-binary-bundle google-chrome zoom slack-desktop
+pacman -S --needed bat plocate udisks2 
+yay -S --needed anki-official-binary-bundle google-chrome slack-desktop
 
 
 # gh extensions
