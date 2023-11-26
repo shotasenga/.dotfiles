@@ -1,1 +1,3 @@
+# GTK (Emacs like keybindings)
+# https://wiki.archlinux.org/title/GTK#Emacs_key_bindings
 gtk-key-theme-name = "Emacs"

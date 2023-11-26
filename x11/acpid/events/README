@@ -1,0 +1,2 @@
+autorandr does not support lid close event https://github.com/phillipberndt/autorandr/issues/104
+acpid is a solution to that https://github.com/phillipberndt/autorandr/issues/104#issuecomment-467361778
