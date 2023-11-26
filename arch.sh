@@ -31,11 +31,11 @@ yay -S --needed xidlehook
 # sudo pacman -S --needed xorg xorg-xinit xf86-video-intel mesa
 # sudo pacman -S --needed xdg-utils # https://wiki.archlinux.org/title/Xdg-utils
 
-ln -Tfs $DOT_DIR/x11/xorg/xinit "${HOME}/.xinitrc"
-ln -Tfs $DOT_DIR/x11/xorg/xprofile "${HOME}/.xprofile"
-ln -Tfs $DOT_DIR/x11/xorg/Xresources "${HOME}/.Xresources"
-ln -Tfs $DOT_DIR/x11/gtk/gtkrc-2.0 "${HOME}/.gtkrc-2.0"
-ln -Tfs $DOT_DIR/x11/autorandr "${XDG_CONFIG_HOME:-$HOME/.config}/autorandr"
+ln -Tfs $DOT_DIR/xorg/xinitrc "${HOME}/.xinitrc"
+ln -Tfs $DOT_DIR/xorg/xprofile "${HOME}/.xprofile"
+ln -Tfs $DOT_DIR/xorg/Xresources "${HOME}/.Xresources"
+ln -Tfs $DOT_DIR/gtk/gtkrc-2.0 "${HOME}/.gtkrc-2.0"
+ln -Tfs $DOT_DIR/autorandr "${XDG_CONFIG_HOME:-$HOME/.config}/autorandr"
 # sudo cp -a $DOT_DIR/x11/acpid/autorandr.sh /etc/acpid/autorandr.sh # ensure the file is executable
 # sudo cp -a $DOT_DIR/x11/acpid/events/lid-switch /etc/acpi/events/lid-switch
 # sudo cp -a $DOT_DIR/xorg/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
@@ -47,8 +47,8 @@ sudo pacman -S --needed i3-wm xss-lock i3lock polkit
 sudo pacman -S --needed rofi dunst maim xclip
 yay -S --needed dragon-drop
 
-ln -Tfs $DOT_DIR/x11/i3 "${XDG_CONFIG_HOME:-$HOME/.config}/i3"
-ln -Tfs $DOT_DIR/x11/dunst "${XDG_CONFIG_HOME:-$HOME/.config}/dunst"
+ln -Tfs $DOT_DIR/i3 "${XDG_CONFIG_HOME:-$HOME/.config}/i3"
+ln -Tfs $DOT_DIR/dunst "${XDG_CONFIG_HOME:-$HOME/.config}/dunst"
 
 
 # Terminal
@@ -56,10 +56,10 @@ sudo pacman -S --needed kitty alacritty
 sudo pacman -S --needed fish fzf fd tmux
 yay -S --needed autojump
 
-ln -Tfs $DOT_DIR/fish/fish "${XDG_CONFIG_HOME:-$HOME/.config}/fish"
+ln -Tfs $DOT_DIR/fish "${XDG_CONFIG_HOME:-$HOME/.config}/fish"
 ln -Tfs $DOT_DIR/tmux/tmux.conf "${HOME}/.tmux.conf"
 ln -Tfs $DOT_DIR/tmux/tmux.arch.conf "${HOME}/.tmux.env.conf"
-ln -Tfs $DOT_DIR/x11/kitty "${XDG_CONFIG_HOME:-$HOME/.config}/kitty"
+ln -Tfs $DOT_DIR/kitty "${XDG_CONFIG_HOME:-$HOME/.config}/kitty"
 ln -Tfs $DOT_DIR/alacritty "${XDG_CONFIG_HOME:-$HOME/.config}/alacritty"
 ln -Tfs $DOT_DIR/alacritty/arch.yml "${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/local.yml"
 
@@ -80,11 +80,11 @@ echo TODO: You need to manully run `all-the-icons-install-fonts` for the icons o
 sudo pacman -S --needed git github-cli openssh diff-so-fancy emacs neovim bat plocate udisks2 tree htop jq
 yay -S --needed rtx
 
-ln -Tfs $DOT_DIR/git/git "${XDG_CONFIG_HOME:-$HOME/.config}/git"
+ln -Tfs $DOT_DIR/git "${XDG_CONFIG_HOME:-$HOME/.config}/git"
 ln -Tfs $DOT_DIR/rtx "${XDG_CONFIG_HOME:-$HOME/.config}/rtx"
-ln -Tfs $DOT_DIR/emacs/emacs.d "${HOME}/.emacs.d"
-ln -Tfs $DOT_DIR/nvim/nvim "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
-ln -Tfs $DOT_DIR/scripts/bin "${HOME}/.bin"
+ln -Tfs $DOT_DIR/emacs "${HOME}/.emacs.d"
+ln -Tfs $DOT_DIR/nvim "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+ln -Tfs $DOT_DIR/bin "${HOME}/.bin"
 
 if [ ! -f ${HOME}/.ssh/id_ed25519 ]; then
     echo You mway want to create ssh key and add it to Github
