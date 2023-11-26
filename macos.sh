@@ -23,19 +23,18 @@ brew bundle --file $DOT_DIR/Brewfile
 
 # WARN: it replaces the target files if exist
 mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"
-ln -Tfs $DOT_DIR/git/git "${XDG_CONFIG_HOME:-$HOME/.config}/git"
-ln -Tfs $DOT_DIR/fish/fish "${XDG_CONFIG_HOME:-$HOME/.config}/fish"
-ln -Tfs $DOT_DIR/rtx "${XDG_CONFIG_HOME:-$HOME/.config}/rtx"
-ln -Tfs $DOT_DIR/emacs/emacs.d "${HOME}/.emacs.d"
-ln -Tfs $DOT_DIR/nvim/nvim "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+
+# GUI environmneet
 ln -Tfs $DOT_DIR/macos/karabiner "${HOME}/.config/karabiner"
-ln -Tfs $DOT_DIR/scripts/bin "${HOME}/.bin"
+
+
+# Terminal
+ln -Tfs $DOT_DIR/fish/fish "${XDG_CONFIG_HOME:-$HOME/.config}/fish"
 ln -Tfs $DOT_DIR/tmux/tmux/tmux.conf "${HOME}/.tmux.conf"
 ln -Tfs $DOT_DIR/tmux/tmux/tmux.mac.conf "${HOME}/.tmux.env.conf"
 ln -Tfs $DOT_DIR/alacritty "${XDG_CONFIG_HOME:-$HOME/.config}/alacritty"
 ln -Tfs $DOT_DIR/alacritty/macos.yml "${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/local.yml"
 
-# Post install
 # - fish as default shell
 FISH_BIN=$(brew --prefix)/bin/fish
 if ! grep -q $FISH_BIN /etc/shells; then
@@ -68,5 +67,14 @@ fi
 
 # - gh extensions
 bash $DOT_DIR/gh/gh-extensions.sh
+
+
+# Dev tools
+ln -Tfs $DOT_DIR/git/git "${XDG_CONFIG_HOME:-$HOME/.config}/git"
+ln -Tfs $DOT_DIR/rtx "${XDG_CONFIG_HOME:-$HOME/.config}/rtx"
+ln -Tfs $DOT_DIR/emacs/emacs.d "${HOME}/.emacs.d"
+ln -Tfs $DOT_DIR/nvim/nvim "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
+ln -Tfs $DOT_DIR/scripts/bin "${HOME}/.bin"
+
 
 echo COMPLETED 🎉
