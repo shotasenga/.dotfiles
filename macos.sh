@@ -7,16 +7,17 @@ DOT_DIR=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 set HOMEBREW_NO_AUTO_UPDATE=1
 
 if [ $(which brew) ]; then
-    echo brew update
+    brew update
 else
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    if test -e /opt/homebrew; then
-      eval "$(/opt/homebrew/bin/brew shellenv)"
-      PATH=/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH
-    else
-      eval "$(/usr/local/bin/brew shellenv)"
-      PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
-    fi
+fi
+
+if test -e /opt/homebrew; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+  PATH=/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH
+else
+  eval "$(/usr/local/bin/brew shellenv)"
+  PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
 fi
 
 brew bundle --file $DOT_DIR/Brewfile
