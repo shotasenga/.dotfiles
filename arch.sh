@@ -52,16 +52,14 @@ ln -Tfs $DOT_DIR/dunst "${XDG_CONFIG_HOME:-$HOME/.config}/dunst"
 
 
 # Terminal
-sudo pacman -S --needed kitty alacritty
+sudo pacman -S --needed wezterm
 sudo pacman -S --needed fish fzf fd tmux
 yay -S --needed autojump
 
 ln -Tfs $DOT_DIR/fish "${XDG_CONFIG_HOME:-$HOME/.config}/fish"
 ln -Tfs $DOT_DIR/tmux/tmux.conf "${HOME}/.tmux.conf"
 ln -Tfs $DOT_DIR/tmux/tmux.arch.conf "${HOME}/.tmux.env.conf"
-ln -Tfs $DOT_DIR/kitty "${XDG_CONFIG_HOME:-$HOME/.config}/kitty"
-ln -Tfs $DOT_DIR/alacritty "${XDG_CONFIG_HOME:-$HOME/.config}/alacritty"
-ln -Tfs $DOT_DIR/alacritty/arch.yml "${XDG_CONFIG_HOME:-$HOME/.config}/alacritty/local.yml"
+ln -Tfs $DOT_DIR/wezterm "${XDG_CONFIG_HOME:-$HOME/.config}/wezterm"
 
 if [[ "$SHELL" != *fish ]]; then
     echo run the command below to change your shell to fish
