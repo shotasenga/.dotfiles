@@ -22,6 +22,7 @@ config.color_scheme = 'Banana Blueberry'
 config.window_background_gradient = {
    colors = { '#191323', '#191323', '#2a2940', '#56b6c2' },
    orientation = { Linear = { angle = -45.0 } },
+   noise = 64,
 }
 
 config.hide_tab_bar_if_only_one_tab = true
