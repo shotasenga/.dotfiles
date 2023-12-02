@@ -1,6 +1,5 @@
 #+TITLE: Emacs Configuration
 #+AUTHOR: Shota Senga
-#+EMAIL: shota@senta.me
 #+OPTIONS: toc:nil num:nil
 #+STARTUP: content
 
