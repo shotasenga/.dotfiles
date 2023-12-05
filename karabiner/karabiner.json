@@ -25,7 +25,7 @@
                                     {
                                         "bundle_identifiers": [
                                             "^org\\.gnu\\.Emacs$",
-                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$",
                                             "^org\\.alacritty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
@@ -55,7 +55,7 @@
                                     {
                                         "bundle_identifiers": [
                                             "^org\\.gnu\\.Emacs$",
-                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$",
                                             "^org\\.alacritty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
@@ -85,7 +85,7 @@
                                     {
                                         "bundle_identifiers": [
                                             "^org\\.gnu\\.Emacs$",
-                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$",
                                             "^org\\.alacritty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
@@ -115,7 +115,7 @@
                                     {
                                         "bundle_identifiers": [
                                             "^org\\.gnu\\.Emacs$",
-                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$",
                                             "^org\\.alacritty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
@@ -145,7 +145,7 @@
                                     {
                                         "bundle_identifiers": [
                                             "^org\\.gnu\\.Emacs$",
-                                            "^com\\.apple\\.Terminal$",
+                                            "^com\\.github\\.wez\\.wezterm$",
                                             "^org\\.alacritty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
