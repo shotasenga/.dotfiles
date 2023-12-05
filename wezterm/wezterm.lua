@@ -7,17 +7,16 @@ end
 
 -- Apparence
 
-config.color_scheme = 'Synthwave (Gogh)'
-config.color_scheme = 'SynthwaveAlpha'
-config.color_scheme = 'Horizon Dark (Gogh)'
 config.color_scheme = 'Tokyo Night'
 config.color_scheme = 'Rapture'
 config.color_scheme = 'Omni (Gogh)'
 config.color_scheme = 'iceberg-dark'
-config.color_scheme = 'Tinacious Design (Dark)'
-config.color_scheme = 'Catppuccin Mocha'
 config.color_scheme = 'Rosé Pine (Gogh)'
 config.color_scheme = 'Banana Blueberry'
+config.color_scheme = 'Horizon Dark (Gogh)'
+config.color_scheme = 'Tinacious Design (Dark)'
+config.color_scheme = 'Catppuccin Mocha'
+config.color_scheme = 'Synthwave (Gogh)'
 
 config.window_background_gradient = {
    colors = { '#191323', '#191323', '#2a2940', '#56b6c2' },
@@ -28,7 +27,7 @@ config.window_background_gradient = {
 config.hide_tab_bar_if_only_one_tab = true
 
 if string.find(wezterm.target_triple, "darwin") then
-  config.window_background_opacity = 0.8
+  config.window_background_opacity = 0.9
   config.macos_window_background_blur = 20
 end
 
