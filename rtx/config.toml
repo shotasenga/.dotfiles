@@ -4,7 +4,6 @@ node = 'lts'
 
 [settings]
 verbose = true
-log_level = 'debug'
 
 legacy_version_file = true
 experimental = true
