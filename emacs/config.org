@@ -574,7 +574,10 @@ https://git.trevdev.ca/trevdev/dotfiles/src/commit/4b684ba5877278aee0d3d6a2e1dea
   :custom
   (company-idle-delay 0)
   (company-echo-delay 0)
-  (company-minimum-prefix-length 3))
+  (company-minimum-prefix-length 3)
+  :config
+  (setq company-backends '((company-capf company-dabbrev-code)))
+)
 #+end_src
 
 Enhance =company-mode= with icons. You need to run ~all-the-icons-install-fonts~ to install icons.
@@ -1295,7 +1298,9 @@ TBD
 (use-package org-roam
   :ensure t
   :custom
-  (org-roam-directory (file-truename "~/note"))
+  (org-roam-directory (file-truename "~/note/roam"))
+  (org-roam-completion-anywhere t)
+  (completion-ignore-case t)
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)
