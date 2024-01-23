@@ -35,7 +35,7 @@ brew "openssh"
 brew "pstree"
 brew "rename"
 brew "ripgrep"
-brew "rtx"
+brew "mise"
 brew "tree"
 brew "unar" # https://theunarchiver.com/command-line
 brew "watch"

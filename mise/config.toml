@@ -3,7 +3,7 @@ node = 'lts'
 python = ['3.11']
 
 [settings]
-verbose = true
+verbose = false
 
 legacy_version_file = true
 experimental = true

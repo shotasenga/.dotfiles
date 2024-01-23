@@ -71,7 +71,7 @@ bash $DOT_DIR/gh/gh-extensions.sh
 
 # Dev tools
 ln -Tfs $DOT_DIR/git "${XDG_CONFIG_HOME:-$HOME/.config}/git"
-ln -Tfs $DOT_DIR/rtx "${XDG_CONFIG_HOME:-$HOME/.config}/rtx"
+ln -Tfs $DOT_DIR/mise "${XDG_CONFIG_HOME:-$HOME/.config}/mise"
 ln -Tfs $DOT_DIR/emacs "${HOME}/.emacs.d"
 ln -Tfs $DOT_DIR/nvim "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 ln -Tfs $DOT_DIR/bin "${HOME}/.bin"

@@ -76,10 +76,10 @@ fi
 # Dev tools
 echo TODO: You need to manully run `all-the-icons-install-fonts` for the icons on Emacs
 sudo pacman -S --needed git github-cli openssh diff-so-fancy emacs neovim bat plocate udisks2 tree htop jq
-yay -S --needed rtx
+yay -S --needed mise
 
 ln -Tfs $DOT_DIR/git "${XDG_CONFIG_HOME:-$HOME/.config}/git"
-ln -Tfs $DOT_DIR/rtx "${XDG_CONFIG_HOME:-$HOME/.config}/rtx"
+ln -Tfs $DOT_DIR/mise "${XDG_CONFIG_HOME:-$HOME/.config}/mise"
 ln -Tfs $DOT_DIR/emacs "${HOME}/.emacs.d"
 ln -Tfs $DOT_DIR/nvim "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 ln -Tfs $DOT_DIR/bin "${HOME}/.bin"

@@ -1,4 +1,4 @@
-# TODO: replace with rtx
+# TODO: replace with ~~rtx~~ mise
 function fzf_complete_asdf
     set -l subcmd $argv[2]
 
