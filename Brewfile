@@ -47,6 +47,7 @@ mas "Xcode", id: 497799835
 brew "neovim"
 cask "emacs"
 cask "visual-studio-code"
+cask "zed"
 
 brew "aspell"
 # brew "ctags" confliting with universal-ctags which is used by global
