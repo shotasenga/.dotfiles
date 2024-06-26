@@ -1,0 +1,10 @@
+#!/bin/bash
+# git subcommand to create and checkout a feature/working branch
+
+if [ ! $1 ]; then
+  echo You need to give a branch name
+  exit 1
+fi
+
+git fetch --all --prune
+git checkout -b $1 origin/main
