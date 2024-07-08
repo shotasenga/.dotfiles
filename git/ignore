@@ -1,10 +1,5 @@
-# General
 *.log
 *.pem
-
-
-# Editor/IDE
-
 *~
 \#*
 \.#*
@@ -18,12 +13,8 @@
 GPATH
 GRTAGS
 GTAGS
-
-
-# macOS
 .DS_Store
 Thumbs.db
-
-
-# Python
 __pycache__
+.mise.toml
+.env.local

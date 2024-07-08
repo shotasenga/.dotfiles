@@ -1,6 +1,8 @@
 [tools]
 node = 'lts'
 python = ['3.11']
+go = "1.22"
+terraform = "1"
 
 [settings]
 verbose = false
