@@ -4,8 +4,6 @@ set -ex
 
 DOT_DIR=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 
-sudo pacman -Syu
-
 # Install yay
 if [ ! $(command -v yay) ]; then
     INSTALL_TARGET_DIR=/opt/yay
@@ -18,7 +16,9 @@ if [ ! $(command -v yay) ]; then
     cd -
 fi
 
-yay # to update packages
+# update packages
+sudo pacman -Sy archlinux-keyring
+yay
 
 mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"
 
