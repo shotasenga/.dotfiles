@@ -25,6 +25,10 @@ xc emacs
 
 ## Machine specific local settings
 
+### Fish custom config
+
+Create a fish script in the `fish/conf.d/` directory suffixing with `.local.fish`.
+
 ### Git attributes
 
 The `.gitconfig` file has `[include]` section with a value `path = ~/.gitconfig.local`. You can put your own attributes in it such as `user.name` and `user.email` thre.
