@@ -19,6 +19,8 @@ brew "findutils"
 brew "gnu-sed"
 
 # CLI/Dev tools
+tap "joerdav/xc"
+
 brew "autojump"
 brew "bat"
 brew "diff-so-fancy"
@@ -40,6 +42,7 @@ brew "tree"
 brew "unar" # https://theunarchiver.com/command-line
 brew "watch"
 cask "charles"
+brew "xc"
 
 
 # Editor/IDE

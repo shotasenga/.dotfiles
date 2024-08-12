@@ -1,20 +1,20 @@
 # My .dotfiles
 
-Installs applications and creates symlinks to the configs and scripts.
+A set of applications and their config files + small util scripts.
 
-## Setup
+
+## Instruction
+
+Clone the repo and run `setup.sh`. That's it!
 
 ```
 git clone git@github.com:shotasenga/.dotfiles.git dotfiles
 cd dotfiles
 bash setup.sh
+xc emacs
 ```
 
-### Emacs
-
-You need to manully run `all-the-icons-install-fonts` to render icons properly.
-
-## Structure
+## File structure
 
 | path       | description                            |
 |------------|----------------------------------------|
@@ -37,5 +37,23 @@ The `.gitconfig` file has `[include]` section with a value `path = ~/.gitconfig.
 
 ### Executables
 
-Put your scripts/binaries in `$HOME/.local/bin`
+All scripts/binaries are in `$HOME/.local/bin`.
 
+
+## Tasks
+
+### Install
+
+Install and/or update dependencies and create links to config files.
+
+```sh
+bash setup.sh
+```
+
+### Emacs
+
+You need to manully run `all-the-icons-install-fonts` to render icons properly.
+
+```sh
+yes | emacs --batch --eval '(load "~/.emacs.d/init.el")' --eval '(all-the-icons-install-fonts)'
+```
