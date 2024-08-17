@@ -51,7 +51,7 @@ end
 
 if string.find(wezterm.target_triple, "linux") then
   config.font = wezterm.font 'hack'
-  config.font_size = 10
+  config.font_size = 12
 end
 
 
