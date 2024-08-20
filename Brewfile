@@ -23,6 +23,7 @@ tap "joerdav/xc"
 
 brew "autojump"
 brew "bat"
+brew "csvq"
 brew "diff-so-fancy"
 brew "fd"
 brew "ffmpeg"
@@ -59,12 +60,13 @@ brew "aspell"
 
 # WEB Browser
 cask "firefox"
-cask "google-chrome"
+# cask "google-chrome"
 
 
 # VM/Container
 brew "colima"
 brew "docker"
+brew "docker-compose"
 # cask "docker" # use colima
 # cask "vagrant"
 
@@ -86,13 +88,13 @@ cask "quicklook-csv"
 cask "quicklook-json"
 
 # Other Apps
-cask "1password"
+#cask "1password"
 cask "1password-cli"
 cask "alfred"
 cask "anki"
 cask "obsidian"
-cask "slack"
-cask "zoom"
+#cask "slack"
+#cask "zoom"
 
 mas "Things", id: 904280696
 mas "Dato", id: 1470584107
