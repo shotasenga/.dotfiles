@@ -20,7 +20,7 @@ else
   PATH=/usr/local/opt/coreutils/libexec/gnubin:$PATH
 fi
 
-brew bundle --file $DOT_DIR/Brewfile
+brew bundle --file $DOT_DIR/Brewfile || true
 
 # WARN: it replaces the target files if exist
 mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"
@@ -42,7 +42,7 @@ if ! grep -q $FISH_BIN /etc/shells; then
 fi
 
 if [[ "$SHELL" != *fish ]]; then
-    chsh -s /usr/bin/fish
+    chsh -s $FISH_BIN
 fi
 
 # - tmux plugins
