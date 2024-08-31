@@ -60,7 +60,7 @@ brew "aspell"
 
 # WEB Browser
 cask "firefox"
-# cask "google-chrome"
+cask "google-chrome"
 
 
 # VM/Container
@@ -81,24 +81,16 @@ cask "aws-vault"
 # Customize macOS
 cask "bettertouchtool" # settings are synced with Dropbox
 cask "karabiner-elements"
-cask "qlmarkdown"
 cask "qlprettypatch"
 cask "qlstephen"
 cask "quicklook-csv"
 cask "quicklook-json"
 
-# Other Apps
-#cask "1password"
-cask "1password-cli"
-cask "alfred"
-cask "anki"
-cask "obsidian"
-#cask "slack"
-#cask "zoom"
 
-mas "Things", id: 904280696
+# More apps
+cask "alfred"
 mas "Dato", id: 1470584107
-mas "Day One", id: 1055511498
+
 
 # Fonts
 cask "font-jetbrains-mono"

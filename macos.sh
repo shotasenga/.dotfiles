@@ -22,6 +22,14 @@ fi
 
 brew bundle --file $DOT_DIR/Brewfile || true
 
+if [ -n "${WITH_EXTRA}" ]; then
+  brew bundle --file $DOT_DIR/Brewfile-extra || true
+else
+  echo 'Skip extra packages'
+fi
+
+exit 0
+
 # WARN: it replaces the target files if exist
 mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"
 

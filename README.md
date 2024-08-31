@@ -10,7 +10,7 @@ Clone the repo and run `setup.sh`. That's it!
 ```
 git clone git@github.com:shotasenga/.dotfiles.git dotfiles
 cd dotfiles
-bash setup.sh
+bash setup.sh # or WITH_EXTRA=1 bash setup.sh
 xc emacs
 ```
 

@@ -1,0 +1,8 @@
+# require './Brewfile'
+
+cask "1password"
+cask "1password-cli"
+cask "anki"
+cask "obsidian"
+mas "Things", id: 904280696
+mas "Day One", id: 1055511498
