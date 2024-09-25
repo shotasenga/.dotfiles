@@ -21,6 +21,9 @@
     ff = only
 [merge]
     ff = false
+    autoStash = true
+[rebase]
+    autoStash = true
 [include]
     path = ~/.gitconfig.local
 [init]
@@ -32,3 +35,4 @@
     textconv = cssbeautify-cli -f
 [diff "js"]
     textconv = js-beautify -f
+
