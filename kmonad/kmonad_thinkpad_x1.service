@@ -1,0 +1,12 @@
+[Unit]
+Description=Kmonad for my laptop
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/kmonad /etc/kmonad/thinkpad_X1.kbd
+Restart=always
+User=kmonad
+
+[Install]
+WantedBy=multi-user.target

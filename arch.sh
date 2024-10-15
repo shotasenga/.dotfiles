@@ -45,10 +45,11 @@ ln -Tfs $DOT_DIR/autorandr "${XDG_CONFIG_HOME:-$HOME/.config}/autorandr"
 # GUI environmneet
 sudo pacman -S --needed i3-wm xss-lock i3lock polkit
 sudo pacman -S --needed rofi dunst maim xclip
-yay -S --needed dragon-drop
+yay -S --needed dragon-drop kmonad-bin
 
 ln -Tfs $DOT_DIR/i3 "${XDG_CONFIG_HOME:-$HOME/.config}/i3"
 ln -Tfs $DOT_DIR/dunst "${XDG_CONFIG_HOME:-$HOME/.config}/dunst"
+# cp -a "${XDG_CONFIG_HOME:-$HOME/.config}/kmonad" /etc/kmonad
 
 
 # Terminal

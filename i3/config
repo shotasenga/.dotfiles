@@ -7,8 +7,6 @@
 
 # Super
 set $mod Mod4
-# Alt
-set $mod2 Mod1
 
 # Brightness control
 bindsym XF86MonBrightnessUp exec xbacklight +10
@@ -25,46 +23,46 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+$mod2+Return exec i3-sensible-terminal
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
-bindsym $mod+$mod2+q kill
+bindsym $mod+q kill
 
 # start rofi - dmenu alternative
-bindsym $mod2+space exec "rofi -combi-modi window,drun -mobi combi -show combi -show-icons -font 'hack 13'"
+bindsym ctrl+$mod+space exec "rofi -combi-modi window,drun -mobi combi -show combi -show-icons -font 'hack 13'"
 
 # change focus
-bindsym $mod+$mod2+j focus left
-bindsym $mod+$mod2+k focus down
-bindsym $mod+$mod2+l focus up
-bindsym $mod+$mod2+semicolon focus right
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+$mod2+Left focus left
-bindsym $mod+$mod2+Down focus down
-bindsym $mod+$mod2+Up focus up
-bindsym $mod+$mod2+Right focus right
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+$mod2+Shift+j move left
-bindsym $mod+$mod2+Shift+k move down
-bindsym $mod+$mod2+Shift+l move up
-bindsym $mod+$mod2+Shift+semicolon move right
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
 
 # alternatively, you can use the cursor keys:
-bindsym $mod+$mod2+Shift+Left move left
-bindsym $mod+$mod2+Shift+Down move down
-bindsym $mod+$mod2+Shift+Up move up
-bindsym $mod+$mod2+Shift+Right move right
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+$mod2+h split h
+bindsym $mod+h split h
 
 # split in vertical orientation
-bindsym $mod+$mod2+v split v
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+$mod2+f fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
@@ -78,10 +76,10 @@ bindsym $mod+$mod2+f fullscreen toggle
 # bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+$mod2+a focus parent
+bindsym $mod+a focus parent
 
 # focus the child container
-bindsym $mod+$mod2+d focus child
+bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -97,28 +95,28 @@ set $ws9 "9"
 set $ws10 "10"
 
 # switch to workspace
-bindsym $mod+$mod2+1 workspace number $ws1
-bindsym $mod+$mod2+2 workspace number $ws2
-bindsym $mod+$mod2+3 workspace number $ws3
-bindsym $mod+$mod2+4 workspace number $ws4
-bindsym $mod+$mod2+5 workspace number $ws5
-bindsym $mod+$mod2+6 workspace number $ws6
-bindsym $mod+$mod2+7 workspace number $ws7
-bindsym $mod+$mod2+8 workspace number $ws8
-bindsym $mod+$mod2+9 workspace number $ws9
-bindsym $mod+$mod2+0 workspace number $ws10
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+$mod2+1 move container to workspace number $ws1
-bindsym $mod+Shift+$mod2+2 move container to workspace number $ws2
-bindsym $mod+Shift+$mod2+3 move container to workspace number $ws3
-bindsym $mod+Shift+$mod2+4 move container to workspace number $ws4
-bindsym $mod+Shift+$mod2+5 move container to workspace number $ws5
-bindsym $mod+Shift+$mod2+6 move container to workspace number $ws6
-bindsym $mod+Shift+$mod2+7 move container to workspace number $ws7
-bindsym $mod+Shift+$mod2+8 move container to workspace number $ws8
-bindsym $mod+Shift+$mod2+9 move container to workspace number $ws9
-bindsym $mod+Shift+$mod2+0 move container to workspace number $ws10
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -146,7 +144,7 @@ mode "resize" {
         bindsym Control+c mode "default"
 }
 
-bindsym $mod+$mod2+r mode "resize"
+bindsym $mod+r mode "resize"
 
 # System lock/logout/etc
 # https://wiki.archlinux.org/title/i3#Shutdown,_reboot,_lock_screen
@@ -172,7 +170,7 @@ mode "$mode_system" {
     bindsym Control+c mode "default"
 }
 
-bindsym $mod+$mod2+Escape mode "$mode_system"
+bindsym $mod+Escape mode "$mode_system"
 
 # Screen capture
 set $screen_capture_dir $HOME/images/screenshots

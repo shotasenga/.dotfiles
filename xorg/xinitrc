@@ -36,10 +36,6 @@ if [ -d ~/.Xresources ] ; then
   xrdb -merge ~/.Xresources
 fi
 
-# Key repeat delay and rate
-# https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Using_xset
-xset r rate 180 40
-
 # Japanese input
 export GLFW_IM_MODULE=fcitx
 export GTK_IM_MODULE=fcitx
