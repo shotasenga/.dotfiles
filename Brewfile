@@ -81,6 +81,7 @@ cask "aws-vault"
 # Customize macOS
 cask "bettertouchtool" # settings are synced with Dropbox
 cask "karabiner-elements"
+cask "whichspace"
 cask "qlprettypatch"
 cask "qlstephen"
 cask "quicklook-csv"
