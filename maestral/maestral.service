@@ -1,0 +1,14 @@
+[Unit]
+Description = Maestral daemon
+
+[Service]
+Type = notify
+NotifyAccess = exec
+ExecStart = /usr/bin/maestral start -f
+ExecStop = /usr/bin/maestral stop
+ExecStopPost=/usr/bin/env bash -c "if [ ${SERVICE_RESULT} != success ]; \
+then notify-send Maestral 'Daemon failed'; fi"
+WatchdogSec = 30s
+
+[Install]
+WantedBy = default.target

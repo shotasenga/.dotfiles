@@ -1,0 +1,13 @@
+# Maestral
+
+Run `maestral start` after install. It will prompt you to login to Dropbox.
+
+
+## Start Maesral on login
+
+```
+cp maestral/maestral.service ~/.config/systemd/user/maestral.service
+systemd --user enable --now maestral.service
+```
+
+see https://maestral.app/docs/autostart
