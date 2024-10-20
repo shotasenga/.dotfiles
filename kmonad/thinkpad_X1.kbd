@@ -49,16 +49,17 @@ esc  f1   f2   f3   f4   f5   f6   f7   f8   f9   f10  f11  f12  home end  ins  
 )
 
 (defalias
-  ect (tap-next esc lctl)                    ;; double-tap to escape, hold to ctrl
-  cmd (around (layer-toggle cmd) lctl)       ;; activates cmd layer
-  cms (layer-toggle cmd-shift)               ;; activates cmd-shift layer
-  sft (around (layer-toggle shift) lsft)     ;; activates shift layer
-  rof M-spc                                  ;; emits M-C-spc that triggers Rofi through i3wm
+  ect (tap-next esc lctl)                       ;; double-tap to escape, hold to ctrl
+  cmd (around (layer-toggle cmd) lctl)          ;; activates cmd layer
+  cms (layer-toggle cmd-shift)                  ;; activates cmd-shift layer
+  sft (around (layer-toggle shift) lsft)        ;; activates shift layer
+  rof M-spc                                     ;; emits M-C-spc that triggers Rofi through i3wm
+  met (around (layer-toggle layer-switch) rmet) ;;
 
-  erd (tap-next esc (layer-toggle readline)) ;; activates readline-ish layer
-  alt (around (layer-toggle readline) lctl)  ;; readline-ish layer + ctrl pressed
-  kil C-S-del                                ;; delete to the end
-  kup C-S-bspc                               ;; delete to the beginning
+  erd (tap-next esc (layer-toggle readline))    ;; activates readline-ish layer
+  alt (around (layer-toggle readline) lctl)     ;; readline-ish layer + ctrl pressed
+  kil C-S-del                                   ;; delete to the end
+  kup C-S-bspc                                  ;; delete to the beginning
   tab C-tab
   lft C-S-tab
   rgt C-tab
@@ -85,7 +86,7 @@ _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    
   _    _    _    _    _    _    _    _    _    _    _    _    _     _
   @ect _    _    _    _    _    _    _    _    _    _    _          _
   @sft _    _    _    _    _    _    _    _    _    _               _
-  _    @ls  lalt @cmd           _              rmet ralt _     _    _    _
+  _    @ls  lalt @cmd           _              @met ralt _     _    _    _
                                                                _    _    _
 )
 
@@ -96,7 +97,7 @@ _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    
   _    _    _    _    _    _    _    _    _    _    _    _    _     _
   @erd _    _    _    _    _    _    _    _    _    _    _          _
   @sft _    _    _    _    _    _    _    _    _    _               _
-  _    @ls  @alt @cmd           _              rmet ralt _     _    _    _
+  _    @ls  @alt @cmd           _              @met ralt _     _    _    _
                                                                _    _    _
 )
 
@@ -104,9 +105,9 @@ _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    
 ;; -----------------------------------------
 (deflayer layer-switch
        _    _    _
-_    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _    _
-  _    @l1  @l2  _  _    _    _    _    _    _    _    _    _     _
-  _    _    _    _    _    _    _    _    _    _    _    _    _     _
+_    @l1  @l2  _    _    _    _    _    _    _    _    _    _    _    _    _    _
+  _    _    _    _  _    _    _    _    _    _    _    _    _     _
+  _    _    @l1  @l2  _    _    _    _    _    _    _    _    _     _
   caps    _    _    _    _    _    _    _    _    _    _    _          _
   _    _    _    _    _    _    _    _    _    _    _               _
   _    _    _    _              _              _    _    _     _    _    _
