@@ -1,6 +1,5 @@
 tap "homebrew/bundle"
 tap "hashicorp/tap"
-tap "homebrew/cask-fonts"
 
 brew "mas"
 
@@ -47,7 +46,8 @@ brew "xc"
 
 
 # Editor/IDE
-mas "Xcode", id: 497799835
+# Manually install Xcode. It's too heavy to install it via Brewfile
+# mas "Xcode", id: 497799835
 brew "neovim"
 cask "emacs"
 cask "visual-studio-code"
@@ -81,7 +81,6 @@ cask "aws-vault"
 # Customize macOS
 cask "bettertouchtool" # settings are synced with Dropbox
 cask "karabiner-elements"
-cask "whichspace"
 cask "qlprettypatch"
 cask "qlstephen"
 cask "quicklook-csv"
