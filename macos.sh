@@ -28,8 +28,6 @@ else
   echo 'Skip extra packages'
 fi
 
-exit 0
-
 # WARN: it replaces the target files if exist
 mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"
 
@@ -42,6 +40,7 @@ ln -Tfs $DOT_DIR/fish "${XDG_CONFIG_HOME:-$HOME/.config}/fish"
 ln -Tfs $DOT_DIR/tmux/tmux.conf "${HOME}/.tmux.conf"
 ln -Tfs $DOT_DIR/tmux/tmux.mac.conf "${HOME}/.tmux.env.conf"
 ln -Tfs $DOT_DIR/wezterm "${XDG_CONFIG_HOME:-$HOME/.config}/wezterm"
+ln -Tfs $DOT_DIR/alacritty "${XDG_CONFIG_HOME:-$HOME/.config}/alacritty"
 
 # - fish as default shell
 FISH_BIN=$(brew --prefix)/bin/fish
