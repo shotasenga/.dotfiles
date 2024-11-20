@@ -1145,7 +1145,8 @@ Use =Github Flavored Markdown= for markdown files. It provides tons of functiona
   :mode (("\\.md\\'"  . gfm-mode)
          ("\\.markdown\\'"  . gfm-mode))
   :init
-  (setq markdown-list-indent-width 2
+  (setq markdown-list-indent-width 4
+        tab-width 4
         markdown-hide-urls t
         markdown-gfm-use-electric-backquote nil)
   :config

@@ -90,6 +90,7 @@ cask "quicklook-json"
 # More apps
 cask "alfred"
 mas "Dato", id: 1470584107
+cask "appcleaner"
 
 
 # Fonts
