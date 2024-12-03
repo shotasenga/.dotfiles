@@ -3,7 +3,9 @@ import = ["~/.config/alacritty/local.toml"]
 
 [window]
 blur = true
-opacity = 0.9
-# startup_mode = "Maximized"
+opacity = 0.93
 padding = { x = 4, y = 4 }
 option_as_alt = "Both"
+
+[colors.primary]
+background = "#221D1B"
