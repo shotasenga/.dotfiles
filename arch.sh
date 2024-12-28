@@ -53,7 +53,7 @@ ln -Tfs $DOT_DIR/dunst "${XDG_CONFIG_HOME:-$HOME/.config}/dunst"
 
 
 # Terminal
-sudo pacman -S --needed wezterm
+sudo pacman -S --needed wezterm alacritty ghostty
 sudo pacman -S --needed fish fzf fd tmux
 yay -S --needed autojump
 
