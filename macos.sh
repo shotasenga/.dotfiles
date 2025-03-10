@@ -1,4 +1,4 @@
-#!/bin/bash
+e!/bin/bash
 
 set -ex
 
@@ -41,6 +41,7 @@ ln -Tfs $DOT_DIR/tmux/tmux.conf "${HOME}/.tmux.conf"
 ln -Tfs $DOT_DIR/tmux/tmux.mac.conf "${HOME}/.tmux.env.conf"
 ln -Tfs $DOT_DIR/wezterm "${XDG_CONFIG_HOME:-$HOME/.config}/wezterm"
 ln -Tfs $DOT_DIR/alacritty "${XDG_CONFIG_HOME:-$HOME/.config}/alacritty"
+ln -Tfs $DOT_DIR/ghostty "${XDG_CONFIG_HOME:-$HOME/.config}/ghostty"
 
 # - fish as default shell
 FISH_BIN=$(brew --prefix)/bin/fish
