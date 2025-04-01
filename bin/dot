@@ -1,0 +1,5 @@
+#!/bin/sh
+
+INSTALL_DIR=$( dirname $(dirname $(realpath "$0") ) )
+sh $INSTALL_DIR/setup.sh
+
