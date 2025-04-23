@@ -1,2 +1,8 @@
 macos-option-as-alt = true
 
+# ctrl+` to toggle the quick terminal
+keybind = global:ctrl+grave_accent=toggle_quick_terminal
+
+quick-terminal-position = bottom
+quick-terminal-animation-duration = 0.1
+quick-terminal-autohide = false
