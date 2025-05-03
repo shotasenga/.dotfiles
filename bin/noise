@@ -1,0 +1,59 @@
+#!/bin/bash
+
+PID_FILE="/tmp/noise_pid"
+
+is_running() {
+    if [ -f "$PID_FILE" ]; then
+        STORED_PID=$(cat "$PID_FILE")
+        if kill -0 "$STORED_PID" 2>/dev/null; then
+            return 0
+        else
+            rm -f "$PID_FILE"
+        fi
+    fi
+    return 1
+}
+
+play_noise() {
+    if is_running; then
+        return 0
+    fi
+
+    play -q -n synth brownnoise &
+    echo $! > "$PID_FILE"
+}
+
+stop_noise() {
+    if is_running; then
+        STORED_PID=$(cat "$PID_FILE")
+        kill "$STORED_PID"
+        rm -f "$PID_FILE"
+    fi
+}
+
+toggle_noise() {
+    if is_running; then
+        stop_noise
+    else
+        play_noise
+    fi
+}
+
+case "$1" in
+    play)
+        play_noise
+        ;;
+    stop)
+        stop_noise
+        ;;
+    toggle|"")
+        toggle_noise
+        ;;
+     *)
+        echo "Usage: $(basename "$0") [play|stop]"
+        echo "  play  : Start playing brown noise (default if no command specified)"
+        echo "  stop  : Stop playing noise"
+        echo "  toggle: Stop or play noise"
+        exit 1
+        ;;
+esac

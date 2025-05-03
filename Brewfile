@@ -30,6 +30,7 @@ brew "ffmpeg"
 brew "fzf"
 brew "gh"
 brew "git"
+brew "howdoi"
 brew "imagemagick"
 brew "jq"
 brew "mike-engel/jwt-cli/jwt-cli"
@@ -92,6 +93,7 @@ cask "quicklook-json"
 cask "alfred"
 mas "Dato", id: 1470584107
 cask "appcleaner"
+brew "sox"
 
 
 # Fonts
