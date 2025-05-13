@@ -14,6 +14,7 @@
                                             "^org\\.gnu\\.Emacs$",
                                             "^com\\.github\\.wez\\.wezterm$",
                                             "^org\\.alacritty$",
+                                            "^com\\.mitchellh\\.ghostty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
@@ -36,6 +37,7 @@
                                             "^org\\.gnu\\.Emacs$",
                                             "^com\\.github\\.wez\\.wezterm$",
                                             "^org\\.alacritty$",
+                                            "^com\\.mitchellh\\.ghostty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
@@ -63,6 +65,7 @@
                                             "^org\\.gnu\\.Emacs$",
                                             "^com\\.github\\.wez\\.wezterm$",
                                             "^org\\.alacritty$",
+                                            "^com\\.mitchellh\\.ghostty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
@@ -85,6 +88,7 @@
                                             "^org\\.gnu\\.Emacs$",
                                             "^com\\.github\\.wez\\.wezterm$",
                                             "^org\\.alacritty$",
+                                            "^com\\.mitchellh\\.ghostty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
@@ -107,6 +111,7 @@
                                             "^org\\.gnu\\.Emacs$",
                                             "^com\\.github\\.wez\\.wezterm$",
                                             "^org\\.alacritty$",
+                                            "^com\\.mitchellh\\.ghostty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
@@ -129,6 +134,7 @@
                                             "^org\\.gnu\\.Emacs$",
                                             "^com\\.github\\.wez\\.wezterm$",
                                             "^org\\.alacritty$",
+                                            "^com\\.mitchellh\\.ghostty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
@@ -156,6 +162,7 @@
                                             "^org\\.gnu\\.Emacs$",
                                             "^com\\.github\\.wez\\.wezterm$",
                                             "^org\\.alacritty$",
+                                            "^com\\.mitchellh\\.ghostty$",
                                             "^com\\.microsoft\\.VSCode$"
                                         ],
                                         "type": "frontmost_application_unless"
