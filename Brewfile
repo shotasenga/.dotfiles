@@ -91,9 +91,11 @@ cask "quicklook-json"
 
 # More apps
 cask "alfred"
+cask "espanso"
 mas "Dato", id: 1470584107
 cask "appcleaner"
 brew "sox"
+cask "tomatobar"
 
 
 # Fonts
