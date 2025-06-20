@@ -1,0 +1,29 @@
+# Dev related replacements
+
+matches:
+  # Network
+  - trigger: ";ip"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "curl 'https://api.ipify.org'"
+
+  # Markdown
+  - trigger: ";details"
+    replace: >
+      <details> 
+      <summary>SQL</summary> 
+      
+      ``` 
+      ``` 
+      
+      </details>
+
+  # Lorem Ipsum
+  - trigger: ";lorem"
+    replace: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui eius, voluptate quisquam impedit repudiandae earum laborum quasi ipsa numquam aliquam, blanditiis ut fuga voluptatibus rem voluptas in tempora vero aut.
+  - trigger: ";ipsum"
+    replace: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui eius, voluptate quisquam impedit repudiandae earum laborum quasi ipsa numquam aliquam, blanditiis ut fuga voluptatibus rem voluptas in tempora vero aut.
+

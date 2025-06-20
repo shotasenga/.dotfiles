@@ -1,0 +1,49 @@
+# Physical and e-mail addresss
+
+matches:
+  # Email address (private)
+  - trigger: ";@p"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: /opt/homebrew/bin/op read "op://Private/Shota Senga/INTERNET DETAILS/email"
+
+  # Email address (work)
+  - trigger: ";@w"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: /opt/homebrew/bin/op read "op://Private/Shota Senga/INTERNET DETAILS/work email"
+
+  # Phone number (mobile)
+  - trigger: ";@m"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: /opt/homebrew/bin/op read "op://Private/Shota Senga/ADDRESS/default phone"
+
+  # Address
+  - trigger: ";@ha"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: /opt/homebrew/bin/op read "op://Private/Shota Senga/ADDRESS/address"
+
+  # Address (postal code)
+  - trigger: ";@hp"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: /opt/homebrew/bin/op read "op://Private/Shota Senga/ADDRESS/postal code"
+
+

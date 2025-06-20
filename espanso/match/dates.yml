@@ -1,0 +1,80 @@
+# Date related replacements
+
+matches:
+  # Current time (01:23)
+  - trigger: ";n"
+    replace: "{{now}}"
+    vars:
+      - name: now
+        type: date
+        params:
+          format: "%H:%M"
+
+  # Current date (2025-06-19)
+  - trigger: ";td"
+    replace: "{{now}}"
+    vars:
+      - name: now
+        type: date
+        params:
+          format: "%Y-%m-%d"
+
+  # Current date (Thursday, June 19, 2025)
+  - trigger: ";today"
+    replace: "{{now}}"
+    vars:
+      - name: now
+        type: date
+        params:
+          format: "%A, %B %-e, %Y"
+
+  # Tomorrow's date (2025-06-20)
+  - trigger: ";tm"
+    replace: "{{now}}"
+    vars:
+      - name: now
+        type: date
+        params:
+          format: "%Y-%m-%d"
+          offset: +86400
+
+  # Tomorrow's date (Friday, June 20, 2025)
+  - trigger: ";tomorrow"
+    replace: "{{now}}"
+    vars:
+      - name: now
+        type: date
+        params:
+          format: "%A, %B %-e, %Y"
+          offset: +86400
+
+  # Yesterday's date (2025-06-18)
+  - trigger: ";yt"
+    replace: "{{now}}"
+    vars:
+      - name: now
+        type: date
+        params:
+          format: "%Y-%m-%d"
+          offset: -86400
+
+  # Yesterday's date (Wednesday, June 18, 2025)
+  - trigger: ";yesterday"
+    replace: "{{now}}"
+    vars:
+      - name: now
+        type: date
+        params:
+          format: "%A, %B %-e, %Y"
+          offset: -86400
+
+  # Day One link for the day
+  - trigger: ";dayo"
+    replace: "[{{now}}](dayone://open?date={{now}})"
+    vars:
+      - name: now
+        type: date
+        params:
+          format: "%Y-%m-%d"
+
+
