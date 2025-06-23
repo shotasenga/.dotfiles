@@ -1,12 +1,12 @@
 # Arrows
 
 matches:
-  - trigger: ".h"
+  - trigger: ";zh"
     replace: "←"
-  - trigger: ".l"
+  - trigger: ";zl"
     replace: "→"
-  - trigger: ".k"
+  - trigger: ";zk"
     replace: "↑"
-  - trigger: ".j"
+  - trigger: ";zj"
     replace: "↓"
 
