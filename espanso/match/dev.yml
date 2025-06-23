@@ -8,7 +8,16 @@ matches:
       - name: output
         type: shell
         params:
-          cmd: "curl 'https://api.ipify.org'"
+          cmd: "dig -4 +short @resolver1.opendns.com ANY myip.opendns.com"
+
+  # Network
+  - trigger: ";6ip"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "dig -6 +short @resolver1.opendns.com ANY myip.opendns.com"
 
   # Markdown
   - trigger: ";details"
