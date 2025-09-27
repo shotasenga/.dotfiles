@@ -18,3 +18,4 @@ Thumbs.db
 __pycache__
 .mise.toml
 .env.local
+**/*.local.*
