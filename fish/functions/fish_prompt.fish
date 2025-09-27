@@ -11,6 +11,10 @@ function fish_prompt
         printf '🙉'
     end
 
+    # hostname
+    # set_color 81a1c1
+    # printf ' [%s]' (prompt_hostname)
+
     # show cwd
     set_color 81a1c1
     printf ' %s' (prompt_pwd)
