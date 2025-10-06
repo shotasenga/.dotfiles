@@ -6,7 +6,7 @@ function fzf_complete_git
             git status -s | fzf -m -q "$argv[3..]" | awk '{print $2}'
         case fixup
         case show
-            git log --pretty=format:"%C(auto)%h %s author:%an" | fzf --no-sort -q "$argv[3..]" | awk '{print $1}'
+            git log --pretty=format:"%C(auto)%h %s [Author:%an <%ae>]" | fzf --no-sort -q "$argv[3..]" | awk '{print $1}'
         case '*'
             git branch --format '%(refname:lstrip=2)' | fzf +m -q "$argv[3..]"
     end
