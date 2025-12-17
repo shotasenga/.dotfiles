@@ -115,7 +115,7 @@ Run if Emacs runs with =window-system=
   (setq frame-title-format '(buffer-file-name "%f" ("%b")))
 
   ;; transparency
-  (set-frame-parameter nil 'alpha 95)
+  ;(set-frame-parameter nil 'alpha 95)
   )
 #+end_src
 
@@ -490,9 +490,9 @@ Magit for Git.
 Show changed lines.
 
 #+begin_src emacs-lisp
-(use-package git-gutter
-  :diminish
-  :config (global-git-gutter-mode t))
+;; (use-package git-gutter
+;;   :diminish
+;;   :config (global-git-gutter-mode t))
 #+end_src
 
 ** Snippets
@@ -1138,15 +1138,17 @@ Use =Github Flavored Markdown= for markdown files. It provides tons of functiona
   :mode (("\\.csv\\'"  . csv-mode)))
 #+end_src
 
-* org
+* org-mode
 
 ** Install
 
 Install org from elpa
 
 #+begin_src emacs-lisp
-(use-package org
-  :ensure org-plus-contrib)
+  (use-package org
+    :ensure org-plus-contrib
+    :bind (:map org-mode-map
+		("C-x l l" . counsel-org-link)))
 #+end_src
 
 ** Display Preference
@@ -1155,17 +1157,18 @@ Set header line faces.
 
 #+begin_src emacs-lisp
 (custom-set-faces
-  '(org-level-1 ((t (:inherit outline-1 :height 1.1))))
-  '(org-level-2 ((t (:inherit outline-2 :height 1.1))))
-  '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
-  '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
-  '(org-level-5 ((t (:inherit outline-5 :height 1.1)))))
+  '(org-level-1 ((t (:inherit outline-1 :height 1.0))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.0))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.0))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+  '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 #+end_src
 
 =org-indent-mode= is clean and less-fancy/less-distracting.
 
 #+begin_src emacs-lisp
-(setq org-startup-indented t)
+(setq org-startup-indented t
+      org-list-indent-offset 2)
 #+end_src
 
 Turn on wordwarp.
