@@ -100,7 +100,7 @@ sudo pacman -S --needed ttf-hack
 
 
 # Other applications
-yay -S --needed maestral anki-official-binary-bundle google-chrome slack-desktop
+yay -S --needed syncthing anki-official-binary-bundle google-chrome slack-desktop
 
 
 echo COMPLETED 🎉
