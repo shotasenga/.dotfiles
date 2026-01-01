@@ -1,6 +1,5 @@
-# Arrows
-
 matches:
+  # Arrows
   - trigger: ";zh"
     replace: "←"
   - trigger: ";zl"
@@ -9,4 +8,6 @@ matches:
     replace: "↑"
   - trigger: ";zj"
     replace: "↓"
-
+  # Other
+  - trigger: ";ch"
+    replace: "✓"
