@@ -1,4 +1,4 @@
-e!/bin/bash
+#!/bin/bash
 
 set -ex
 
@@ -27,6 +27,8 @@ if [ -n "${WITH_EXTRA}" ]; then
 else
   echo 'Skip extra packages'
 fi
+
+mas upgrade
 
 # WARN: it replaces the target files if exist
 mkdir -p "${XDG_CONFIG_HOME:-$HOME/.config}"
@@ -84,6 +86,7 @@ ln -Tfs $DOT_DIR/mise "${XDG_CONFIG_HOME:-$HOME/.config}/mise"
 ln -Tfs $DOT_DIR/emacs "${HOME}/.emacs.d"
 ln -Tfs $DOT_DIR/nvim "${XDG_CONFIG_HOME:-$HOME/.config}/nvim"
 ln -Tfs $DOT_DIR/bin "${HOME}/.bin"
+ln -Tfs $DOT_DIR/claude-code-router "${HOME}/.claude-code-router"
 
 
 echo COMPLETED 🎉
