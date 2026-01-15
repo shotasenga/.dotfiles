@@ -19,33 +19,29 @@ brew "findutils"
 brew "gnu-sed"
 
 # CLI/Dev tools
-tap "joerdav/xc"
-
 brew "autojump"
-brew "bat"
-brew "csvq"
 brew "diff-so-fancy"
 brew "fd"
 brew "ffmpeg"
 brew "fzf"
 brew "gh"
+brew "ghq"
 brew "git"
-brew "howdoi"
+brew "gwq"
 brew "imagemagick"
-brew "jujutsu"
 brew "jq"
-brew "mike-engel/jwt-cli/jwt-cli"
+brew "jujutsu"
 brew "macos-trash"
+brew "mike-engel/jwt-cli/jwt-cli"
+brew "mise"
 brew "openssh"
 brew "pstree"
 brew "rename"
 brew "ripgrep"
-brew "mise"
 brew "tree"
 brew "unar" # https://theunarchiver.com/command-line
 brew "watch"
 cask "charles"
-brew "xc"
 
 
 # Editor/IDE
@@ -96,7 +92,6 @@ cask "espanso"
 mas "Dato", id: 1470584107
 cask "appcleaner"
 brew "sox"
-cask "tomatobar"
 
 
 # Fonts
