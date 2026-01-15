@@ -27,7 +27,7 @@ brew "fzf"
 brew "gh"
 brew "ghq"
 brew "git"
-brew "gwq"
+# brew "gwq" not available on Brew;
 brew "imagemagick"
 brew "jq"
 brew "jujutsu"

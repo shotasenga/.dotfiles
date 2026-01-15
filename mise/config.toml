@@ -1,9 +1,10 @@
 [tools]
 node = 'lts'
 python = "3.12"
-go = "1.22"
+go = "1.25"
 terraform = "1"
 deno = "latest"
+"go:github.com/d-kuro/gwq/cmd/gwq" = { version = "latest" }
 
 [settings]
 verbose = false
