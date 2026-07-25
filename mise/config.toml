@@ -1,28 +1,22 @@
-# see https://mise.jdx.dev/configuration.html
-
 [settings]
 verbose = false
 
 minimum_release_age = "7d"
 
-legacy_version_file = true
-experimental = true
-
-plugin_autoupdate_last_check_duration = '1 week' # set to 0 to disable updates
-
-trusted_config_paths = [
-    '~/code/shotasenga',
-]
-
 idiomatic_version_file_enable_tools = [
   "python",    # .python-version, .python-versions
   "node",      # .nvmrc, .node-version, package.json
+  "pnpm",      # package.json
+  "npm",       # package.json
+  "yarn",      # .yvmrc, package.json
   "deno",      # .deno-version, package.json
   "bun",       # .bun-version, package.json
-  "yarn",      # .yvmrc, package.json
   "terraform", # .terraform-version
   "go",        # .go-version
   "java",      # .java-version, .sdkmanrc
+  "ruby",      # .ruby-version, Gemfile
+  "perl",      # .perl-version
+  "rust",      # rust-toolchain.toml
 ]
 
 python.uv_venv_auto = "source"
