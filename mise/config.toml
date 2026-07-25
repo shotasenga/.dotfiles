@@ -1,12 +1,9 @@
-[tools]
-node = 'lts'
-python = "3.12"
-go = "1.25"
-terraform = "1"
-deno = "latest"
+# see https://mise.jdx.dev/configuration.html
 
 [settings]
 verbose = false
+
+minimum_release_age = "7d"
 
 legacy_version_file = true
 experimental = true
@@ -16,4 +13,16 @@ plugin_autoupdate_last_check_duration = '1 week' # set to 0 to disable updates
 trusted_config_paths = [
     '~/code/shotasenga',
 ]
-idiomatic_version_file_enable_tools = ["python"]
+
+idiomatic_version_file_enable_tools = [
+  "python",    # .python-version, .python-versions
+  "node",      # .nvmrc, .node-version, package.json
+  "deno",      # .deno-version, package.json
+  "bun",       # .bun-version, package.json
+  "yarn",      # .yvmrc, package.json
+  "terraform", # .terraform-version
+  "go",        # .go-version
+  "java",      # .java-version, .sdkmanrc
+]
+
+python.uv_venv_auto = "source"
