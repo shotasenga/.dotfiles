@@ -53,8 +53,10 @@ brew "aspell"
 
 
 # WEB Browser
+brew "defaultbrowser"
 cask "firefox"
 cask "google-chrome"
+cask "finicky"
 
 
 # VM/Container
