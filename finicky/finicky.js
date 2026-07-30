@@ -6,7 +6,7 @@ export default {
   },
   handlers: [
     {
-      match: (url) => url.hostname === "meet.google.com",
+      match: (url) => url.hostname === "meet.google.com" || url.hostname === "accounts.google.com",
       browser: "Google Chrome",
     },
   ],
