@@ -4,6 +4,20 @@ set -ex
 
 DOT_DIR=$(realpath $(dirname "${BASH_SOURCE[0]}"))
 
+include_extra=false
+for arg in "$@"; do
+  case "$arg" in
+    --extra)
+      include_extra=true
+      ;;
+    *)
+      echo "Unknown option: $arg" >&2
+      echo "Usage: $0 [--extra]" >&2
+      exit 2
+      ;;
+  esac
+done
+
 set HOMEBREW_NO_AUTO_UPDATE=1
 
 if [ $(which brew) ]; then
@@ -22,7 +36,7 @@ fi
 
 brew bundle --file $DOT_DIR/Brewfile || true
 
-if [ -n "${WITH_EXTRA}" ]; then
+if $include_extra; then
   brew bundle --file $DOT_DIR/Brewfile-extra || true
 else
   echo 'Skip extra packages'

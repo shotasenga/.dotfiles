@@ -13,7 +13,7 @@ case $(uname -s) in
         bash $DOT_DIR/arch.sh
         ;;
     Darwin)
-        bash $DOT_DIR/macos.sh
+        bash "$DOT_DIR/macos.sh" "$@"
         ;;
     *)
         echo Unknown system

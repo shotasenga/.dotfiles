@@ -1,5 +1,10 @@
 #!/bin/sh
 
-INSTALL_DIR=$( dirname $(dirname $(realpath "$0") ) )
-sh $INSTALL_DIR/setup.sh
+INSTALL_DIR=$(dirname "$(dirname "$(realpath "$0")")")
 
+if [ "$#" -gt 1 ] || { [ "$#" -eq 1 ] && [ "$1" != "--extra" ]; }; then
+  echo "Usage: dot [--extra]" >&2
+  exit 2
+fi
+
+exec bash "$INSTALL_DIR/setup.sh" "$@"
