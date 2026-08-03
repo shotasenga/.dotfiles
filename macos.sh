@@ -116,26 +116,25 @@ ln -Tfs $DOT_DIR/finicky/finicky.js "${HOME}/.finicky.js"
 
 # OS preference
 # use `defaults delete <application> [config]` to go back to the default
-defaults write -g NSMenuEnableActionImages -bool NO # no icons https://daringfireball.net/2026/03/what_to_do_about_those_menu_item_icons_in_macos_26_tahoe
-# Flash screen on `beep`
-defaults write com.apple.universalaccess flashScreen -bool true
-# Dock: size = smallest, maginification = on, position = left, autohide = on
-defaults write com.apple.dock tilesize -int 16
-defaults write com.apple.dock magnification -bool true
-defaults write com.apple.dock largesize -int 128
-defaults write com.apple.dock orientation -string "left"
-defaults write com.apple.dock autohide -bool true
-# Trackpad: natural scrolling = off
-defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-# Finder: show extensions, show hidden files, show path bar
-defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-defaults write com.apple.Finder AppleShowAllFiles -bool true
-defaults write com.apple.finder ShowPathbar -bool true
-# Keyboard: fast repeat, auto period = off, smart quotes = off
-defaults write NSGlobalDomain KeyRepeat -int 3
-defaults write NSGlobalDomain InitialKeyRepeat -int 20
-defaults write NSAutomaticPeriodSubstitutionEnabled -bool false
-defaults write NSAutomaticDashSubstitutionEnabled -bool false
-defaults write NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write -g NSMenuEnableActionImages -bool NO # hide icons in menu items
+defaults write com.apple.universalaccess flashScreen -bool true # flash the screen on `beep`
+# - dock
+defaults write com.apple.dock tilesize -int 16 # set Dock icons to the smallest size
+defaults write com.apple.dock magnification -bool true # magnify Dock icons on hover
+defaults write com.apple.dock largesize -int 128 # set magnified Dock icons to the largest size
+defaults write com.apple.dock orientation -string "left" # position the Dock on the left
+defaults write com.apple.dock autohide -bool true # automatically hide the Dock
+# - trackpad
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false # disable natural scrolling
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true # show all filename extensions
+defaults write com.apple.Finder AppleShowAllFiles -bool true # show hidden files in Finder
+defaults write com.apple.finder ShowPathbar -bool true # show the path bar in Finder
+# - keyboard
+defaults write NSGlobalDomain KeyRepeat -int 3 # repeat held keys quickly
+defaults write NSGlobalDomain InitialKeyRepeat -int 20 # shorten the delay before a held key repeats
+defaults write NSAutomaticPeriodSubstitutionEnabled -bool false # disable automatic periods after double spaces
+defaults write NSAutomaticDashSubstitutionEnabled -bool false # disable automatic dash substitution
+defaults write NSAutomaticQuoteSubstitutionEnabled -bool false # disable smart quote substitution
+defaults write -g ApplePressAndHoldEnabled -bool false # repeat held keys instead of showing the accent menu
 
 echo COMPLETED 🎉
